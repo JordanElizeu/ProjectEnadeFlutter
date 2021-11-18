@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_enade/controller/controller.dart';
 import 'app_bar.dart';
 
 class ViewFooter extends StatelessWidget {
@@ -35,21 +36,21 @@ class ViewFooter extends StatelessWidget {
                           image: _pathImageGitHub,
                           link: "Github",
                           function: () {
-                            openUrl(_linkGitHub);
+                            Controller().openUrl(_linkGitHub);
                           },
                           context: context),
                       _linkText(
                           image: _pathImageLinkedin,
                           link: "Linkedin",
                           function: () {
-                            openUrl(_linkLinkedin);
+                            Controller().openUrl(_linkLinkedin);
                           },
                           context: context),
                       _linkText(
                           image: _pathImageInstagram,
                           link: "Instagram",
                           function: () {
-                            openUrl(_linkInstagram);
+                            Controller().openUrl(_linkInstagram);
                           },
                           context: context)
                     ],

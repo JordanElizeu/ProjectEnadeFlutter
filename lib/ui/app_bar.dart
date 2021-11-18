@@ -1,14 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:project_enade/controller/controller.dart';
+import 'package:project_enade/router/Router.dart';
 
-Widget appBar() {
+class ViewAppBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return appBar(context);
+  }
+}
+
+Widget appBar(BuildContext context) {
   const _buttonLogin = "Entrar";
-  const _linkOrgaosDeGoverno = "https://www.gov.br/pt-br/orgaos-do-governo";
-  const _linkLegislacao = "http://www4.planalto.gov.br/legislacao/";
-  const _linkAcessibilidade = "https://www.gov.br/governodigital/pt-br/acessibilidade-digital";
+  const _linkOrgansOfGovern = "https://www.gov.br/pt-br/orgaos-do-governo";
+  const _linkLegislation = "http://www4.planalto.gov.br/legislacao/";
+  const _linkAccessibility = "https://www.gov.br/governodigital/pt-br/acessibilidade-digital";
   const _linkGov = "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enade";
+  const _titleLegislationLink = "Legislação";
+  const _titleOrgansOfGovernLink = "Orgãos do Governo";
+  const _titleAccessibilityLink = "Acessibilidade";
+  const _titleResultsLink = "Resultados";
+  const _titleQuizLink = "Quiz";
+  const _titleGovLink = "gov.com";
   return Material(
     elevation: 20,
     child: Container(
@@ -39,16 +53,16 @@ Widget appBar() {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 100.0),
-                    child: inkwellText(textName: "gov.com",function: (){openUrl(_linkGov);}),
+                    child: inkwellText(textName: _titleGovLink,function: (){Controller().openUrl(_linkGov);}),
                   ),
-                  inkwellText(textName: "Legislação",function: (){openUrl(_linkLegislacao);}),
-                  inkwellText(textName: "Orgãos do Governo",function: (){openUrl(_linkOrgaosDeGoverno);}),
-                  inkwellText(textName: "Acessibilidade",function: (){openUrl(_linkAcessibilidade);}),
-                  inkwellText(textName: "Resultados",function: (){}),
-                  inkwellText(textName: "Quiz",function: (){}),
-                  elevatedButton(
+                  inkwellText(textName: _titleLegislationLink,function: (){Controller().openUrl(_linkLegislation);}),
+                  inkwellText(textName: _titleOrgansOfGovernLink,function: (){Controller().openUrl(_linkOrgansOfGovern);}),
+                  inkwellText(textName: _titleAccessibilityLink,function: (){Controller().openUrl(_linkAccessibility);}),
+                  inkwellText(textName: _titleResultsLink,function: (){}),
+                  inkwellText(textName: _titleQuizLink,function: (){}),
+                  _elevatedButton(
                       nameButton: _buttonLogin,
-                      function: () {},
+                      function: () {Controller().transitionScreen(nameRoute: Routes.LOGIN, context: context);},
                       icon: Icons.person,
                       colorText: Colors.white,
                       colorBackGroundButton: Colors.blue),
@@ -73,7 +87,7 @@ Widget inkwellText({textName,Function function}){
   );
 }
 
-Widget elevatedButton(
+Widget _elevatedButton(
     {nameButton,
     Function function,
     IconData icon,
@@ -118,12 +132,4 @@ Widget elevatedButton(
       ),
     ),
   );
-}
-
-openUrl(url) async {
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    //
-  }
 }
