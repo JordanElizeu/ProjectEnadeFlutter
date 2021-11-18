@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'initial_page.dart';
+import 'package:project_enade/ui/initial_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,10 +10,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.blue,
       ),
-    title: "Enade",
-    home: InitialPage(),
+      themeMode: ThemeMode.light,
+      home: InitialPage(),
     );
   }
 }
+
