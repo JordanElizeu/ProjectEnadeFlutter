@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 Widget appBar() {
   const _buttonLogin = "Entrar";
+  const _linkOrgaosDeGoverno = "https://www.gov.br/pt-br/orgaos-do-governo";
+  const _linkLegislacao = "http://www4.planalto.gov.br/legislacao/";
+  const _linkAcessibilidade = "https://www.gov.br/governodigital/pt-br/acessibilidade-digital";
+  const _linkGov = "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enade";
   return Material(
     elevation: 20,
     child: Container(
@@ -30,11 +35,16 @@ Widget appBar() {
                 ),
               ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  inkwellText(textName: "gov.com",function: (){}),
-                  inkwellText(textName: "Legislação",function: (){}),
-                  inkwellText(textName: "Orgãos do Governo",function: (){}),
-                  inkwellText(textName: "Acessibilidade",function: (){}),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 100.0),
+                    child: inkwellText(textName: "gov.com",function: (){openUrl(_linkGov);}),
+                  ),
+                  inkwellText(textName: "Legislação",function: (){openUrl(_linkLegislacao);}),
+                  inkwellText(textName: "Orgãos do Governo",function: (){openUrl(_linkOrgaosDeGoverno);}),
+                  inkwellText(textName: "Acessibilidade",function: (){openUrl(_linkAcessibilidade);}),
+                  inkwellText(textName: "Resultados",function: (){}),
                   inkwellText(textName: "Quiz",function: (){}),
                   elevatedButton(
                       nameButton: _buttonLogin,
@@ -71,7 +81,7 @@ Widget elevatedButton(
     @required Color colorBackGroundButton,
     Color overlayColor}) {
   return Padding(
-    padding: const EdgeInsets.all(8.0),
+    padding: const EdgeInsets.only(left: 40),
     child: Container(
       height: 35,
       width: 150,
@@ -81,10 +91,15 @@ Widget elevatedButton(
           children: [
             Icon(icon),
             Center(
-              child: Text(
-                nameButton,
-                style: TextStyle(
-                    color: colorText == null ? Colors.white : colorText),
+              child: Container(
+                width: 100,
+                child: Center(
+                  child: Text(
+                    nameButton,
+                    style: TextStyle(
+                        color: colorText == null ? Colors.white : colorText),
+                  ),
+                ),
               ),
             ),
           ],
@@ -103,4 +118,12 @@ Widget elevatedButton(
       ),
     ),
   );
+}
+
+openUrl(url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    //
+  }
 }

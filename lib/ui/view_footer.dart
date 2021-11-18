@@ -1,45 +1,68 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'app_bar.dart';
 
 class ViewFooter extends StatelessWidget {
+  final _pathImageGitHub = "assets/images/github.png";
+  final _pathImageLinkedin = "assets/images/linkedin.png";
+  final _pathImageInstagram = "assets/images/instagram.png";
+  final _linkInstagram = "https://www.instagram.com/jordan.lr7";
+  final _linkLinkedin = "https://www.linkedin.com/in/jordanelizeu/";
+  final _linkGitHub = "https://github.com/JordanElizeu";
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
           width: double.infinity,
-          height: 150.0,
-          color: Color(0xFF071d41),
+          height: 300,
+          color: Color(0xFF04132a),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _formatText("gov.com"),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: _formatText("gov.com"),
+              ),
               _formatText(
                   "Esse site não possui nenhum tipo de convênio com o Instituto Exame Nacional de Desempenho de Estudantes - ENADE. Esse projeto foi desenvolvido"
-                  "apenas com o intuito de aprendizado."),
+                      " apenas com o intuito de desenvolvimento acadêmico."),
+              Column(
+                children: [
+                  _linkText(image: _pathImageGitHub, link: "Github", function: (){openUrl(_linkGitHub);}, context: context),
+                  _linkText(image: _pathImageLinkedin, link: "Linkedin", function: (){openUrl(_linkLinkedin);}, context: context),
+                  _linkText(image: _pathImageInstagram, link: "Instagram", function: (){openUrl(_linkInstagram);}, context: context)
+                ],
+              )
             ],
-          ),
-        ),
-        Container(
-          height: 100.0,
-          color: Color(0xFF04132a),
-          child: Center(
-              child: _formatText("Site desenvolvido por Jordan Elizeu")),
+          )
         )
       ],
     );
   }
 }
 
-Widget _formatText(text) {
-  return LayoutBuilder(
-      builder: (_, constraints){
-        return Container(
-          width: constraints.maxWidth*0.7,
-          child: Text(
-            text,
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-        );
-      }
+Widget _linkText({@required image,@required Function function,@required link,@required BuildContext context}){
+  return Container(
+    width: MediaQuery.of(context).size.width*0.70,
+    child: Row(
+      children: [
+        Image.asset(image),
+        inkwellText(
+            textName: link, function: function),
+      ],
+    ),
   );
+}
+
+Widget _formatText(text) {
+  return LayoutBuilder(builder: (_, constraints) {
+    return Container(
+      width: constraints.maxWidth * 0.7,
+      child: Text(
+        text,
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+      ),
+    );
+  });
 }
