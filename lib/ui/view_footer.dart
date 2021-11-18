@@ -14,42 +14,69 @@ class ViewFooter extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: double.infinity,
-          height: 300,
-          color: Color(0xFF04132a),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
-                child: _formatText("gov.com"),
-              ),
-              _formatText(
-                  "Esse site não possui nenhum tipo de convênio com o Instituto Exame Nacional de Desempenho de Estudantes - ENADE. Esse projeto foi desenvolvido"
-                      " apenas com o intuito de desenvolvimento acadêmico."),
-              Column(
-                children: [
-                  _linkText(image: _pathImageGitHub, link: "Github", function: (){openUrl(_linkGitHub);}, context: context),
-                  _linkText(image: _pathImageLinkedin, link: "Linkedin", function: (){openUrl(_linkLinkedin);}, context: context),
-                  _linkText(image: _pathImageInstagram, link: "Instagram", function: (){openUrl(_linkInstagram);}, context: context)
-                ],
-              )
-            ],
-          )
-        )
+            width: double.infinity,
+            height: 300,
+            color: Color(0xFF04132a),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: _formatText("gov.com"),
+                ),
+                _formatText(
+                    "Esse site não possui nenhum tipo de convênio com o Instituto Exame Nacional de Desempenho de Estudantes - ENADE. Esse projeto foi desenvolvido"
+                    " apenas com o intuito de desenvolvimento acadêmico."),
+                Padding(
+                  padding: const EdgeInsets.only(top: 24.0),
+                  child: Column(
+                    children: [
+                      _linkText(
+                          image: _pathImageGitHub,
+                          link: "Github",
+                          function: () {
+                            openUrl(_linkGitHub);
+                          },
+                          context: context),
+                      _linkText(
+                          image: _pathImageLinkedin,
+                          link: "Linkedin",
+                          function: () {
+                            openUrl(_linkLinkedin);
+                          },
+                          context: context),
+                      _linkText(
+                          image: _pathImageInstagram,
+                          link: "Instagram",
+                          function: () {
+                            openUrl(_linkInstagram);
+                          },
+                          context: context)
+                    ],
+                  ),
+                )
+              ],
+            ))
       ],
     );
   }
 }
 
-Widget _linkText({@required image,@required Function function,@required link,@required BuildContext context}){
+Widget _linkText(
+    {@required image,
+    @required Function function,
+    @required link,
+    @required BuildContext context}) {
   return Container(
-    width: MediaQuery.of(context).size.width*0.70,
+    width: MediaQuery.of(context).size.width * 0.70,
     child: Row(
       children: [
-        Image.asset(image),
-        inkwellText(
-            textName: link, function: function),
+        Image.asset(
+          image,
+          width: 30,
+          height: 30,
+        ),
+        inkwellText(textName: link, function: function),
       ],
     ),
   );
