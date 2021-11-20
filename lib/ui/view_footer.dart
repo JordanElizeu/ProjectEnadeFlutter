@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_enade/controller/controller.dart';
-import 'app_bar.dart';
+import 'package:project_enade/components/inkwell.dart';
+import 'package:project_enade/controller/controller_methods.dart';
 
 class ViewFooter extends StatelessWidget {
   final _pathImageGitHub = "assets/images/github.png";
@@ -10,55 +10,70 @@ class ViewFooter extends StatelessWidget {
   final _linkInstagram = "https://www.instagram.com/jordan.lr7";
   final _linkLinkedin = "https://www.linkedin.com/in/jordanelizeu/";
   final _linkGitHub = "https://github.com/JordanElizeu";
+  final _linkGitHubName = "Github";
+  final _linkLinkedinName = "Linkedin";
+  final _linkInstagramName = "Instagram";
+  final _linkGovName = "gov.com";
+  final _textFootInformation =
+      "Esse site não possui nenhum tipo de convênio com o Instituto "
+      "Exame Nacional de Desempenho - ENADE. Esse projeto foi desenvolvido apenas com o intuito acadêmico.";
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-            width: double.infinity,
-            height: 300,
-            color: Color(0xFF04132a),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0),
-                  child: _formatText("gov.com"),
-                ),
-                _formatText(
-                    "Esse site não possui nenhum tipo de convênio com o Instituto Exame Nacional de Desempenho de Estudantes - ENADE. Esse projeto foi desenvolvido"
-                    " apenas com o intuito de desenvolvimento acadêmico."),
-                Padding(
-                  padding: const EdgeInsets.only(top: 24.0),
+    return LayoutBuilder(
+      builder: (_, constraints) {
+        return Center(
+          child: Column(
+            children: [
+              Container(
+                  width: constraints.maxWidth*70,
+                  height: 200,
+                  color: Color(0xFF04132a),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      _linkText(
-                          image: _pathImageGitHub,
-                          link: "Github",
-                          function: () {
-                            Controller().openUrl(_linkGitHub);
-                          },
-                          context: context),
-                      _linkText(
-                          image: _pathImageLinkedin,
-                          link: "Linkedin",
-                          function: () {
-                            Controller().openUrl(_linkLinkedin);
-                          },
-                          context: context),
-                      _linkText(
-                          image: _pathImageInstagram,
-                          link: "Instagram",
-                          function: () {
-                            Controller().openUrl(_linkInstagram);
-                          },
-                          context: context)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16.0),
+                        child: _formatText(_linkGovName),
+                      ),
+                      _formatText(_textFootInformation),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 24.0),
+                        child: Container(
+                          width: constraints.maxWidth*0.70,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              _linkText(
+                                  image: _pathImageGitHub,
+                                  link: _linkGitHubName,
+                                  function: () {
+                                    ControllerAllMethods().openUrl(_linkGitHub);
+                                  },
+                                  context: context),
+                              _linkText(
+                                  image: _pathImageLinkedin,
+                                  link: _linkLinkedinName,
+                                  function: () {
+                                    ControllerAllMethods().openUrl(_linkLinkedin);
+                                  },
+                                  context: context),
+                              _linkText(
+                                  image: _pathImageInstagram,
+                                  link: _linkInstagramName,
+                                  function: () {
+                                    ControllerAllMethods().openUrl(_linkInstagram);
+                                  },
+                                  context: context)
+                            ],
+                          ),
+                        ),
+                      )
                     ],
-                  ),
-                )
-              ],
-            ))
-      ],
+                  ))
+            ],
+          ),
+        );
+      },
     );
   }
 }
@@ -69,7 +84,6 @@ Widget _linkText(
     @required link,
     @required BuildContext context}) {
   return Container(
-    width: MediaQuery.of(context).size.width * 0.70,
     child: Row(
       children: [
         Image.asset(
@@ -86,7 +100,6 @@ Widget _linkText(
 Widget _formatText(text) {
   return LayoutBuilder(builder: (_, constraints) {
     return Container(
-      width: constraints.maxWidth * 0.7,
       child: Text(
         text,
         style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),

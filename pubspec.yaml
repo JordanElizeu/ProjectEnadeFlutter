@@ -34,6 +34,14 @@ dependencies:
   get:
   transitioner:
   flutter_svg:
+  horizontal_card_pager:
+  firebase_auth:
+  cloud_firestore:
+  firebase_database:
+  firebase_core:
+  firebase:
+  percent_indicator:
+  email_validator:
 
 dev_dependencies:
   flutter_test:
@@ -57,6 +65,7 @@ flutter:
     - assets/images/github.png
     - assets/images/linkedin.png
     - assets/images/instagram.png
+    - assets/images/logo_enade.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
