@@ -57,7 +57,7 @@ class ViewRegister extends StatelessWidget {
                                   globalKey: controller.formKeyRegisterName,
                                   filteringTextInputFormatter: null,
                                   maxLength: 20,
-                                  controller: controller.registerTextFormFieldName),
+                                  textEditingController: controller.registerTextFormFieldName),
                             ),
                             Form(
                               key: controller.formKeyRegisterEmail,
@@ -73,7 +73,7 @@ class ViewRegister extends StatelessWidget {
                                   globalKey: controller.formKeyRegisterEmail,
                                   maxLength: null,
                                   filteringTextInputFormatter: null,
-                                  controller: controller.registerTextFormFieldEmail),
+                                  textEditingController: controller.registerTextFormFieldEmail),
                             ),
                             Form(
                               key: controller.formKeyRegisterConfirmEmail,
@@ -90,7 +90,7 @@ class ViewRegister extends StatelessWidget {
                                       controller.formKeyRegisterConfirmEmail,
                                   filteringTextInputFormatter: null,
                                   maxLength: null,
-                                  controller: controller.registerTextFormFieldConfirmEmail),
+                                  textEditingController: controller.registerTextFormFieldConfirmEmail),
                             ),
                             Form(
                               key: controller.formKeyRegisterPassword,
@@ -106,7 +106,7 @@ class ViewRegister extends StatelessWidget {
                                   globalKey: controller.formKeyRegisterPassword,
                                   filteringTextInputFormatter: null,
                                   maxLength: null,
-                                  controller: controller.registerTextFormFieldPassword),
+                                  textEditingController: controller.registerTextFormFieldPassword),
                             ),
                             Form(
                               key: controller.formKeyRegisterConfirmPassword,
@@ -123,7 +123,7 @@ class ViewRegister extends StatelessWidget {
                                       controller.formKeyRegisterConfirmPassword,
                                   maxLength: null,
                                   filteringTextInputFormatter: null,
-                                  controller: controller.registerTextFormFieldConfirmPassword),
+                                  textEditingController: controller.registerTextFormFieldConfirmPassword),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 40),

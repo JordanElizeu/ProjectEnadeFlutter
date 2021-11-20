@@ -6,8 +6,8 @@ import 'package:project_enade/data/firebase.dart';
 
 class ControllerLogin extends GetxController{
 
-  TextEditingController loginTextFormFieldMatricula = TextEditingController();
-  TextEditingController loginTextFormFieldPassword = TextEditingController();
+  static TextEditingController loginTextFormFieldMatricula = TextEditingController();
+  static TextEditingController loginTextFormFieldPassword = TextEditingController();
   GlobalKey<FormState> formKeyLoginPassword = GlobalKey<FormState>();
   GlobalKey<FormState> formKeyLoginMatricula = GlobalKey<FormState>();
 
@@ -17,12 +17,10 @@ class ControllerLogin extends GetxController{
   final _textInvalidFieldPassword = "Senha muito fraca";
 
   accessAccount(BuildContext context) async{
-    if(loginTextFormFieldMatricula.text.length > 0 && loginTextFormFieldPassword.text.length > 0){
-      print("if");
+    if(loginTextFormFieldMatricula.text.length == 8 && loginTextFormFieldPassword.text.length > 6){
       accessAccountEnade(password: loginTextFormFieldPassword.text, matricula: loginTextFormFieldMatricula.text, context: context);
     }else{
       alertDialogFailure(information: "Preencha os campos corretamente.", context: context, title: null);
-      print("else");
     }
   }
 

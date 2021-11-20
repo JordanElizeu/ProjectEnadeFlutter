@@ -68,7 +68,9 @@ class ViewLogin extends StatelessWidget {
                                       return controller
                                           .validatorLoginFieldFormTextMatricula(
                                               text);
-                                    }, controller: controller.loginTextFormFieldMatricula,
+                                    },
+                                    textEditingController: ControllerLogin
+                                        .loginTextFormFieldMatricula,
                                   ),
                                 ),
                                 Form(
@@ -85,7 +87,8 @@ class ViewLogin extends StatelessWidget {
                                           .validatorLoginFieldFormTextPassword(
                                               text);
                                     },
-                                    controller: controller.loginTextFormFieldPassword,
+                                    textEditingController: ControllerLogin
+                                        .loginTextFormFieldPassword,
                                   ),
                                 ),
                                 Padding(

@@ -10,9 +10,9 @@ Widget formatTextField(
       @required GlobalKey<FormState> globalKey,
       @required FilteringTextInputFormatter filteringTextInputFormatter,
       @required maxLength,
-      @required TextEditingController controller}) {
+      @required TextEditingController textEditingController}) {
   return TextFormField(
-    controller: controller,
+    controller: textEditingController,
     maxLength: maxLength,
     textAlignVertical: TextAlignVertical.top,
     onChanged: (value) {
