@@ -3,14 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:project_enade/controller/controller_questions.dart';
+import 'package:project_enade/controller/controller_quiz_ads.dart';
 
-class ViewQuestions extends StatelessWidget {
+class ViewQuestionsAds extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
-      init: ControllerQuestions(),
-      builder: (ControllerQuestions controller) {
+      init: ControllerQuizAds(),
+      builder: (ControllerQuizAds controller) {
         return Center(
           child: LayoutBuilder(
             builder: (_, constraints) {
@@ -40,7 +40,7 @@ class ViewQuestions extends StatelessWidget {
 }
 
 Widget _titleQuestion(
-    constraints, ControllerQuestions controller, BuildContext context) {
+    constraints, controller, BuildContext context) {
   return Padding(
     padding: const EdgeInsets.only(
       left: 10.0,
@@ -61,7 +61,7 @@ Widget _titleQuestion(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Questão ${controller.showQuestionScreen}",
+                    "Questão ${controller.showQuestionScreenNetwork}",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 22,
@@ -94,9 +94,9 @@ Widget _titleQuestion(
                       //print('Countdown Started');
                     },
                     onComplete: () {
-                      controller.questionSelectedRadius = 1;
-                      controller.showQuestionScreen = 10;
-                      controller.buttonConfirmResponseForNewQuestion(context);
+                      controller.questionSelectedRadiusAds = 1;
+                      controller.showQuestionScreenNetwork = 10;
+                      controller.buttonConfirmResponseForNewQuestionAds(context);
                     },
                   )
                 ],
@@ -120,7 +120,7 @@ Widget _titleQuestion(
 }
 
 Widget _buttonConfirmResponse(
-    constraints, ControllerQuestions controller, BuildContext context) {
+    constraints, controller, BuildContext context) {
   final _textButtonEncerrarQuestionario = "Encerrar questionário";
   final _textButtonConfirmar = "Confirmar";
 
@@ -135,9 +135,9 @@ Widget _buttonConfirmResponse(
           child: new CircularPercentIndicator(
             radius: 80.0,
             lineWidth: 5.0,
-            percent: controller.showQuestionScreen / 10 - 0.1,
+            percent: controller.showQuestionScreenNetwork / 10 - 0.1,
             center: new Text(
-                "${controller.showQuestionScreen - 1}${controller.showQuestionScreen == 1 ? "%" : "0%"}"),
+                "${controller.showQuestionScreenNetwork - 1}${controller.showQuestionScreenNetwork == 1 ? "%" : "0%"}"),
             progressColor: Colors.green,
           ),
         ),
@@ -146,10 +146,10 @@ Widget _buttonConfirmResponse(
           height: 35,
           child: ElevatedButton(
             onPressed: () {
-              controller.buttonConfirmResponseForNewQuestion(context);
+              controller.buttonConfirmResponseForNewQuestionAds(context);
             },
             child: Text(
-              controller.showQuestionScreen == 10
+              controller.showQuestionScreenNetwork == 10
                   ? _textButtonEncerrarQuestionario
                   : _textButtonConfirmar,
               style: TextStyle(color: Colors.white),
@@ -169,8 +169,8 @@ Widget _radiosButton() {
   final questionFive = 5.0;
 
   return GetBuilder(
-    init: ControllerQuestions(),
-    builder: (ControllerQuestions controller) {
+    init: ControllerQuizAds(),
+    builder: (ControllerQuizAds controller) {
       return Padding(
         padding: const EdgeInsets.only(bottom: 20.0),
         child: Column(
@@ -181,7 +181,7 @@ Widget _radiosButton() {
                 children: [
                   Visibility(
                     visible: controller.getImageAds() != "not found",
-                      child: Image.asset(controller.getImageAds())
+                      child: Image.asset("${controller.getImageAds()}.png")
                   ),
                   _radio(
                       itemQuestion: "A)",
@@ -215,7 +215,7 @@ Widget _radiosButton() {
 
 Widget _radio(
     {@required groupValue,
-    @required ControllerQuestions controller,
+    @required controller,
     @required String itemQuestion}) {
   return LayoutBuilder(builder: (_, constraints) {
     return Container(
@@ -228,9 +228,9 @@ Widget _radio(
               padding: const EdgeInsets.only(top: 16.0),
               child: Radio(
                 onChanged: (value) {
-                  controller.increment(groupValue);
+                  controller.incrementAds(groupValue);
                 },
-                value: controller.questionSelectedRadius,
+                value: controller.questionSelectedRadiusAds,
                 groupValue: groupValue,
               ),
             ),

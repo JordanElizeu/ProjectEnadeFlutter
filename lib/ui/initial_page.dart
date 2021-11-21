@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:horizontal_card_pager/card_item.dart';
 import 'package:horizontal_card_pager/horizontal_card_pager.dart';
+import 'package:project_enade/controller/controller_initialpage.dart';
 import 'package:project_enade/ui/view_footer.dart';
 import 'app_bar.dart';
 
@@ -34,7 +35,7 @@ class InitialPage extends StatelessWidget {
                       ],
                     )),
               ),
-              _bodyInitialPage(),
+              _bodyInitialPage(context),
               ViewFooter(),
             ],
           ),
@@ -44,7 +45,7 @@ class InitialPage extends StatelessWidget {
   }
 }
 
-Widget _bodyInitialPage() {
+Widget _bodyInitialPage(BuildContext context) {
   final _titleCardItemAds = "10 Questões - ADS";
   final _titleCardItemResults = "Resultados";
   final _titleCardItemNetwork = "10 Questões - REDES";
@@ -69,7 +70,7 @@ Widget _bodyInitialPage() {
               children: [
                 HorizontalCardPager(
                   initialPage: 1,
-                  onSelectedItem: (page) => print(page),
+                  onSelectedItem: (page) => ControllerInitialPage().selectedQuizOrResults(page,context),
                   items: items, // set ImageCardItem or IconTitleCardItem class
                 ),
               ],
