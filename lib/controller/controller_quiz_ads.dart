@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:project_enade/components/dialog_exceptions.dart';
+import 'package:project_enade/controller/controller_methods.dart';
 import 'package:project_enade/controller/controller_questions.dart';
+import 'package:project_enade/router/Router.dart';
+
+import 'controller_login.dart';
 
 class ControllerQuizAds extends GetxController{
   var _questionSelectedRadiusAds = 0;
@@ -57,7 +61,10 @@ class ControllerQuizAds extends GetxController{
     }else if (showQuestionScreenAds == 10){
       _questionSelectedRadiusAds = 0;
       showQuestionScreenAds = 1;
-      alertDialogSuccess(title: _titleAlertDialogSuccess, context: context, information: _informationAlertDialogSuccess);
+      alertDialogSuccess(title: _titleAlertDialogSuccess, context: context, information: _informationAlertDialogSuccess,function: (){
+        ControllerAllMethods().transitionScreen(nameRoute: Routes.INITIAL, context: context);
+        Navigator.pop(ControllerLogin.contextControllerLogin);
+      });
     }else{
       _validatorQuestionsResultAds();
       _questionSelectedRadiusAds = 0;

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:project_enade/components/dialog_exceptions.dart';
+import 'package:project_enade/router/Router.dart';
+import 'controller_methods.dart';
 import 'controller_questions.dart';
 
 class ControllerQuizNetwork extends GetxController{
@@ -54,14 +56,15 @@ class ControllerQuizNetwork extends GetxController{
     }else if (showQuestionScreenNetwork == 10){
       _questionSelectedRadiusNetwork = 0;
       showQuestionScreenNetwork = 1;
-      alertDialogSuccess(title: _titleAlertDialogSuccess, context: context, information: _informationAlertDialogSuccess);
+      alertDialogSuccess(title: _titleAlertDialogSuccess, context: context, information: _informationAlertDialogSuccess,function: (){
+        ControllerAllMethods().transitionScreen(nameRoute: Routes.INITIAL, context: context);
+      });
     }else{
       _validatorQuestionsResultNetwork();
       _questionSelectedRadiusNetwork = 0;
       showQuestionScreenNetwork ++;
       update();
     }
-
   }
 
   Map<int, Map<String, String>> _questionsNetwork = {

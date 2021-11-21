@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:project_enade/ui/initial_page.dart';
 import 'package:project_enade/ui/view_login.dart';
 import 'package:project_enade/ui/view_question_network.dart';
+import 'package:project_enade/ui/view_questions_ads.dart';
 import 'package:project_enade/ui/view_register.dart';
 
 abstract class Routes{
@@ -19,7 +20,8 @@ class AppPages {
     '/': (_) => InitialPage(),
     '/login': (_) => ViewLogin(),
     '/register': (_) => ViewRegister(),
-    '/quiz_ads': (_) => ViewQuestionsNetwork(),
+    '/quiz_ads': (_) => ViewQuestionsAds(),
     '/quiz_redes': (_) => ViewQuestionsNetwork(),
+    //'/resultados': (_) => ViewQuestionsNetwork(),
   };
 }

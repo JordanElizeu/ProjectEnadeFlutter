@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:project_enade/components/dialog_exceptions.dart';
 import 'package:project_enade/controller/controller_firebase.dart';
 import 'package:project_enade/controller/controller_login.dart';
+import 'package:project_enade/controller/controller_methods.dart';
 import 'package:project_enade/data/exceptions.dart';
+import 'package:project_enade/router/Router.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final DatabaseReference _databaseReference =
@@ -72,7 +74,7 @@ void accessAccountEnade(
     @required matricula,
     @required password,
     @required BuildContext context}) async {
-  List<String> list = [];
+  Map<dynamic,dynamic> map;
   try {
     await _auth.signInWithEmailAndPassword(email: email, password: password);
     if (emailIsVerified()) {
@@ -84,9 +86,19 @@ void accessAccountEnade(
             .child(_auth.currentUser.uid)
             .once()
             .then((DataSnapshot snapshot) => {
-                  list.add(snapshot.value.toString()),
-                  print(list),
+                map = snapshot.value
                 });
+        final _titleLoginIsSuccess = "Olá, ${map["nome"].toString()}";
+        final _informationLoginIsSuccess = "Bem vindo ao Enade 2021!\n\nAgora os questionários estão disponíveis para você!";
+        final _textButtonLoginIsSuccess = "Iniciar os questionários";
+
+        alertDialogSuccess(
+            title: _titleLoginIsSuccess,
+            context: context,
+            information: _informationLoginIsSuccess,
+            nameButton: _textButtonLoginIsSuccess,
+            function: (){ControllerAllMethods().transitionScreen(nameRoute: Routes.INITIAL, context: context); Navigator.pop(ControllerLogin.contextControllerLogin);});
+
       } on DatabaseError catch (exception) {
         alertDialogFailure(
             context: context,

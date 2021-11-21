@@ -40,7 +40,7 @@ class ViewQuestionsAds extends StatelessWidget {
 }
 
 Widget _titleQuestion(
-    constraints, controller, BuildContext context) {
+    constraints,ControllerQuizAds controller, BuildContext context) {
   return Padding(
     padding: const EdgeInsets.only(
       left: 10.0,
@@ -61,7 +61,7 @@ Widget _titleQuestion(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Questão ${controller.showQuestionScreenNetwork}",
+                    "Questão ${controller.showQuestionScreenAds}",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 22,
@@ -95,7 +95,7 @@ Widget _titleQuestion(
                     },
                     onComplete: () {
                       controller.questionSelectedRadiusAds = 1;
-                      controller.showQuestionScreenNetwork = 10;
+                      controller.showQuestionScreenAds = 10;
                       controller.buttonConfirmResponseForNewQuestionAds(context);
                     },
                   )
@@ -120,7 +120,7 @@ Widget _titleQuestion(
 }
 
 Widget _buttonConfirmResponse(
-    constraints, controller, BuildContext context) {
+    constraints,ControllerQuizAds controller, BuildContext context) {
   final _textButtonEncerrarQuestionario = "Encerrar questionário";
   final _textButtonConfirmar = "Confirmar";
 
@@ -135,9 +135,9 @@ Widget _buttonConfirmResponse(
           child: new CircularPercentIndicator(
             radius: 80.0,
             lineWidth: 5.0,
-            percent: controller.showQuestionScreenNetwork / 10 - 0.1,
+            percent: controller.showQuestionScreenAds / 10 - 0.1,
             center: new Text(
-                "${controller.showQuestionScreenNetwork - 1}${controller.showQuestionScreenNetwork == 1 ? "%" : "0%"}"),
+                "${controller.showQuestionScreenAds - 1}${controller.showQuestionScreenAds == 1 ? "%" : "0%"}"),
             progressColor: Colors.green,
           ),
         ),
@@ -149,7 +149,7 @@ Widget _buttonConfirmResponse(
               controller.buttonConfirmResponseForNewQuestionAds(context);
             },
             child: Text(
-              controller.showQuestionScreenNetwork == 10
+              controller.showQuestionScreenAds == 10
                   ? _textButtonEncerrarQuestionario
                   : _textButtonConfirmar,
               style: TextStyle(color: Colors.white),
@@ -215,7 +215,7 @@ Widget _radiosButton() {
 
 Widget _radio(
     {@required groupValue,
-    @required controller,
+    @required ControllerQuizAds controller,
     @required String itemQuestion}) {
   return LayoutBuilder(builder: (_, constraints) {
     return Container(

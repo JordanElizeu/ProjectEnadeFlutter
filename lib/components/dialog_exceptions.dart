@@ -78,16 +78,18 @@ class ResponseDialog extends StatelessWidget {
 class SuccessDialog extends StatelessWidget {
   final String title;
   final String message;
+  final String buttonText;
   final IconData icon;
   final Function functionButton;
-  final String buttonText;
+
+
 
   SuccessDialog(
     this.message,
     this.title, {
     this.buttonText,
     this.icon = Icons.cloud_done,
-    @required this.functionButton,
+    this.functionButton,
   });
 
   @override
@@ -98,7 +100,7 @@ class SuccessDialog extends StatelessWidget {
       icon: icon,
       buttonText: buttonText == null ? "Ok" : buttonText,
       colorIcon: Colors.green,
-      functionButton: null,
+      functionButton: functionButton,
     );
   }
 }
