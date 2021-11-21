@@ -12,6 +12,9 @@ class ViewLogin extends StatelessWidget {
   final _titleLogin = "Acesse sua conta";
   final _campoMatricula = "Matrícula";
   final _campoSenha = "Senha";
+  final _campoEmail = "E-mail";
+  final _textEsqueciSenha = "Não possui conta?";
+  final _textEsqueciSenhaLink = "Cadastre-se";
   final _campoEsqueciSenha = "Esqueci minha senha?";
   final _textButtonLogin = "Entrar";
 
@@ -55,11 +58,50 @@ class ViewLogin extends StatelessWidget {
                                       ],
                                     )),
                                 Form(
-                                  key: controller.formKeyLoginMatricula,
+                                  key: ControllerLogin.formKeyLoginEmail,
+                                  child: formatTextField(
+                                    maxLength: null,
+                                    fieldName: _campoEmail,
+                                    globalKey:
+                                        ControllerLogin.formKeyLoginEmail,
+                                    filteringTextInputFormatter: null,
+                                    iconData: Icons.email,
+                                    function: (String text) {
+                                      return controller
+                                          .validatorLoginFieldFormTextEmail(
+                                              text);
+                                    },
+                                    textEditingController:
+                                        ControllerLogin.loginTextFormFieldEmail,
+                                    obscureText: false,
+                                  ),
+                                ),
+                                Form(
+                                  key: ControllerLogin.formKeyLoginPassword,
+                                  child: formatTextField(
+                                    maxLength: null,
+                                    fieldName: _campoSenha,
+                                    globalKey:
+                                        ControllerLogin.formKeyLoginPassword,
+                                    filteringTextInputFormatter: null,
+                                    iconData: Icons.lock,
+                                    obscureText: true,
+                                    function: (String text) {
+                                      return controller
+                                          .validatorLoginFieldFormTextPassword(
+                                              text);
+                                    },
+                                    textEditingController: ControllerLogin
+                                        .loginTextFormFieldPassword,
+                                  ),
+                                ),
+                                Form(
+                                  key: ControllerLogin.formKeyLoginMatricula,
                                   child: formatTextField(
                                     maxLength: 8,
                                     fieldName: _campoMatricula,
-                                    globalKey: controller.formKeyLoginMatricula,
+                                    globalKey:
+                                        ControllerLogin.formKeyLoginMatricula,
                                     filteringTextInputFormatter:
                                         FilteringTextInputFormatter.digitsOnly,
                                     iconData: Icons.person,
@@ -71,24 +113,6 @@ class ViewLogin extends StatelessWidget {
                                     },
                                     textEditingController: ControllerLogin
                                         .loginTextFormFieldMatricula,
-                                  ),
-                                ),
-                                Form(
-                                  key: controller.formKeyLoginPassword,
-                                  child: formatTextField(
-                                    maxLength: null,
-                                    fieldName: _campoSenha,
-                                    globalKey: controller.formKeyLoginPassword,
-                                    filteringTextInputFormatter: null,
-                                    iconData: Icons.lock,
-                                    obscureText: true,
-                                    function: (String text) {
-                                      return controller
-                                          .validatorLoginFieldFormTextPassword(
-                                              text);
-                                    },
-                                    textEditingController: ControllerLogin
-                                        .loginTextFormFieldPassword,
                                   ),
                                 ),
                                 Padding(
@@ -135,9 +159,9 @@ class ViewLogin extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          Text("Não possui conta?"),
+                                          Text(_textEsqueciSenha),
                                           inkwellText(
-                                              textName: "Cadastre-se",
+                                              textName: _textEsqueciSenhaLink,
                                               function: () {
                                                 ControllerAllMethods()
                                                     .transitionScreen(

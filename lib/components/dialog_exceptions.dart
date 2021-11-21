@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_enade/controller/controller_login.dart';
 
 class ResponseDialog extends StatelessWidget {
   final String title;
@@ -7,6 +8,7 @@ class ResponseDialog extends StatelessWidget {
   final String buttonText;
   final IconData icon;
   final Color colorIcon;
+  final Function functionButton;
 
   ResponseDialog({
     this.title = "",
@@ -14,10 +16,12 @@ class ResponseDialog extends StatelessWidget {
     this.icon,
     this.buttonText = 'OK',
     this.colorIcon = Colors.black,
+    @required this.functionButton,
   });
 
   @override
   Widget build(BuildContext context) {
+    ControllerLogin.contextControllerLogin = context;
     return AlertDialog(
       title: Visibility(
         child: Text(title),
@@ -42,11 +46,15 @@ class ResponseDialog extends StatelessWidget {
           Visibility(
             child: Padding(
               padding: const EdgeInsets.only(top: 16.0),
-              child: Text(
-                message,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 24.0,
+              child: Center(
+                child: ListTile(
+                  title: Text(
+                    message,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18.0,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -56,9 +64,12 @@ class ResponseDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         ElevatedButton(
-          child: Text(buttonText),
-          onPressed: () => Navigator.pop(context),
-        )
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(buttonText),
+            ),
+            onPressed: functionButton == null? (){Navigator.pop(context);}:functionButton
+            )
       ],
     );
   }
@@ -68,11 +79,15 @@ class SuccessDialog extends StatelessWidget {
   final String title;
   final String message;
   final IconData icon;
+  final Function functionButton;
+  final String buttonText;
 
   SuccessDialog(
     this.message,
     this.title, {
+    this.buttonText,
     this.icon = Icons.cloud_done,
+    @required this.functionButton,
   });
 
   @override
@@ -81,7 +96,9 @@ class SuccessDialog extends StatelessWidget {
       title: title,
       message: message,
       icon: icon,
+      buttonText: buttonText == null ? "Ok" : buttonText,
       colorIcon: Colors.green,
+      functionButton: null,
     );
   }
 }
@@ -89,12 +106,16 @@ class SuccessDialog extends StatelessWidget {
 class FailureDialog extends StatelessWidget {
   final String title;
   final String message;
+  final String buttonText;
   final IconData icon;
+  final Function functionButton;
 
   FailureDialog(
     this.message,
-    this.title,{
-    this.icon = Icons.warning,
+    this.title, {
+    this.buttonText,
+    this.icon = Icons.cloud_off,
+    this.functionButton,
   });
 
   @override
@@ -103,23 +124,45 @@ class FailureDialog extends StatelessWidget {
       title: title,
       message: message,
       icon: icon,
+      buttonText: buttonText == null ? "Ok" : buttonText,
       colorIcon: Colors.red,
+      functionButton: functionButton,
     );
   }
 }
 
-alertDialogSuccess({@required BuildContext context,@required information, @required title}) async {
+alertDialogSuccess(
+    {@required BuildContext context,
+    @required information,
+    title,
+    nameButton,
+    Function function}) async {
   await showDialog(
       context: context,
       builder: (contextDialog) {
-        return SuccessDialog(information, title);
+        return SuccessDialog(
+          information,
+          title == null ? "Algo falhou!" : title,
+          buttonText: nameButton,
+          functionButton: function,
+        );
       });
 }
 
-alertDialogFailure({@required BuildContext context, @required information, @required title}) async {
+alertDialogFailure(
+    {@required BuildContext context,
+    @required information,
+    title,
+    nameButton,
+    Function function}) async {
   await showDialog(
       context: context,
       builder: (contextDialog) {
-        return FailureDialog(information, title == null? "Algo falhou!": title);
+        return FailureDialog(
+          information,
+          title == null ? "Algo falhou!" : title,
+          buttonText: nameButton,
+          functionButton: function,
+        );
       });
 }

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_enade/data/firebase.dart';
 
+import 'controller_methods.dart';
+
 class ControllerRegister extends GetxController {
   static TextEditingController registerTextFormFieldName = TextEditingController();
   static TextEditingController registerTextFormFieldEmail = TextEditingController();
@@ -33,10 +35,6 @@ class ControllerRegister extends GetxController {
     }
   }
 
-  validatorEmail(String email) {
-    return EmailValidator.validate(email);
-  }
-
   validatorRegisterFieldFormTextName(String text) {
     if (text.isEmpty) {
       return "Preencha seu nome";
@@ -48,7 +46,7 @@ class ControllerRegister extends GetxController {
     if (text.isEmpty) {
       return "Preencha seu e-mail";
     }
-    if (!validatorEmail(text)) {
+    if (!ControllerAllMethods().validatorEmail(text)) {
       return "E-mail invalido";
     }
     return null;

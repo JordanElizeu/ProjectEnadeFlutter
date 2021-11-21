@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,5 +20,9 @@ class ControllerAllMethods extends GetxController{
     }catch(e){
       print(e);
     }
+  }
+
+  validatorEmail(String email) {
+    return EmailValidator.validate(email);
   }
 }
