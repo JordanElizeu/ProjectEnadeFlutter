@@ -18,6 +18,7 @@ final _informationSuccessAddNewResult = "Quiz concluído com sucesso!";
 void createNewUser({@required email, @required password, @required name, @required BuildContext context}) async{
   try{
     await _auth.createUserWithEmailAndPassword(email: email, password: password);
+    await _auth.signInWithEmailAndPassword(email: email, password: password);
     _databaseReference.child("Database").child("Users").child(_auth.currentUser.uid).child("nome").set(name);
     _databaseReference.child("Database").child("Users").child(_auth.currentUser.uid).child("matricula").set(ControllerFirebase().getUuid());
     _databaseReference.child("Database").child("Users").child(_auth.currentUser.uid).child("senha").set(password);
