@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:project_enade/ui/initial_page.dart';
 import 'package:project_enade/ui/view_login.dart';
+import 'package:project_enade/ui/view_questions.dart';
 import 'package:project_enade/ui/view_register.dart';
 
 abstract class Routes{
@@ -13,7 +14,7 @@ abstract class Routes{
 class AppPages {
 
   static final Map<String, Widget Function(BuildContext)> routes = {
-    '/': (_) => InitialPage(),
+    '/': (_) => ViewQuestions(),
     '/login': (_) => ViewLogin(),
     '/register': (_) => ViewRegister(),
   };

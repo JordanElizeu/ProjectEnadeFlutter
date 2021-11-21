@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_enade/components/response_dialog.dart';
+import 'package:project_enade/components/dialog_exceptions.dart';
 import 'package:project_enade/data/firebase.dart';
 
 class ControllerLogin extends GetxController{

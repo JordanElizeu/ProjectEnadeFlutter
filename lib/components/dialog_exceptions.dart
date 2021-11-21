@@ -72,7 +72,7 @@ class SuccessDialog extends StatelessWidget {
   SuccessDialog(
     this.message,
     this.title, {
-    this.icon = Icons.done,
+    this.icon = Icons.cloud_done,
   });
 
   @override

@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:project_enade/components/response_dialog.dart';
+import 'package:project_enade/components/dialog_exceptions.dart';
 
 void handleFirebaseLoginWithCredentialsException(FirebaseAuthException e,{@required BuildContext context}) {
   final _informationUserDisabled = "O usuário informado está desabilitado.";

@@ -42,6 +42,7 @@ dependencies:
   firebase:
   percent_indicator:
   email_validator:
+  circular_countdown_timer:
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +67,7 @@ flutter:
     - assets/images/linkedin.png
     - assets/images/instagram.png
     - assets/images/logo_enade.png
+    - assets/images/question6_ads.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
