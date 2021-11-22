@@ -1,4 +1,3 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,7 +20,6 @@ class ControllerRegister extends GetxController {
 
   buttonRegister(BuildContext context) {
     if (registerTextFormFieldConfirmPassword.text == registerTextFormFieldPassword.text) {
-      print(registerTextFormFieldEmail.text);
       createNewUser(
         email: registerTextFormFieldEmail.text.toString(),
         name: registerTextFormFieldName.text,

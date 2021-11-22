@@ -4,9 +4,11 @@ import 'package:project_enade/data/firebase.dart';
 
 class ControllerResults extends GetxController{
 
-    Map<dynamic,dynamic> map;
+    List<dynamic> list;
 
-    getResultsAndSendToMap(BuildContext context) async {
-      map = await getAllResults(context: context);
+    Future<List<dynamic>> getResultsAndSendToMap(BuildContext context) async {
+      list.add(await getAllResults(context: context));
+      update();
+      return list;
     }
 }

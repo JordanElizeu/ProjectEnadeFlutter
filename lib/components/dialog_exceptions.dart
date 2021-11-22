@@ -135,7 +135,7 @@ class FailureDialog extends StatelessWidget {
 
 alertDialogSuccess(
     {@required BuildContext context,
-    @required information,
+    information,
     title,
     nameButton,
     Function function}) async {
@@ -153,7 +153,7 @@ alertDialogSuccess(
 
 alertDialogFailure(
     {@required BuildContext context,
-    @required information,
+    information,
     title,
     nameButton,
     Function function}) async {

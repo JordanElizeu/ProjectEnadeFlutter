@@ -63,8 +63,8 @@ void createNewUser(
   }
 }
 
-void addNewResultInDatabase(
-    {@required result, @required name, @required BuildContext context}) {
+Future<void> addNewResultInDatabase(
+    {@required result, @required name, @required BuildContext context}) async {
   try {
     FirebaseDatabase.instance
         .reference()
@@ -212,15 +212,17 @@ void getResultQuizAndShowDialog(
 
 Future<Map<dynamic, dynamic>> getAllResults(
     {@required BuildContext context}) async {
+  Map<dynamic, dynamic> _map;
   try {
-    Map<dynamic, dynamic> _map;
     await FirebaseDatabase.instance
         .reference()
         .child("Database")
         .child("Resultados")
         .once()
         .then((DataSnapshot snapshot) => {
-              _map = snapshot.value,
+          snapshot.exists?
+              _map = snapshot.value:
+              _map = {}
             });
     return _map;
   } on DatabaseError catch (exception) {
@@ -228,6 +230,6 @@ Future<Map<dynamic, dynamic>> getAllResults(
         context: context,
         title: _titleFailureAccessAccount,
         information: exception);
-    return null;
+    return {};
   }
 }
