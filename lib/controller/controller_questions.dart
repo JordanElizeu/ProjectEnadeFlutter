@@ -1,7 +1,23 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:project_enade/components/dialog_exceptions.dart';
+import 'package:project_enade/data/firebase.dart';
+import 'package:project_enade/router/Router.dart';
+import 'controller_login.dart';
+import 'controller_methods.dart';
 
 class ControllerQuestions extends GetxController {
+
+  Future<void> questionarioFinalizado({@required title,@required BuildContext context,@required information,@required name,@required result,@required questionSelectedRadius,@required showQuestionScreen,@required disciplina}) async {
+    await addNewResultInDatabase(result: result, name: name, context: context, disciplina: disciplina);
+    questionSelectedRadius = 0;
+    showQuestionScreen = 1;
+    alertDialogSuccess(title: title, context: context, information: information,function: (){
+      ControllerAllMethods().transitionScreen(nameRoute: Routes.INITIAL, context: context);
+      Navigator.pop(ControllerLogin.contextControllerLogin);
+    });
+  }
 
   int getResponse(Map<int, Map<String, String>> map, showQuestionScreen) {
     int response;

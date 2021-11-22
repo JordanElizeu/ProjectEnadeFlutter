@@ -116,7 +116,7 @@ class FailureDialog extends StatelessWidget {
     this.message,
     this.title, {
     this.buttonText,
-    this.icon = Icons.cloud_off,
+    this.icon,
     this.functionButton,
   });
 
@@ -125,7 +125,7 @@ class FailureDialog extends StatelessWidget {
     return ResponseDialog(
       title: title,
       message: message,
-      icon: icon,
+      icon: icon == null? Icons.cloud_off:icon,
       buttonText: buttonText == null ? "Ok" : buttonText,
       colorIcon: Colors.red,
       functionButton: functionButton,
@@ -156,7 +156,8 @@ alertDialogFailure(
     information,
     title,
     nameButton,
-    Function function}) async {
+    Function function,
+    IconData icon}) async {
   await showDialog(
       context: context,
       builder: (contextDialog) {
@@ -165,6 +166,7 @@ alertDialogFailure(
           title == null ? "Algo falhou!" : title,
           buttonText: nameButton,
           functionButton: function,
+          icon: icon,
         );
       });
 }

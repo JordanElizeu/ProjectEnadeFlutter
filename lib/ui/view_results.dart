@@ -99,7 +99,7 @@ class ViewResults extends StatelessWidget {
                                       .toList()[index]["nome"]
                                       .toString()),
                                   Text(map.values
-                                      .toList()[index]["nome"]
+                                      .toList()[index]["disciplina"]
                                       .toString()),
                                   Container(
                                     width: 80,

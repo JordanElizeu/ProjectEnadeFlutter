@@ -18,7 +18,7 @@ abstract class Routes{
 class AppPages {
 
   static final Map<String, Widget Function(BuildContext)> routes = {
-    '/': (_) => ViewResults(),
+    '/': (_) => InitialPage(),
     '/login': (_) => ViewLogin(),
     '/register': (_) => ViewRegister(),
     '/quiz_ads': (_) => ViewQuestionsAds(),

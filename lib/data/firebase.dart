@@ -64,7 +64,7 @@ void createNewUser(
 }
 
 Future<void> addNewResultInDatabase(
-    {@required result, @required name, @required BuildContext context}) async {
+    {@required result, @required name, @required BuildContext context,@required disciplina}) async {
   try {
     FirebaseDatabase.instance
         .reference()
@@ -79,6 +79,12 @@ Future<void> addNewResultInDatabase(
         .child(_auth.currentUser.uid)
         .child("resultado")
         .set(result);
+    _databaseReference
+        .child("Database")
+        .child("Resultados")
+        .child(_auth.currentUser.uid)
+        .child("disciplina")
+        .set(disciplina);
   } on DatabaseError catch (exception) {
     alertDialogFailure(
         context: context,
