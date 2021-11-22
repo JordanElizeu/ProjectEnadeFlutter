@@ -47,12 +47,6 @@ void createNewUser(
         .child(_auth.currentUser.uid)
         .child("matricula")
         .set(ControllerFirebase().getUuid());
-    _databaseReference
-        .child("Database")
-        .child("Users")
-        .child(_auth.currentUser.uid)
-        .child("senha")
-        .set(password);
     try {
       await _auth.sendPasswordResetEmail(email: email);
       alertDialogSuccess(
@@ -69,12 +63,60 @@ void createNewUser(
   }
 }
 
+void addNewResultInDatabase(
+    {@required result, @required name, @required BuildContext context}) {
+  try {
+    FirebaseDatabase.instance
+        .reference()
+        .child("Database")
+        .child("Resultados")
+        .child(_auth.currentUser.uid)
+        .child("nome")
+        .set(name);
+    _databaseReference
+        .child("Database")
+        .child("Resultados")
+        .child(_auth.currentUser.uid)
+        .child("resultado")
+        .set(result);
+  } on DatabaseError catch (exception) {
+    alertDialogFailure(
+        context: context,
+        title: _titleFailureAccessAccount,
+        information: exception);
+  }
+}
+
+Future<Map<dynamic, dynamic>> getInformationOfUserOn(
+    BuildContext context) async {
+  Map<dynamic, dynamic> map;
+  try {
+    await FirebaseDatabase.instance
+        .reference()
+        .child("Database")
+        .child("Users")
+        .child(_auth.currentUser.uid)
+        .once()
+        .then((DataSnapshot snapshot) => {
+              map = snapshot.value,
+            });
+    return map;
+  } on DatabaseError catch (exception) {
+    alertDialogFailure(
+      context: context,
+      title: _titleFailureAccessAccount,
+      information: exception,
+    );
+    return null;
+  }
+}
+
 void accessAccountEnade(
     {@required email,
     @required matricula,
     @required password,
     @required BuildContext context}) async {
-  Map<dynamic,dynamic> map;
+  Map<dynamic, dynamic> map;
   try {
     await _auth.signInWithEmailAndPassword(email: email, password: password);
     if (emailIsVerified()) {
@@ -85,11 +127,10 @@ void accessAccountEnade(
             .child("Users")
             .child(_auth.currentUser.uid)
             .once()
-            .then((DataSnapshot snapshot) => {
-                map = snapshot.value
-                });
+            .then((DataSnapshot snapshot) => {map = snapshot.value});
         final _titleLoginIsSuccess = "Olá, ${map["nome"].toString()}";
-        final _informationLoginIsSuccess = "Bem vindo ao Enade 2021!\n\nAgora os questionários estão disponíveis para você!";
+        final _informationLoginIsSuccess =
+            "Bem vindo ao Enade 2021!\n\nAgora os questionários estão disponíveis para você!";
         final _textButtonLoginIsSuccess = "Iniciar os questionários";
 
         alertDialogSuccess(
@@ -97,14 +138,17 @@ void accessAccountEnade(
             context: context,
             information: _informationLoginIsSuccess,
             nameButton: _textButtonLoginIsSuccess,
-            function: (){ControllerAllMethods().transitionScreen(nameRoute: Routes.INITIAL, context: context); Navigator.pop(ControllerLogin.contextControllerLogin);});
-
+            function: () {
+              ControllerAllMethods().transitionScreen(
+                  nameRoute: Routes.INITIAL, context: context);
+              Navigator.pop(ControllerLogin.contextControllerLogin);
+            });
       } on DatabaseError catch (exception) {
         alertDialogFailure(
-            context: context,
-            title: _titleFailureAccessAccount,
-            information: exception,
-            nameButton: "Ok");
+          context: context,
+          title: _titleFailureAccessAccount,
+          information: exception,
+        );
       }
     } else {
       alertDialogFailure(
@@ -139,7 +183,7 @@ bool emailIsVerified() {
   return user.emailVerified;
 }
 
-void addNewResult(
+void getResultQuizAndShowDialog(
     {@required email,
     @required password,
     @required result,
@@ -154,19 +198,6 @@ void addNewResult(
         .child("nome")
         .once()
         .then((DataSnapshot snapshot) => {name.add(snapshot.value)});
-    FirebaseDatabase.instance
-        .reference()
-        .child("Database")
-        .child("Resultados")
-        .child(_auth.currentUser.uid)
-        .child(email)
-        .set(name[0]);
-    _databaseReference
-        .child("Database")
-        .child("Resultados")
-        .child(_auth.currentUser.uid)
-        .child("email")
-        .child(result);
     alertDialogSuccess(
         title: "Quiz 2021 $result Acertos de 10",
         context: context,
@@ -179,24 +210,24 @@ void addNewResult(
   }
 }
 
-Future<List<String>> getAllResults({@required BuildContext context}) async {
+Future<Map<dynamic, dynamic>> getAllResults(
+    {@required BuildContext context}) async {
   try {
-    List<String> list = [];
+    Map<dynamic, dynamic> _map;
     await FirebaseDatabase.instance
         .reference()
         .child("Database")
         .child("Resultados")
         .once()
         .then((DataSnapshot snapshot) => {
-              list.add(snapshot.value.toString()),
-              print(list),
+              _map = snapshot.value,
             });
-    return list;
+    return _map;
   } on DatabaseError catch (exception) {
     alertDialogFailure(
         context: context,
         title: _titleFailureAccessAccount,
         information: exception);
-    return [];
+    return null;
   }
 }

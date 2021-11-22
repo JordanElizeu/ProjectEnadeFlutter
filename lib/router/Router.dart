@@ -4,6 +4,7 @@ import 'package:project_enade/ui/view_login.dart';
 import 'package:project_enade/ui/view_question_network.dart';
 import 'package:project_enade/ui/view_questions_ads.dart';
 import 'package:project_enade/ui/view_register.dart';
+import 'package:project_enade/ui/view_results.dart';
 
 abstract class Routes{
 
@@ -17,7 +18,7 @@ abstract class Routes{
 class AppPages {
 
   static final Map<String, Widget Function(BuildContext)> routes = {
-    '/': (_) => InitialPage(),
+    '/': (_) => ViewResults(),
     '/login': (_) => ViewLogin(),
     '/register': (_) => ViewRegister(),
     '/quiz_ads': (_) => ViewQuestionsAds(),

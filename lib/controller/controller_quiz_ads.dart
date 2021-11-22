@@ -3,8 +3,8 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:project_enade/components/dialog_exceptions.dart';
 import 'package:project_enade/controller/controller_methods.dart';
 import 'package:project_enade/controller/controller_questions.dart';
+import 'package:project_enade/data/firebase.dart';
 import 'package:project_enade/router/Router.dart';
-
 import 'controller_login.dart';
 
 class ControllerQuizAds extends GetxController{
@@ -22,7 +22,6 @@ class ControllerQuizAds extends GetxController{
 
   void incrementAds(value) {
     _questionSelectedRadiusAds = value;
-    print(_questionSelectedRadiusAds);
     update();
   }
 
@@ -50,7 +49,7 @@ class ControllerQuizAds extends GetxController{
     }
   }
 
-  buttonConfirmResponseForNewQuestionAds(BuildContext context) {
+  buttonConfirmResponseForNewQuestionAds(BuildContext context) async {
     final _informationAlertDialogSuccess = "Questionário Finalizado!\nPara refazer o teste inicie novamente o questionario.\n\nQuestões incorretas: ${_numberIncorrectQuestionsAds - _numberCorrectQuestionsAds}";
     final _titleAlertDialogSuccess = "Nota: $_numberCorrectQuestionsAds de 10";
     final _titleAlertDialogFailure = "Confirme sua resposta";
@@ -59,19 +58,25 @@ class ControllerQuizAds extends GetxController{
     if (_questionSelectedRadiusAds == 0) {
       alertDialogFailure(information: _informationAlertDialogFailure, context: context, title: _titleAlertDialogFailure);
     }else if (showQuestionScreenAds == 10){
-      _questionSelectedRadiusAds = 0;
-      showQuestionScreenAds = 1;
-      alertDialogSuccess(title: _titleAlertDialogSuccess, context: context, information: _informationAlertDialogSuccess,function: (){
-        ControllerAllMethods().transitionScreen(nameRoute: Routes.INITIAL, context: context);
-        Navigator.pop(ControllerLogin.contextControllerLogin);
-      });
+      Map<dynamic,dynamic> map = await getInformationOfUserOn(context);
+      final name = map["nome"];
+      questionarioFinalizado(_titleAlertDialogSuccess,context,_informationAlertDialogSuccess,name,_numberCorrectQuestionsAds);
     }else{
       _validatorQuestionsResultAds();
       _questionSelectedRadiusAds = 0;
       showQuestionScreenAds ++;
       update();
     }
+  }
 
+  void questionarioFinalizado(title,BuildContext context, information,name,result){
+    addNewResultInDatabase(result: result, name: name, context: context);
+    _questionSelectedRadiusAds = 0;
+    showQuestionScreenAds = 1;
+    alertDialogSuccess(title: title, context: context, information: information,function: (){
+      ControllerAllMethods().transitionScreen(nameRoute: Routes.INITIAL, context: context);
+      Navigator.pop(ControllerLogin.contextControllerLogin);
+    });
   }
 
   Map<int, Map<String, String>> _questionsAds = {

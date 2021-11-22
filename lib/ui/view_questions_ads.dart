@@ -24,7 +24,7 @@ class ViewQuestionsAds extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         _titleQuestion(constraints, controller, context),
-                        _radiosButton(),
+                        _radiosButton(constraints),
                         _buttonConfirmResponse(constraints, controller, context)
                       ],
                     ),
@@ -161,7 +161,7 @@ Widget _buttonConfirmResponse(
   );
 }
 
-Widget _radiosButton() {
+Widget _radiosButton(constraints) {
   final questionOne = 1.0;
   final questionTwo = 2.0;
   final questionThree = 3.0;
@@ -181,7 +181,7 @@ Widget _radiosButton() {
                 children: [
                   Visibility(
                     visible: controller.getImageAds() != "not found",
-                      child: Image.asset("${controller.getImageAds()}.png")
+                      child: Image.asset("${controller.getImageAds()}.png",height: constraints.maxHeight*0.27,)
                   ),
                   _radio(
                       itemQuestion: "A)",
