@@ -32,7 +32,7 @@ class ControllerLogin extends GetxController {
     if (formRegisterValidatedMatricula.validate() &&
         formRegisterValidatedEmail.validate() &&
         formRegisterValidatedSenha.validate()) {
-      accessAccountEnade(
+      await accessAccountEnade(
           password: loginTextFormFieldPassword.text,
           matricula: loginTextFormFieldMatricula.text,
           context: context,

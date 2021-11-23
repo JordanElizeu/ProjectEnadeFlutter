@@ -6,18 +6,22 @@ import 'package:project_enade/controller/controller_initialpage.dart';
 
 import '../view_body_initialpage.dart';
 
-Widget bodyInitialPageTablet(BuildContext context) {
-  final List<CardItem> itemsCard = [
-    ViewBodyInitialPage().iconTitleCardItem(title: " ",icon: Icons.computer),
-    ViewBodyInitialPage().iconTitleCardItem(title: " ",icon: Icons.account_tree_outlined),
-    ViewBodyInitialPage().iconTitleCardItem(title: " ",icon: Icons.alternate_email),
+Widget bodyInitialPageMobile(BuildContext context) {
+  final _titleCardItemAds = "10 Questões - ADS";
+  final _titleCardItemResults = "Resultados";
+  final _titleCardItemNetwork = "10 Questões - REDES";
+
+  final List<CardItem> items = [
+    ViewBodyInitialPage().iconTitleCardItem(title: _titleCardItemAds,icon: Icons.computer),
+    ViewBodyInitialPage().iconTitleCardItem(title: _titleCardItemResults,icon: Icons.account_tree_outlined),
+    ViewBodyInitialPage().iconTitleCardItem(title: _titleCardItemNetwork,icon: Icons.alternate_email),
   ];
   return LayoutBuilder(
     builder: (_, constraints) {
       return Container(
         alignment: Alignment.center,
         width: constraints.maxWidth,
-        height: constraints.maxHeight*0.25,
+        margin: EdgeInsets.all(40),
         child: Card(
           elevation: 0,
           child: Column(
@@ -27,7 +31,7 @@ Widget bodyInitialPageTablet(BuildContext context) {
               HorizontalCardPager(
                 initialPage: 1,
                 onSelectedItem: (page) => ControllerInitialPage().selectedQuizOrResults(page,context),
-                items: itemsCard, // set ImageCardItem or IconTitleCardItem class
+                items: items, // set ImageCardItem or IconTitleCardItem class
               ),
             ],
           ),

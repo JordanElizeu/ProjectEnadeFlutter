@@ -138,9 +138,7 @@ class ViewLogin extends StatelessWidget {
                                           alignment: Alignment.centerRight,
                                         ),
                                         onPressed: () {
-                                          //button of login
-                                          ControllerLogin()
-                                              .accessAccount(context);
+                                          ControllerLogin().accessAccount(context);
                                         },
                                         child: Container(
                                           width: constraints.maxWidth * 0.14,

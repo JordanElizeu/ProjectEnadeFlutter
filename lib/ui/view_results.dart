@@ -87,7 +87,7 @@ class ViewResults extends StatelessWidget {
               );
               break;
             case ConnectionState.waiting:
-              return Progress();
+              return ShowProgress();
               break;
             case ConnectionState.active:
               return Text("Lost connection");

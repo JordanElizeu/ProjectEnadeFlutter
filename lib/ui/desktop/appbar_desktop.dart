@@ -38,8 +38,8 @@ Widget appBarDesktop(BuildContext context) {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       inkwellText(textName: ViewAppBar().titleAccessibilityLink,function: (){ControllerAllMethods().openUrl(ViewAppBar().linkAccessibility);}),
-                      inkwellText(textName: ViewAppBar().titleResultsLink,function: (){}),
-                      inkwellText(textName: ViewAppBar().titleQuizLink,function: (){}),
+                      inkwellText(textName: ViewAppBar().titleResultsLink,function: (){ControllerAllMethods().transitionScreen(nameRoute: Routes.RESULTADOS, context: context);}),
+                      inkwellText(textName: ViewAppBar().titleQuizLink,function: (){ControllerAllMethods().transitionScreen(nameRoute: Routes.INITIAL, context: context);}),
                       _elevatedButton(
                           nameButton: ViewAppBar().buttonLogin,
                           function: () {ControllerAllMethods().transitionScreen(nameRoute: Routes.LOGIN, context: context);},

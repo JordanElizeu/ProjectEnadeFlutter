@@ -117,7 +117,7 @@ Future<Map<dynamic, dynamic>> getInformationOfUserOn(
   }
 }
 
-void accessAccountEnade(
+accessAccountEnade(
     {@required email,
     @required matricula,
     @required password,
