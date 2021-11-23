@@ -43,6 +43,7 @@ dependencies:
   percent_indicator:
   email_validator:
   circular_countdown_timer:
+  menu_button:
 
 dev_dependencies:
   flutter_test:

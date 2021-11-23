@@ -13,6 +13,7 @@ abstract class Routes{
   static const REGISTER = '/register';
   static const QUIZ_ADS = '/quiz_ads';
   static const QUIZ_NETWORK = '/quiz_redes';
+  static const RESULTADOS = '/resultados';
 }
 
 class AppPages {
@@ -23,6 +24,6 @@ class AppPages {
     '/register': (_) => ViewRegister(),
     '/quiz_ads': (_) => ViewQuestionsAds(),
     '/quiz_redes': (_) => ViewQuestionsNetwork(),
-    //'/resultados': (_) => ViewQuestionsNetwork(),
+    '/resultados': (_) => ViewResults(),
   };
 }

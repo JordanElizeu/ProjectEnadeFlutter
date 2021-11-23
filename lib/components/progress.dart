@@ -7,17 +7,19 @@ class Progress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CircularProgressIndicator(),
-          Padding(padding: EdgeInsets.all(8.0),),
-          Text(
-            message,
-            style: TextStyle(fontSize: 16.0),
-          )
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(),
+            Padding(padding: EdgeInsets.all(8.0),),
+            Text(
+              message,
+              style: TextStyle(fontSize: 16.0),
+            )
+          ],
+        ),
       ),
     );
   }

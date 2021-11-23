@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:project_enade/components/dialog_exceptions.dart';
 import 'package:project_enade/components/progress.dart';
+import 'package:project_enade/controller/controller_methods.dart';
 import 'package:project_enade/controller/controller_results.dart';
 import 'package:project_enade/data/firebase.dart';
+import 'package:project_enade/router/Router.dart';
 
 class ViewResults extends StatelessWidget {
   final _titleError = "Erro desconhecido";
@@ -12,56 +14,65 @@ class ViewResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     getAllResults(context: context);
-    return Scaffold(body: Center(
-      child: LayoutBuilder(
-        builder: (_, constraints) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: constraints.maxWidth * 0.50 < 350
-                    ? constraints.maxWidth * 0.70
-                    : constraints.maxWidth * 0.50,
-                height: 100,
-                child: Card(
-                  color: Colors.blue,
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(24.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("Candidato(a)",style: TextStyle(fontSize: 17,color: Colors.white),),
-                          Text("Disciplina",style: TextStyle(fontSize: 17,color: Colors.white),),
-                          Text("Resultado",style: TextStyle(fontSize: 17,color: Colors.white),)
-                        ],
+    return WillPopScope(
+      onWillPop: () =>
+      ControllerAllMethods()
+          .transitionScreen(nameRoute: Routes.INITIAL, context: context) ??
+          false,
+      child: Scaffold(body: Center(
+        child: LayoutBuilder(
+          builder: (_, constraints) {
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: constraints.maxWidth * 0.50 < 350
+                        ? constraints.maxWidth * 0.70
+                        : constraints.maxWidth * 0.50,
+                    height: 100,
+                    child: Card(
+                      color: Colors.blue,
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(24.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Candidato(a)",style: TextStyle(fontSize: 17,color: Colors.white),),
+                              Text("Disciplina",style: TextStyle(fontSize: 17,color: Colors.white),),
+                              Text("Resultado",style: TextStyle(fontSize: 17,color: Colors.white),)
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              Container(
-                width: constraints.maxWidth * 0.50 < 350
-                    ? constraints.maxWidth * 0.70
-                    : constraints.maxWidth * 0.50,
-                height: constraints.maxHeight * 0.70,
-                child: Card(
-                  child: GetBuilder(
-                    init: ControllerResults(),
-                    builder: (ControllerResults controller) {
-                      return Container(
-                        child: futureBuilder(context),
-                      );
-                    },
+                  Container(
+                    width: constraints.maxWidth * 0.50 < 350
+                        ? constraints.maxWidth * 0.70
+                        : constraints.maxWidth * 0.50,
+                    height: constraints.maxHeight * 0.70,
+                    child: Card(
+                      elevation: 20,
+                      child: GetBuilder(
+                        init: ControllerResults(),
+                        builder: (ControllerResults controller) {
+                          return Container(
+                            child: futureBuilder(context),
+                          );
+                        },
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
-          );
-        },
-      ),
-    ));
+            );
+          },
+        ),
+      )),
+    );
   }
 
   Widget futureBuilder(BuildContext context) {

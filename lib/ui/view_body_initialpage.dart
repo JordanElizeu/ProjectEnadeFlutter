@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:horizontal_card_pager/card_item.dart';
 import 'package:project_enade/screen/responsive.dart';
-import 'package:project_enade/ui/tablet/appbar_tablet.dart';
+import 'package:project_enade/ui/tablet/body_initialpage_tablet.dart';
+import 'desktop/body_initialpage_desktop.dart';
 
-import 'desktop/appbar_desktop.dart';
-
-class ViewAppBar extends StatelessWidget {
+class ViewBodyInitialPage extends StatelessWidget {
   //Strings
   final buttonLogin = "Entrar";
   final linkAccessibility = "https://www.gov.br/governodigital/pt-br/acessibilidade-digital";
@@ -17,9 +17,16 @@ class ViewAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final screen = getFormFactor(context).toString();
     if (screen == "ScreenType.Tablet"){
-      return appBarDesktop(context);
+      return bodyInitialPageDesktop(context);
     }else{
-      return appBarTablet(context);
+      return bodyInitialPageTablet(context);
     }
+  }
+
+  IconTitleCardItem iconTitleCardItem({title,IconData icon}) {
+    return IconTitleCardItem(
+      text: title,
+      iconData: icon,
+    );
   }
 }

@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:project_enade/components/dialog_exceptions.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import 'controller_login.dart';
 
 class ControllerAllMethods extends GetxController{

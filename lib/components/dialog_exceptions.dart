@@ -82,8 +82,6 @@ class SuccessDialog extends StatelessWidget {
   final IconData icon;
   final Function functionButton;
 
-
-
   SuccessDialog(
     this.message,
     this.title, {

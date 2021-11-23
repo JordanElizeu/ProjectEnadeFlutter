@@ -22,56 +22,52 @@ class ViewFooter extends StatelessWidget {
     return LayoutBuilder(
       builder: (_, constraints) {
         return Center(
-          child: Column(
-            children: [
-              Container(
-                  width: constraints.maxWidth*70,
-                  height: 200,
-                  color: Color(0xFF04132a),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
-                        child: _formatText(_linkGovName),
+          child: Container(
+              width: constraints.maxWidth*70,
+              height: 200,
+              color: Color(0xFF04132a),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 24.0),
+                    child: _formatText(_linkGovName,constraints),
+                  ),
+                  _formatText(_textFootInformation,constraints),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 24.0),
+                    child: Container(
+                      width: constraints.maxWidth*0.70,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          _linkText(
+                              image: _pathImageGitHub,
+                              link: _linkGitHubName,
+                              function: () {
+                                ControllerAllMethods().openUrl(_linkGitHub);
+                              },
+                              context: context),
+                          _linkText(
+                              image: _pathImageLinkedin,
+                              link: _linkLinkedinName,
+                              function: () {
+                                ControllerAllMethods().openUrl(_linkLinkedin);
+                              },
+                              context: context),
+                          _linkText(
+                              image: _pathImageInstagram,
+                              link: _linkInstagramName,
+                              function: () {
+                                ControllerAllMethods().openUrl(_linkInstagram);
+                              },
+                              context: context)
+                        ],
                       ),
-                      _formatText(_textFootInformation),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 24.0),
-                        child: Container(
-                          width: constraints.maxWidth*0.70,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              _linkText(
-                                  image: _pathImageGitHub,
-                                  link: _linkGitHubName,
-                                  function: () {
-                                    ControllerAllMethods().openUrl(_linkGitHub);
-                                  },
-                                  context: context),
-                              _linkText(
-                                  image: _pathImageLinkedin,
-                                  link: _linkLinkedinName,
-                                  function: () {
-                                    ControllerAllMethods().openUrl(_linkLinkedin);
-                                  },
-                                  context: context),
-                              _linkText(
-                                  image: _pathImageInstagram,
-                                  link: _linkInstagramName,
-                                  function: () {
-                                    ControllerAllMethods().openUrl(_linkInstagram);
-                                  },
-                                  context: context)
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ))
-            ],
-          ),
+                    ),
+                  )
+                ],
+              )),
         );
       },
     );
@@ -97,13 +93,12 @@ Widget _linkText(
   );
 }
 
-Widget _formatText(text) {
-  return LayoutBuilder(builder: (_, constraints) {
-    return Container(
-      child: Text(
-        text,
-        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-      ),
-    );
-  });
+Widget _formatText(text,constraints) {
+  return Container(
+    width: constraints.maxWidth*0.70,
+    child: Text(
+      text,
+      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+    ),
+  );
 }

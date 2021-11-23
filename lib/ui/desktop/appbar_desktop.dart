@@ -33,7 +33,7 @@ Widget appBarDesktop(BuildContext context) {
                   ),
                 ),
                 Container(
-                  width: constraints.maxWidth*0.60,
+                  width: constraints.maxWidth*0.75,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
