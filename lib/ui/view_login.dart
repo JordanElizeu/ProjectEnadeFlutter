@@ -32,9 +32,9 @@ class ViewLogin extends StatelessWidget {
               builder: (_, constraints) {
                 return Container(
                     //I want to get 37% of screen so...
-                    width: constraints.maxWidth * 0.37 < 350
-                        ? constraints.maxWidth * 0.70
-                        : constraints.maxWidth * 0.37,
+                    width: constraints.maxWidth * 0.40 > 350
+                        ? constraints.maxWidth * 0.40
+                        : constraints.maxWidth * 0.65,
                     child: GetBuilder(
                       init: ControllerLogin(),
                       builder: (ControllerLogin controller) {

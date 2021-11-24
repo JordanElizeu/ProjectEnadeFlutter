@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_enade/components/inkwell.dart';
-import 'package:project_enade/screen/responsive.dart';
-import 'package:project_enade/ui/mobile/view_footer_mobile.dart';
-
-import 'desktop/footer_desktop.dart';
+import 'package:project_enade/controller/controller_methods.dart';
 
 class ViewFooter extends StatelessWidget {
   final pathImageGitHub = "assets/images/github.png";
@@ -16,25 +13,79 @@ class ViewFooter extends StatelessWidget {
   final linkGitHubName = "Github";
   final linkLinkedinName = "Linkedin";
   final linkInstagramName = "Instagram";
-  final linkGovName = "gov.com";
   final textFootInformation =
       "Esse site não possui nenhum tipo de convênio com o Instituto "
       "Exame Nacional de Desempenho - ENADE. Esse projeto foi desenvolvido apenas com o intuito acadêmico.";
   @override
   Widget build(BuildContext context) {
-    final screen = getFormFactor(context).toString();
-    if(screen == "ScreenType.Phone"){
-      return viewFooterMobile(context);
-    }else{
-      return viewFooterDesktop(context);
-    }
+    return LayoutBuilder(
+      builder: (_, constraints) {
+        return Center(
+          child: Container(
+              alignment: Alignment.bottomCenter,
+              width: constraints.maxWidth * 70,
+              color: Color(0xFF04132a),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 32.0,bottom: 32.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: constraints.maxWidth*0.70,
+                      child: Text(textFootInformation,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 32.0),
+                      child: Container(
+                        child: FittedBox(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              linkText(
+                                  image: pathImageGitHub,
+                                  constraints: constraints,
+                                  link: linkGitHubName,
+                                  function: () {
+                                    ControllerAllMethods().openUrl(linkGitHub);
+                                  },
+                                  context: context),
+                              linkText(
+                                  image: pathImageLinkedin,
+                                  constraints: constraints,
+                                  link: linkLinkedinName,
+                                  function: () {
+                                    ControllerAllMethods().openUrl(linkLinkedin);
+                                  },
+                                  context: context),
+                              linkText(
+                                  image: pathImageInstagram,
+                                  link: linkInstagramName,
+                                  constraints: constraints,
+                                  function: () {
+                                    ControllerAllMethods().openUrl(linkInstagram);
+                                  },
+                                  context: context)
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )),
+        );
+      },
+    );
   }
 
   Widget linkText(
       {@required image,
-        @required Function function,
-        @required link,
-        @required BuildContext context}) {
+      @required Function function,
+      @required link,
+      @required BuildContext context,
+      constraints}) {
     return Container(
       child: Row(
         children: [
@@ -49,12 +100,15 @@ class ViewFooter extends StatelessWidget {
     );
   }
 
-  Widget formatText(text,constraints) {
+  Widget formatText(text, constraints) {
     return Container(
-      width: constraints.maxWidth*0.70,
-      child: Text(
-        text,
-        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+      width: constraints.maxWidth * 0.70,
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Text(
+          text,
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
       ),
     );
   }

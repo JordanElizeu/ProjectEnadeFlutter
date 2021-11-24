@@ -11,29 +11,26 @@ Widget appBarDesktop(BuildContext context) {
     child: LayoutBuilder(builder: (_,constraints){
       return Container(
         color: Colors.white,
-        width: double.infinity,
-        height: 80,
-        child: Padding(
-          padding: const EdgeInsets.only(right: 20.0),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Image.asset(
-                  "images/enade.jfif",
-                  height: 100,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Image.asset(
-                    "images/gov.png",
-                    height: 100,
-                  ),
-                ),
-                Container(
-                  width: constraints.maxWidth*0.75,
+        width: constraints.maxWidth,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              "images/enade.jfif",
+              height: constraints.maxHeight,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 24,right: 24),
+              child: Image.asset(
+                "images/gov.png",
+                height: constraints.maxHeight*0.60,
+              ),
+            ),
+            Expanded(
+              child: Container(
+                alignment: Alignment.centerRight,
+                child: FittedBox(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -49,9 +46,9 @@ Widget appBarDesktop(BuildContext context) {
                     ],
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       );
     },
@@ -66,19 +63,18 @@ Widget _elevatedButton(
       Color colorText,
       @required Color colorBackGroundButton,
       Color overlayColor}) {
-  return Padding(
-    padding: const EdgeInsets.only(left: 40),
-    child: Container(
-      height: 35,
-      width: 150,
-      child: ElevatedButton(
-        onPressed: function,
-        child: Row(
-          children: [
-            Icon(icon),
-            Center(
-              child: Container(
-                width: 100,
+  return FittedBox(
+    child: Padding(
+      padding: const EdgeInsets.all(32.0),
+      child: Container(
+        width: 125,
+        height: 35,
+        child: ElevatedButton(
+          onPressed: function,
+          child: Row(
+            children: [
+              Icon(icon),
+              Expanded(
                 child: Center(
                   child: Text(
                     nameButton,
@@ -87,17 +83,17 @@ Widget _elevatedButton(
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-        style: ButtonStyle(
-          overlayColor: MaterialStateProperty.all(
-              overlayColor == null ? Colors.white38 : overlayColor),
-          backgroundColor: MaterialStateProperty.all(colorBackGroundButton),
-          elevation: MaterialStateProperty.all(10),
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16.0),
+            ],
+          ),
+          style: ButtonStyle(
+            overlayColor: MaterialStateProperty.all(
+                overlayColor == null ? Colors.white38 : overlayColor),
+            backgroundColor: MaterialStateProperty.all(colorBackGroundButton),
+            elevation: MaterialStateProperty.all(10),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16.0),
+              ),
             ),
           ),
         ),

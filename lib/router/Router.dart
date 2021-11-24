@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:project_enade/ui/initial_page.dart';
+import 'package:project_enade/ui/initial_page_web.dart';
 import 'package:project_enade/ui/view_login.dart';
 import 'package:project_enade/ui/view_question_network.dart';
 import 'package:project_enade/ui/view_questions_ads.dart';

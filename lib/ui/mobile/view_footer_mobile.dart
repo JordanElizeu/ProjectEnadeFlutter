@@ -15,10 +15,6 @@ Widget viewFooterMobile(BuildContext context){
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 24.0),
-                  child: viewFooter.formatText(viewFooter.linkGovName,constraints),
-                ),
                 viewFooter.formatText(viewFooter.textFootInformation,constraints),
                 Padding(
                   padding: const EdgeInsets.only(top: 24.0),

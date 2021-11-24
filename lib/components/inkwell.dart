@@ -5,7 +5,7 @@ Widget inkwellText({textName,Function function}){
   return Padding(
     padding: const EdgeInsets.all(16.0),
     child: InkWell(
-      child: Text(textName,style: TextStyle(color: Colors.blue),),
+      child: FittedBox(child: Text(textName,style: TextStyle(color: Colors.blue),)),
       onTap: function,
     ),
   );

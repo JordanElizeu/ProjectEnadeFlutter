@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_enade/screen/responsive.dart';
-import 'package:project_enade/ui/mobile/appbar_mobile.dart';
 import 'package:project_enade/ui/tablet/appbar_tablet.dart';
-
 import 'desktop/appbar_desktop.dart';
 
 class ViewAppBar extends StatelessWidget {
@@ -16,13 +13,11 @@ class ViewAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screen = getFormFactor(context).toString();
-    if (screen == "ScreenType.Tablet"){
-      return appBarDesktop(context);
-    }else if(screen == "ScreenType.Phone"){
-      return appBarMobile(context);
-    }else{
+    final width = MediaQuery.of(context).size.width;
+    if (width * 0.40 < 270){
       return appBarTablet(context);
+    }else{
+      return appBarDesktop(context);
     }
   }
 }

@@ -44,6 +44,9 @@ dependencies:
   email_validator:
   circular_countdown_timer:
   menu_button:
+  stacked_card_carousel:
+  responsive_framework:
+  scaled_list:
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +72,7 @@ flutter:
     - assets/images/instagram.png
     - assets/images/logo_enade.png
     - assets/images/question6_ads.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
