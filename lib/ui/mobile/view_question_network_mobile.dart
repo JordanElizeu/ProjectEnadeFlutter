@@ -50,80 +50,72 @@ class ViewQuestionNetworkMobile extends StatelessWidget {
 
 Widget _titleQuestion(
     constraints,ControllerQuizNetwork controller, BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.only(
-      left: 10.0,
-      right: 10.0,
-      top: 10.0,
-    ),
-    child: Container(
-      width: constraints.maxWidth,
-      child: Card(
-        color: Colors.blue,
-        elevation: 0,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Center(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Questão ${controller.showQuestionScreenNetwork}",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 22,
-                            color: Colors.white),
-                      ),
-                      CircularCountDownTimer(
-                        duration: 900,
-                        initialDuration: 0,
-                        controller: CountDownController(),
-                        width: constraints.maxWidth / 12,
-                        height: constraints.maxHeight / 12,
-                        ringColor: Colors.grey[300],
-                        ringGradient: null,
-                        fillColor: Colors.green,
-                        fillGradient: null,
-                        backgroundColor: Colors.blue,
-                        backgroundGradient: null,
-                        strokeWidth: 7.0,
-                        strokeCap: StrokeCap.round,
-                        textStyle: TextStyle(
-                            fontSize: 10.0,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                        textFormat: CountdownTextFormat.MM_SS,
-                        isReverse: true,
-                        isReverseAnimation: false,
-                        isTimerTextShown: true,
-                        autoStart: true,
-                        onStart: () {
-                          //print('Countdown Started');
-                        },
-                        onComplete: () {
-                          controller.questionSelectedRadiusNetwork = 1;
-                          controller.showQuestionScreenNetwork = 10;
-                          controller.buttonConfirmResponseForNewQuestionNetwork(context);
-                        },
-                      )
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 25, bottom: 25),
-                    child: Text(
-                      "${controller.getTitleNetwork()}",
+  return Container(
+    width: constraints.maxWidth,
+    child: Column(
+      children: [
+        Card(
+          color: Colors.blue,
+          elevation: 0,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Questão ${controller.showQuestionScreenNetwork} de 10",
                       style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
+                          fontSize: 22,
+                          color: Colors.white),
                     ),
-                  ),
-                ],
-              )),
+                    CircularCountDownTimer(
+                      duration: 900,
+                      initialDuration: 0,
+                      controller: CountDownController(),
+                      width: constraints.maxWidth / 12,
+                      height: constraints.maxHeight / 12,
+                      ringColor: Colors.grey[300],
+                      ringGradient: null,
+                      fillColor: Colors.green,
+                      fillGradient: null,
+                      backgroundColor: Colors.blue,
+                      backgroundGradient: null,
+                      strokeWidth: 7.0,
+                      strokeCap: StrokeCap.round,
+                      textStyle: TextStyle(
+                          fontSize: 10.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                      textFormat: CountdownTextFormat.MM_SS,
+                      isReverse: true,
+                      isReverseAnimation: false,
+                      isTimerTextShown: true,
+                      autoStart: true,
+                      onStart: () {
+                        //print('Countdown Started');
+                      },
+                      onComplete: () {
+                        controller.questionSelectedRadiusNetwork = 1;
+                        controller.showQuestionScreenNetwork = 10;
+                        controller.buttonConfirmResponseForNewQuestionNetwork(context);
+                      },
+                    )
+                  ],
+                )),
+          ),
         ),
-      ),
+        Padding(
+          padding: const EdgeInsets.only(top: 25, bottom: 25),
+          child: Text(
+            "${controller.getTitleNetwork()}",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+            ),
+          ),
+        ),
+      ],
     ),
   );
 }

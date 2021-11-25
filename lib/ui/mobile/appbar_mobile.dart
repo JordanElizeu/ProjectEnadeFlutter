@@ -20,7 +20,7 @@ Widget appBarMobile(BuildContext context) {
     builder: (_, constraints) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(_title),
+          title: Text(_title,style: TextStyle(fontStyle: FontStyle.italic,),),
           centerTitle: true,
           actions: [
             Container(
@@ -63,7 +63,10 @@ Widget appBarMobile(BuildContext context) {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              ViewBodyMobile(),
+              Padding(
+                padding: const EdgeInsets.only(top: 32.0,bottom: 32.0),
+                child: ViewBodyMobile(),
+              ),
               viewFooterMobile(context)
             ],
           ),

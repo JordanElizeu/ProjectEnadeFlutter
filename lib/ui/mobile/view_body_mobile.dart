@@ -21,7 +21,7 @@ class ViewBodyMobile extends StatelessWidget {
                 child: CarouselImages(
                   scaleFactor: 0.6,
                   listImages: listImages,
-                  height: 300.0,
+                  height: 250.0,
                   borderRadius: 30.0,
                   cachedNetworkImage: true,
                   verticalAlignment: Alignment.topCenter,

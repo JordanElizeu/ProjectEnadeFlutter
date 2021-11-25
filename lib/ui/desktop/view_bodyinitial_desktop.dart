@@ -18,8 +18,8 @@ class ViewBodyInitialPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<CardItem> items = [
       iconTitleCardItem(title: _titleCardItemAds,icon: Icons.computer),
-      iconTitleCardItem(title: _titleCardItemResults,icon: Icons.reorder_sharp),
-      iconTitleCardItem(title: _titleCardItemNetwork,icon: Icons.alternate_email),
+      iconTitleCardItem(title: _titleCardItemResults,icon: Icons.data_usage_rounded),
+      iconTitleCardItem(title: _titleCardItemNetwork,icon: Icons.connected_tv),
     ];
 
     return LayoutBuilder(

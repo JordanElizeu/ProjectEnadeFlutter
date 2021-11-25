@@ -9,6 +9,8 @@ import 'inkwell.dart';
 Widget drawer(BuildContext context) {
   final String _titleResults = "Resultados";
   final String _titleHome = "Home";
+  final String _titleAds = "Quiz ADS";
+  final String _titleNetwork = "Quiz REDES";
 
   return Drawer(child: LayoutBuilder(
     builder: (_, constraints) {
@@ -37,6 +39,20 @@ Widget drawer(BuildContext context) {
                 ControllerInitialPageMobile().showResults(context);
               },
               iconData: Icons.reorder_sharp,
+            ),
+            _listTile(
+              title: _titleAds,
+              function: () {
+                ControllerInitialPageMobile().initializeQuiz(context);
+              },
+              iconData: Icons.computer,
+            ),
+            _listTile(
+              title: _titleNetwork,
+              function: () {
+                ControllerInitialPageMobile().initializeQuiz(context);
+              },
+              iconData: Icons.connect_without_contact,
             ),
             Expanded(
               child: Container(

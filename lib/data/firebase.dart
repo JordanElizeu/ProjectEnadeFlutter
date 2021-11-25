@@ -66,25 +66,33 @@ void createNewUser(
 Future<void> addNewResultInDatabase(
     {@required result, @required name, @required BuildContext context,@required disciplina}) async {
   try {
+    final Map<dynamic,dynamic> _map = await getAllResults(context: context);
+    final int _quantityResultsInFirebase = _map.length;
     FirebaseDatabase.instance
         .reference()
         .child("Database")
         .child("Resultados")
-        .child(_auth.currentUser.uid)
+        .child("${_auth.currentUser.uid+_quantityResultsInFirebase.toString()}")
         .child("nome")
         .set(name);
     _databaseReference
         .child("Database")
         .child("Resultados")
-        .child(_auth.currentUser.uid)
+        .child("${_auth.currentUser.uid+_quantityResultsInFirebase.toString()}")
         .child("resultado")
         .set(result);
     _databaseReference
         .child("Database")
         .child("Resultados")
-        .child(_auth.currentUser.uid)
+        .child("${_auth.currentUser.uid+_quantityResultsInFirebase.toString()}")
         .child("disciplina")
         .set(disciplina);
+    _databaseReference
+        .child("Database")
+        .child("Resultados")
+        .child("${_auth.currentUser.uid+_quantityResultsInFirebase.toString()}")
+        .child("id")
+        .set(_quantityResultsInFirebase.toString());
   } on DatabaseError catch (exception) {
     alertDialogFailure(
         context: context,

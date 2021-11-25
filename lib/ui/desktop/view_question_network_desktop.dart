@@ -57,21 +57,20 @@ Widget _titleQuestion(
     ),
     child: Container(
       width: constraints.maxWidth,
-      child: Card(
-        color: Colors.blue,
-        elevation: 0,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Center(
-              child: Column(
-                children: [
-                  Row(
+      child: Column(
+        children: [
+          Card(
+            color: Colors.blue,
+            elevation: 0,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Center(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Questão ${controller.showQuestionScreenNetwork}",
+                        "Questão ${controller.showQuestionScreenNetwork} de 10",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold,
                             fontSize: 22,
                             color: Colors.white),
                       ),
@@ -108,20 +107,20 @@ Widget _titleQuestion(
                         },
                       )
                     ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 25, bottom: 25),
-                    child: Text(
-                      "${controller.getTitleNetwork()}",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                ],
-              )),
-        ),
+                  )),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 25, bottom: 25),
+            child: Text(
+              "${controller.getTitleNetwork()}",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ],
       ),
     ),
   );
