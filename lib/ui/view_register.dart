@@ -6,23 +6,32 @@ import 'package:project_enade/components/inkwell.dart';
 import 'package:project_enade/controller/controller_methods.dart';
 import 'package:project_enade/controller/controller_register.dart';
 import 'package:project_enade/router/Router.dart';
+import 'package:project_enade/screen/responsive.dart';
+import 'desktop/view_register_desktop.dart';
+import 'mobile/view_register_mobile.dart';
 
 class ViewRegister extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final screen = getFormFactor(context).toString();
+    if(screen == "ScreenType.Phone"){
+      return ViewRegisterMobile();
+    }else{
+      return ViewRegisterDesktop();
+    }
+  }
+  Widget customViewRegister(BuildContext context,{@required width}){
     return WillPopScope(
       onWillPop: () =>
-          ControllerAllMethods()
-              .transitionScreen(nameRoute: Routes.LOGIN, context: context) ??
+      ControllerAllMethods()
+          .transitionScreen(nameRoute: Routes.LOGIN, context: context) ??
           false,
       child: Center(
         child: Material(
           elevation: 20,
           child: LayoutBuilder(builder: (_, constraints) {
             return Container(
-                width: constraints.maxWidth * 0.45 < 350
-                    ? constraints.maxWidth * 0.70
-                    : constraints.maxWidth * 0.45,
+                width: width,
                 child: GetBuilder(
                   init: ControllerRegister(),
                   builder: (ControllerRegister controller) {
@@ -44,7 +53,7 @@ class ViewRegister extends StatelessWidget {
                               ],
                             ),
                             Form(
-                              key: controller.formKeyRegisterName,
+                              key: ControllerRegister.formKeyRegisterName,
                               child: formatTextField(
                                   iconData: Icons.person,
                                   fieldName: "Nome",
@@ -52,15 +61,15 @@ class ViewRegister extends StatelessWidget {
                                   function: (text) {
                                     return controller
                                         .validatorRegisterFieldFormTextName(
-                                            text);
+                                        text);
                                   },
-                                  globalKey: controller.formKeyRegisterName,
+                                  globalKey: ControllerRegister.formKeyRegisterName,
                                   filteringTextInputFormatter: null,
                                   maxLength: 20,
                                   textEditingController: ControllerRegister.registerTextFormFieldName),
                             ),
                             Form(
-                              key: controller.formKeyRegisterEmail,
+                              key: ControllerRegister.formKeyRegisterEmail,
                               child: formatTextField(
                                   iconData: Icons.email,
                                   fieldName: "E-mail",
@@ -68,15 +77,15 @@ class ViewRegister extends StatelessWidget {
                                   function: (String text) {
                                     return controller
                                         .validatorRegisterFieldFormTextEmail(
-                                            text);
+                                        text);
                                   },
-                                  globalKey: controller.formKeyRegisterEmail,
+                                  globalKey: ControllerRegister.formKeyRegisterEmail,
                                   maxLength: null,
                                   filteringTextInputFormatter: null,
                                   textEditingController: ControllerRegister.registerTextFormFieldEmail),
                             ),
                             Form(
-                              key: controller.formKeyRegisterConfirmEmail,
+                              key: ControllerRegister.formKeyRegisterConfirmEmail,
                               child: formatTextField(
                                   iconData: Icons.email,
                                   fieldName: "Confirmar E-mail",
@@ -84,16 +93,16 @@ class ViewRegister extends StatelessWidget {
                                   function: (String text) {
                                     return controller
                                         .validatorRegisterFieldFormTextConfirmEmail(
-                                            text);
+                                        text);
                                   },
                                   globalKey:
-                                      controller.formKeyRegisterConfirmEmail,
+                                  ControllerRegister.formKeyRegisterConfirmEmail,
                                   filteringTextInputFormatter: null,
                                   maxLength: null,
                                   textEditingController: ControllerRegister.registerTextFormFieldConfirmEmail),
                             ),
                             Form(
-                              key: controller.formKeyRegisterPassword,
+                              key: ControllerRegister.formKeyRegisterPassword,
                               child: formatTextField(
                                   iconData: Icons.lock,
                                   fieldName: "Senha",
@@ -101,15 +110,15 @@ class ViewRegister extends StatelessWidget {
                                   function: (String text) {
                                     return controller
                                         .validatorRegisterFieldFormTextPassword(
-                                            text);
+                                        text);
                                   },
-                                  globalKey: controller.formKeyRegisterPassword,
+                                  globalKey: ControllerRegister.formKeyRegisterPassword,
                                   filteringTextInputFormatter: null,
                                   maxLength: null,
                                   textEditingController: ControllerRegister.registerTextFormFieldPassword),
                             ),
                             Form(
-                              key: controller.formKeyRegisterConfirmPassword,
+                              key: ControllerRegister.formKeyRegisterConfirmPassword,
                               child: formatTextField(
                                   iconData: Icons.lock,
                                   fieldName: "Confirmar Senha",
@@ -117,10 +126,10 @@ class ViewRegister extends StatelessWidget {
                                   function: (String text) {
                                     return controller
                                         .validatorRegisterFieldFormTextConfirmPassword(
-                                            text);
+                                        text);
                                   },
                                   globalKey:
-                                      controller.formKeyRegisterConfirmPassword,
+                                  ControllerRegister.formKeyRegisterConfirmPassword,
                                   maxLength: null,
                                   filteringTextInputFormatter: null,
                                   textEditingController: ControllerRegister.registerTextFormFieldConfirmPassword),
@@ -165,3 +174,4 @@ class ViewRegister extends StatelessWidget {
     );
   }
 }
+

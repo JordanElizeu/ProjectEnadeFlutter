@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project_enade/screen/responsive.dart';
-import 'package:project_enade/ui/view_appbar_desktop.dart';
+import 'package:project_enade/ui/desktop/view_appbar_desktop.dart';
 import 'mobile/appbar_mobile.dart';
 
 class InitialPage extends StatelessWidget {
@@ -13,8 +13,7 @@ class InitialPage extends StatelessWidget {
       return ViewPageDesktop();
     }else if (screen == "ScreenType.Phone"){
       return ViewPageMobile();
-    }else{
-      return ViewPageDesktop();
     }
+    return ViewPageDesktop();
   }
 }

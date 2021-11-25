@@ -12,24 +12,34 @@ class ControllerRegister extends GetxController {
   static TextEditingController registerTextFormFieldPassword = TextEditingController();
   static TextEditingController registerTextFormFieldConfirmPassword = TextEditingController();
 
-  GlobalKey<FormState> formKeyRegisterName = GlobalKey<FormState>();
-  GlobalKey<FormState> formKeyRegisterEmail = GlobalKey<FormState>();
-  GlobalKey<FormState> formKeyRegisterConfirmEmail = GlobalKey<FormState>();
-  GlobalKey<FormState> formKeyRegisterPassword = GlobalKey<FormState>();
-  GlobalKey<FormState> formKeyRegisterConfirmPassword = GlobalKey<FormState>();
+  static GlobalKey<FormState> formKeyRegisterName = GlobalKey<FormState>();
+  static GlobalKey<FormState> formKeyRegisterEmail = GlobalKey<FormState>();
+  static GlobalKey<FormState> formKeyRegisterConfirmEmail = GlobalKey<FormState>();
+  static GlobalKey<FormState> formKeyRegisterPassword = GlobalKey<FormState>();
+  static GlobalKey<FormState> formKeyRegisterConfirmPassword = GlobalKey<FormState>();
 
   buttonRegister(BuildContext context) {
-    if (registerTextFormFieldConfirmPassword.text == registerTextFormFieldPassword.text) {
+    final FormState formRegisterValidatedName =
+        formKeyRegisterName.currentState;
+    final FormState formRegisterValidatedEmail =
+        formKeyRegisterEmail.currentState;
+    final FormState formRegisterValidatedConfirmEmail =
+        formKeyRegisterConfirmEmail.currentState;
+    final FormState formRegisterValidatedPassword =
+        formKeyRegisterPassword.currentState;
+    final FormState formRegisterValidatedConfirmPassword =
+        formKeyRegisterConfirmPassword.currentState;
+    if (formRegisterValidatedName.validate() &&
+        formRegisterValidatedEmail.validate() &&
+        formRegisterValidatedConfirmEmail.validate() &&
+        formRegisterValidatedPassword.validate() &&
+        formRegisterValidatedConfirmPassword.validate()) {
       createNewUser(
         email: registerTextFormFieldEmail.text.toString(),
         name: registerTextFormFieldName.text,
         context: context,
         password: registerTextFormFieldPassword.text,
       );
-    }else{
-      formKeyRegisterConfirmPassword.currentState.printError(info: "Senha não coincide",logFunction: (){
-        return registerTextFormFieldConfirmPassword.text != registerTextFormFieldPassword.text? true:false;
-      });
     }
   }
 

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:horizontal_card_pager/card_item.dart';
 import 'package:horizontal_card_pager/horizontal_card_pager.dart';
-import 'package:project_enade/controller/controller_initialpage.dart';
+import 'package:project_enade/controller/controller_initialpage_desktop.dart';
 
 class ViewBodyInitialPage extends StatelessWidget {
   //Strings
@@ -34,7 +34,7 @@ class ViewBodyInitialPage extends StatelessWidget {
               children: [
                 HorizontalCardPager(
                   initialPage: 1,
-                  onSelectedItem: (page) => ControllerInitialPage().selectedQuizOrResults(page,context),
+                  onSelectedItem: (page) => ControllerInitialPageDesktop().selectedQuizOrResults(page,context),
                   items: items, // set ImageCardItem or IconTitleCardItem class
                 ),
               ],

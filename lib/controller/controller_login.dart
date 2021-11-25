@@ -23,15 +23,15 @@ class ControllerLogin extends GetxController {
   final _textInvalidFieldPassword = "Senha muito fraca";
 
   accessAccount(BuildContext context) async {
-    final FormState formRegisterValidatedMatricula =
+    final FormState formLoginValidatedMatricula =
         formKeyLoginMatricula.currentState;
-    final FormState formRegisterValidatedEmail =
+    final FormState formLoginValidatedEmail =
         formKeyLoginPassword.currentState;
-    final FormState formRegisterValidatedSenha = formKeyLoginEmail.currentState;
+    final FormState formLoginValidatedSenha = formKeyLoginEmail.currentState;
 
-    if (formRegisterValidatedMatricula.validate() &&
-        formRegisterValidatedEmail.validate() &&
-        formRegisterValidatedSenha.validate()) {
+    if (formLoginValidatedMatricula.validate() &&
+        formLoginValidatedEmail.validate() &&
+        formLoginValidatedSenha.validate()) {
       await accessAccountEnade(
           password: loginTextFormFieldPassword.text,
           matricula: loginTextFormFieldMatricula.text,

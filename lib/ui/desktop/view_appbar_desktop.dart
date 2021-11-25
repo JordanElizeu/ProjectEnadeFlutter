@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_enade/ui/view_body_initial.dart';
-import 'package:project_enade/ui/view_footer.dart';
+import 'package:project_enade/ui/desktop/view_bodyinitial_desktop.dart';
+import 'package:project_enade/ui/desktop/view_footer_desktop.dart';
 import 'app_bar.dart';
 
 class ViewPageDesktop extends StatelessWidget {
@@ -48,7 +48,7 @@ class ViewPageDesktop extends StatelessWidget {
                   child: ViewBodyInitialPage(),
                 height: constraints.maxHeight*0.60,
               ),
-              ViewFooter(),
+              ViewFooterDesktop(),
             ],
           ),
         );

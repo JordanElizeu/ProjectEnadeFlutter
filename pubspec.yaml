@@ -46,7 +46,7 @@ dependencies:
   menu_button:
   stacked_card_carousel:
   responsive_framework:
-  scaled_list:
+  carousel_images:
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +72,13 @@ flutter:
     - assets/images/instagram.png
     - assets/images/logo_enade.png
     - assets/images/question6_ads.png
+    - assets/images/ads.png
+    - assets/images/redes.png
+    - assets/images/resultado.png
+    - assets/images/card_enade.webp
+    - assets/images/enade2021.png
+    - assets/images/enade_dicas.png
+    - assets/images/enade_simulado.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

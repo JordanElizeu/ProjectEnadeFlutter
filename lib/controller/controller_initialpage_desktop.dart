@@ -5,7 +5,7 @@ import 'package:project_enade/controller/controller_methods.dart';
 import 'package:project_enade/router/Router.dart';
 import 'controller_firebase.dart';
 
-class ControllerInitialPage extends GetxController{
+class ControllerInitialPageDesktop extends GetxController{
   final titleErrorUserIsNotOn = "Você não está conectado";
   final informationErrorUserIsNotOn = "Entre na sua conta ou cadastre-se";
   static PageController pageViewController = PageController();//mobile
@@ -25,7 +25,7 @@ class ControllerInitialPage extends GetxController{
         if(!ControllerFirebase().userIsOn()){
           alertDialogFailure(context: context, title: titleErrorUserIsNotOn, information: informationErrorUserIsNotOn);
         }else{
-          //results
+          ControllerAllMethods().transitionScreen(nameRoute: Routes.RESULTADOS, context: context);
         }
         break;
       case 2:

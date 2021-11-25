@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'dialog_exceptions.dart';
-
 class ShowProgress extends StatelessWidget {
   final String message = "loading";
-  var manga;
 
   @override
   Widget build(BuildContext context) {

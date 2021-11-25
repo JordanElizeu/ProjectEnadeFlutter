@@ -156,11 +156,13 @@ Widget _buttonConfirmResponse(
             onPressed: () {
               controller.buttonConfirmResponseForNewQuestionNetwork(context);
             },
-            child: Text(
-              controller.showQuestionScreenNetwork == 10
-                  ? _textButtonEncerrarQuestionario
-                  : _textButtonConfirmar,
-              style: TextStyle(color: Colors.white),
+            child: FittedBox(
+              child: Text(
+                controller.showQuestionScreenNetwork == 10
+                    ? _textButtonEncerrarQuestionario
+                    : _textButtonConfirmar,
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
         ),
@@ -242,8 +244,10 @@ Widget _radio(
               width: constraints.maxWidth * 0.90,
               child: Padding(
                 padding: const EdgeInsets.only(top: 16),
-                child: Text(
-                    "$itemQuestion ${controller.getItemNetwork(itemQuestion)}"),
+                child: FittedBox(
+                  child: Text(
+                      "$itemQuestion ${controller.getItemNetwork(itemQuestion)}"),
+                ),
               ),
             )
           ],

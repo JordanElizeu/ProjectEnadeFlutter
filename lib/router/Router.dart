@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:project_enade/ui/initial_page_web.dart';
+import 'package:project_enade/ui/mobile/view_quiz_mobile.dart';
 import 'package:project_enade/ui/view_login.dart';
 import 'package:project_enade/ui/view_question_network.dart';
 import 'package:project_enade/ui/view_questions_ads.dart';
@@ -14,6 +15,7 @@ abstract class Routes{
   static const QUIZ_ADS = '/quiz_ads';
   static const QUIZ_NETWORK = '/quiz_redes';
   static const RESULTADOS = '/resultados';
+  static const FAZERQUIZ = '/fazer_quiz';
 }
 
 class AppPages {
@@ -25,5 +27,6 @@ class AppPages {
     '/quiz_ads': (_) => ViewQuestionsAds(),
     '/quiz_redes': (_) => ViewQuestionsNetwork(),
     '/resultados': (_) => ViewResults(),
+    '/fazer_quiz': (_) => SelectorQuiz(),
   };
 }

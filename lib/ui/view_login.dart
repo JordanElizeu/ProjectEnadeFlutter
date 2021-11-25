@@ -1,29 +1,41 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:project_enade/components/format_textformfield.dart';
 import 'package:project_enade/components/inkwell.dart';
 import 'package:project_enade/controller/controller_login.dart';
 import 'package:project_enade/controller/controller_methods.dart';
 import 'package:project_enade/router/Router.dart';
+import 'package:project_enade/screen/responsive.dart';
+import 'desktop/view_login_desktop.dart';
+import 'mobile/view_login_mobile.dart';
 
 class ViewLogin extends StatelessWidget {
-  final _titleLogin = "Acesse sua conta";
-  final _campoMatricula = "Matrícula";
-  final _campoSenha = "Senha";
-  final _campoEmail = "E-mail";
-  final _textEsqueciSenha = "Não possui conta?";
-  final _textEsqueciSenhaLink = "Cadastre-se";
-  final _campoEsqueciSenha = "Esqueci minha senha?";
-  final _textButtonLogin = "Entrar";
+  final titleLogin = "Acesse sua conta";
+  final campoMatricula = "Matrícula";
+  final campoSenha = "Senha";
+  final campoEmail = "E-mail";
+  final textEsqueciSenha = "Não possui conta?";
+  final textEsqueciSenhaLink = "Cadastre-se";
+  final campoEsqueciSenha = "Esqueci minha senha?";
+  final textButtonLogin = "Entrar";
 
   @override
   Widget build(BuildContext context) {
+    final screen = getFormFactor(context).toString();
+    if(screen == "ScreenType.Phone"){
+      return ViewLoginMobile();
+    }else{
+      return ViewLoginDesktop();
+    }
+  }
+
+  Widget customDesignViewLogin(BuildContext context,{@required double width}){
     return WillPopScope(
       onWillPop: () =>
-          ControllerAllMethods()
-              .transitionScreen(nameRoute: Routes.INITIAL, context: context) ??
+      ControllerAllMethods()
+          .transitionScreen(nameRoute: Routes.INITIAL, context: context) ??
           false,
       child: Center(
         child: Material(
@@ -31,10 +43,8 @@ class ViewLogin extends StatelessWidget {
             child: LayoutBuilder(
               builder: (_, constraints) {
                 return Container(
-                    //I want to get 37% of screen so...
-                    width: constraints.maxWidth * 0.40 > 350
-                        ? constraints.maxWidth * 0.40
-                        : constraints.maxWidth * 0.65,
+                  //I want to get 40% of screen so...
+                    width: width,
                     child: GetBuilder(
                       init: ControllerLogin(),
                       builder: (ControllerLogin controller) {
@@ -52,7 +62,7 @@ class ViewLogin extends StatelessWidget {
                                           height: constraints.maxHeight * 0.15,
                                         ),
                                         Text(
-                                          _titleLogin,
+                                          titleLogin,
                                           style: TextStyle(color: Colors.blue),
                                         ),
                                       ],
@@ -61,18 +71,16 @@ class ViewLogin extends StatelessWidget {
                                   key: ControllerLogin.formKeyLoginEmail,
                                   child: formatTextField(
                                     maxLength: null,
-                                    fieldName: _campoEmail,
-                                    globalKey:
-                                        ControllerLogin.formKeyLoginEmail,
+                                    fieldName: campoEmail,
+                                    globalKey: ControllerLogin.formKeyLoginEmail,
                                     filteringTextInputFormatter: null,
                                     iconData: Icons.email,
                                     function: (String text) {
                                       return controller
-                                          .validatorLoginFieldFormTextEmail(
-                                              text);
+                                          .validatorLoginFieldFormTextEmail(text);
                                     },
                                     textEditingController:
-                                        ControllerLogin.loginTextFormFieldEmail,
+                                    ControllerLogin.loginTextFormFieldEmail,
                                     obscureText: false,
                                   ),
                                 ),
@@ -80,16 +88,16 @@ class ViewLogin extends StatelessWidget {
                                   key: ControllerLogin.formKeyLoginPassword,
                                   child: formatTextField(
                                     maxLength: null,
-                                    fieldName: _campoSenha,
+                                    fieldName: campoSenha,
                                     globalKey:
-                                        ControllerLogin.formKeyLoginPassword,
+                                    ControllerLogin.formKeyLoginPassword,
                                     filteringTextInputFormatter: null,
                                     iconData: Icons.lock,
                                     obscureText: true,
                                     function: (String text) {
                                       return controller
                                           .validatorLoginFieldFormTextPassword(
-                                              text);
+                                          text);
                                     },
                                     textEditingController: ControllerLogin
                                         .loginTextFormFieldPassword,
@@ -99,17 +107,17 @@ class ViewLogin extends StatelessWidget {
                                   key: ControllerLogin.formKeyLoginMatricula,
                                   child: formatTextField(
                                     maxLength: 8,
-                                    fieldName: _campoMatricula,
+                                    fieldName: campoMatricula,
                                     globalKey:
-                                        ControllerLogin.formKeyLoginMatricula,
+                                    ControllerLogin.formKeyLoginMatricula,
                                     filteringTextInputFormatter:
-                                        FilteringTextInputFormatter.digitsOnly,
+                                    FilteringTextInputFormatter.digitsOnly,
                                     iconData: Icons.person,
                                     obscureText: false,
                                     function: (String text) {
                                       return controller
                                           .validatorLoginFieldFormTextMatricula(
-                                              text);
+                                          text);
                                     },
                                     textEditingController: ControllerLogin
                                         .loginTextFormFieldMatricula,
@@ -119,7 +127,7 @@ class ViewLogin extends StatelessWidget {
                                   padding: const EdgeInsets.only(top: 10),
                                   child: Center(
                                     child: Text(
-                                      _campoEsqueciSenha,
+                                      campoEsqueciSenha,
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -138,13 +146,15 @@ class ViewLogin extends StatelessWidget {
                                           alignment: Alignment.centerRight,
                                         ),
                                         onPressed: () {
-                                          ControllerLogin().accessAccount(context);
+                                          ControllerLogin()
+                                              .accessAccount(context);
                                         },
                                         child: Container(
                                           width: constraints.maxWidth * 0.14,
                                           height: 35,
                                           child: Center(
-                                            child: Text(_textButtonLogin),
+                                            child:
+                                            Text(textButtonLogin),
                                           ),
                                         ),
                                       ),
@@ -153,19 +163,20 @@ class ViewLogin extends StatelessWidget {
                                       padding: const EdgeInsets.only(top: 16.0),
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        MainAxisAlignment.center,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        CrossAxisAlignment.center,
                                         children: [
-                                          Text(_textEsqueciSenha),
+                                          Text(textEsqueciSenha),
                                           inkwellText(
-                                              textName: _textEsqueciSenhaLink,
+                                              textName:
+                                              textEsqueciSenhaLink,
                                               function: () {
                                                 ControllerAllMethods()
                                                     .transitionScreen(
-                                                        nameRoute:
-                                                            Routes.REGISTER,
-                                                        context: context);
+                                                    nameRoute:
+                                                    Routes.REGISTER,
+                                                    context: context);
                                               }),
                                         ],
                                       ),

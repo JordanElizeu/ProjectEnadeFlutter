@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_enade/components/inkwell.dart';
 import 'package:project_enade/controller/controller_methods.dart';
 
-class ViewFooter extends StatelessWidget {
+class ViewFooterDesktop extends StatelessWidget {
   final pathImageGitHub = "assets/images/github.png";
   final pathImageLinkedin = "assets/images/linkedin.png";
   final pathImageInstagram = "assets/images/instagram.png";

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_enade/controller/controller_initialpage_mobile.dart';
 import 'package:project_enade/controller/controller_methods.dart';
 import 'package:project_enade/router/Router.dart';
-import 'package:project_enade/ui/app_bar.dart';
-
+import 'package:project_enade/ui/desktop/app_bar.dart';
 import 'inkwell.dart';
 
 Widget drawer(BuildContext context) {
@@ -13,44 +13,50 @@ Widget drawer(BuildContext context) {
   return Drawer(child: LayoutBuilder(
     builder: (_, constraints) {
       return Container(
+        height: constraints.maxHeight,
         color: Colors.white,
-        child: ListView(
-          children: <Widget>[
+        child: Column(
+          children: [
             DrawerHeader(
-              child: Image.asset("assets/images/logo_enade.png"),
+              child: Image.asset("assets/images/enade_simulado.png",width: constraints.maxWidth*0.70,),
               decoration: BoxDecoration(
                 color: Colors.white,
               ),
             ),
             _listTile(
               title: _titleHome,
-              function: () {ControllerAllMethods().transitionScreen(nameRoute: Routes.RESULTADOS, context: context);},
+              function: () {
+                ControllerAllMethods().transitionScreen(
+                    nameRoute: Routes.INITIAL, context: context);
+              },
               iconData: Icons.home,
             ),
             _listTile(
               title: _titleResults,
-              function: () {ControllerAllMethods().transitionScreen(nameRoute: Routes.INITIAL, context: context);},
+              function: () {
+                ControllerInitialPageMobile().showResults(context);
+              },
               iconData: Icons.reorder_sharp,
             ),
-            Container(
-              height: constraints.maxHeight * 0.8,
-              child: Center(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    "assets/images/gov.png",
-                    width: constraints.maxWidth * 0.3,
-                  ),
-                  inkwellText(
-                      function: () {
-                        ControllerAllMethods()
-                            .openUrl(ViewAppBar().linkAccessibility);
-                      },
-                      textName: "Acessibilidades"),
-                ],
-              )),
+            Expanded(
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                Image.asset(
+                  "assets/images/gov.png",
+                  width: constraints.maxWidth * 0.3,
+                ),
+                inkwellText(
+                    function: () {
+                      ControllerAllMethods()
+                          .openUrl(ViewAppBar().linkAccessibility);
+                    },
+                    textName: "Acessibilidades"),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
