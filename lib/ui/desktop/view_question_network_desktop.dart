@@ -1,13 +1,13 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:project_enade/controller/controller_methods.dart';
-import 'package:project_enade/controller/controller_quiz_ads.dart';
+import 'package:project_enade/controller/controller_quiz_network.dart';
 import 'package:project_enade/router/Router.dart';
 
-class ViewQuestionsAds extends StatelessWidget {
+class ViewQuestionNetworkDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -16,8 +16,8 @@ class ViewQuestionsAds extends StatelessWidget {
           .transitionScreenCancelQuiz(nameRoute: Routes.INITIAL, context: context) ??
           false,
       child: GetBuilder(
-        init: ControllerQuizAds(),
-        builder: (ControllerQuizAds controller) {
+        init: ControllerQuizNetwork(),
+        builder: (ControllerQuizNetwork controller) {
           return Center(
             child: LayoutBuilder(
               builder: (_, constraints) {
@@ -31,7 +31,7 @@ class ViewQuestionsAds extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           _titleQuestion(constraints, controller, context),
-                          _radiosButton(constraints),
+                          _radiosButton(),
                           _buttonConfirmResponse(constraints, controller, context)
                         ],
                       ),
@@ -48,7 +48,7 @@ class ViewQuestionsAds extends StatelessWidget {
 }
 
 Widget _titleQuestion(
-    constraints,ControllerQuizAds controller, BuildContext context) {
+    constraints,ControllerQuizNetwork controller, BuildContext context) {
   return Padding(
     padding: const EdgeInsets.only(
       left: 10.0,
@@ -64,65 +64,63 @@ Widget _titleQuestion(
           padding: const EdgeInsets.all(16.0),
           child: Center(
               child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Questão ${controller.showQuestionScreenAds}",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22,
-                        color: Colors.white),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Questão ${controller.showQuestionScreenNetwork}",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22,
+                            color: Colors.white),
+                      ),
+                      CircularCountDownTimer(
+                        duration: 1800,
+                        initialDuration: 0,
+                        controller: CountDownController(),
+                        width: constraints.maxWidth / 12,
+                        height: constraints.maxHeight / 12,
+                        ringColor: Colors.grey[300],
+                        ringGradient: null,
+                        fillColor: Colors.green,
+                        fillGradient: null,
+                        backgroundColor: Colors.blue,
+                        backgroundGradient: null,
+                        strokeWidth: 7.0,
+                        strokeCap: StrokeCap.round,
+                        textStyle: TextStyle(
+                            fontSize: 12.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                        textFormat: CountdownTextFormat.MM_SS,
+                        isReverse: true,
+                        isReverseAnimation: false,
+                        isTimerTextShown: true,
+                        autoStart: true,
+                        onStart: () {
+                          //print('Countdown Started');
+                        },
+                        onComplete: () {
+                          controller.questionSelectedRadiusNetwork = 1;
+                          controller.showQuestionScreenNetwork = 10;
+                          controller.buttonConfirmResponseForNewQuestionNetwork(context);
+                        },
+                      )
+                    ],
                   ),
-                  FittedBox(
-                    child: CircularCountDownTimer(
-                      duration: 900,
-                      initialDuration: 0,
-                      controller: CountDownController(),
-                      width: constraints.maxWidth / 12,
-                      height: constraints.maxHeight / 12,
-                      ringColor: Colors.grey[300],
-                      ringGradient: null,
-                      fillColor: Colors.green,
-                      fillGradient: null,
-                      backgroundColor: Colors.blue,
-                      backgroundGradient: null,
-                      strokeWidth: 7.0,
-                      strokeCap: StrokeCap.round,
-                      textStyle: TextStyle(
-                          fontSize: 12.0,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                      textFormat: CountdownTextFormat.MM_SS,
-                      isReverse: true,
-                      isReverseAnimation: false,
-                      isTimerTextShown: true,
-                      autoStart: true,
-                      onStart: () {
-                        //print('Countdown Started');
-                      },
-                      onComplete: () {
-                        controller.questionSelectedRadiusAds = 1;
-                        controller.showQuestionScreenAds = 10;
-                        controller.buttonConfirmResponseForNewQuestionAds(context);
-                      },
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25, bottom: 25),
+                    child: Text(
+                      "${controller.getTitleNetwork()}",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
                     ),
-                  )
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 25, bottom: 25),
-                child: Text(
-                  "${controller.getTitleAds()}",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
                   ),
-                ),
-              ),
-            ],
-          )),
+                ],
+              )),
         ),
       ),
     ),
@@ -130,7 +128,7 @@ Widget _titleQuestion(
 }
 
 Widget _buttonConfirmResponse(
-    constraints,ControllerQuizAds controller, BuildContext context) {
+    constraints,ControllerQuizNetwork controller, BuildContext context) {
   final _textButtonEncerrarQuestionario = "Encerrar questionário";
   final _textButtonConfirmar = "Confirmar";
 
@@ -146,9 +144,9 @@ Widget _buttonConfirmResponse(
             child: new CircularPercentIndicator(
               radius: 80.0,
               lineWidth: 5.0,
-              percent: controller.showQuestionScreenAds / 10 - 0.1,
+              percent: controller.showQuestionScreenNetwork / 10 - 0.1,
               center: new Text(
-                  "${controller.showQuestionScreenAds - 1}${controller.showQuestionScreenAds == 1 ? "%" : "0%"}"),
+                  "${controller.showQuestionScreenNetwork - 1}${controller.showQuestionScreenNetwork == 1 ? "%" : "0%"}"),
               progressColor: Colors.green,
             ),
           ),
@@ -157,10 +155,10 @@ Widget _buttonConfirmResponse(
             height: 35,
             child: ElevatedButton(
               onPressed: () {
-                controller.buttonConfirmResponseForNewQuestionAds(context);
+                controller.buttonConfirmResponseForNewQuestionNetwork(context);
               },
               child: Text(
-                controller.showQuestionScreenAds == 10
+                controller.showQuestionScreenNetwork == 10
                     ? _textButtonEncerrarQuestionario
                     : _textButtonConfirmar,
                 style: TextStyle(color: Colors.white),
@@ -173,7 +171,7 @@ Widget _buttonConfirmResponse(
   );
 }
 
-Widget _radiosButton(constraints) {
+Widget _radiosButton() {
   final questionOne = 1.0;
   final questionTwo = 2.0;
   final questionThree = 3.0;
@@ -181,8 +179,8 @@ Widget _radiosButton(constraints) {
   final questionFive = 5.0;
 
   return GetBuilder(
-    init: ControllerQuizAds(),
-    builder: (ControllerQuizAds controller) {
+    init: ControllerQuizNetwork(),
+    builder: (ControllerQuizNetwork controller) {
       return Padding(
         padding: const EdgeInsets.only(bottom: 20.0),
         child: Column(
@@ -191,10 +189,6 @@ Widget _radiosButton(constraints) {
               padding: const EdgeInsets.only(top: 30, left: 10),
               child: Column(
                 children: [
-                  Visibility(
-                    visible: controller.getImageAds() != "not found",
-                      child: Image.asset("${controller.getImageAds()}.png",height: constraints.maxHeight*0.40,)
-                  ),
                   _radio(
                       itemQuestion: "A)",
                       groupValue: questionOne,
@@ -227,8 +221,8 @@ Widget _radiosButton(constraints) {
 
 Widget _radio(
     {@required groupValue,
-    @required ControllerQuizAds controller,
-    @required String itemQuestion}) {
+      @required ControllerQuizNetwork controller,
+      @required String itemQuestion}) {
   return LayoutBuilder(builder: (_, constraints) {
     return Container(
       child: Center(
@@ -241,9 +235,9 @@ Widget _radio(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Radio(
                   onChanged: (value) {
-                    controller.incrementAds(groupValue);
+                    controller.incrementNetwork(groupValue);
                   },
-                  value: controller.questionSelectedRadiusAds,
+                  value: controller.questionSelectedRadiusNetwork,
                   groupValue: groupValue,
                 ),
               ),
@@ -252,7 +246,7 @@ Widget _radio(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 16),
                   child: Text(
-                      "$itemQuestion ${controller.getItemAds(itemQuestion)}"),
+                      "$itemQuestion ${controller.getItemNetwork(itemQuestion)}"),
                 ),
               )
             ],
@@ -262,3 +256,4 @@ Widget _radio(
     );
   });
 }
+

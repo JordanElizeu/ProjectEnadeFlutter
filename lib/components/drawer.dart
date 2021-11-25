@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_enade/controller/controller_initialpage_mobile.dart';
 import 'package:project_enade/controller/controller_methods.dart';
 import 'package:project_enade/router/Router.dart';
-import 'package:project_enade/ui/desktop/app_bar.dart';
+import 'package:project_enade/ui/app_bar.dart';
 import 'inkwell.dart';
 
 Widget drawer(BuildContext context) {
@@ -18,7 +18,7 @@ Widget drawer(BuildContext context) {
         child: Column(
           children: [
             DrawerHeader(
-              child: Image.asset("assets/images/enade_simulado.png",width: constraints.maxWidth*0.70,),
+              child: Image.asset("assets/images/title_enade.png",width: constraints.maxWidth*0.70,),
               decoration: BoxDecoration(
                 color: Colors.white,
               ),

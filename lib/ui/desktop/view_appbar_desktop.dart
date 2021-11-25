@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_enade/ui/desktop/view_bodyinitial_desktop.dart';
 import 'package:project_enade/ui/desktop/view_footer_desktop.dart';
-import 'app_bar.dart';
+import '../app_bar.dart';
 
 class ViewPageDesktop extends StatelessWidget {
   final _titleCardQuiz = "Enade - Quiz 2021 ";
@@ -21,7 +21,7 @@ class ViewPageDesktop extends StatelessWidget {
                 height: constraints.maxHeight*0.15,
                 width: constraints.maxWidth,
               ),
-              Image.asset("assets/images/logo_enade.png"),
+              Image.asset("assets/images/banner_enade.png",height: constraints.maxHeight*0.70,),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -44,9 +44,11 @@ class ViewPageDesktop extends StatelessWidget {
                       )),
                 ),
               ),
-              Container(
-                  child: ViewBodyInitialPage(),
-                height: constraints.maxHeight*0.60,
+              Padding(
+                padding: const EdgeInsets.only(top: 32.0,bottom: 32.0),
+                child: Container(
+                    child: ViewBodyInitialPage(),
+                ),
               ),
               ViewFooterDesktop(),
             ],

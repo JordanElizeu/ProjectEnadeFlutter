@@ -79,6 +79,8 @@ flutter:
     - assets/images/enade2021.png
     - assets/images/enade_dicas.png
     - assets/images/enade_simulado.png
+    - assets/images/title_enade.png
+    - assets/images/banner_enade.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

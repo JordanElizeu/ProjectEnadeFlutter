@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_enade/components/inkwell.dart';
 import 'package:project_enade/controller/controller_methods.dart';
 import 'package:project_enade/router/Router.dart';
-import 'app_bar.dart';
+import '../app_bar.dart';
 
 Widget appBarDesktop(BuildContext context) {
   return Material(

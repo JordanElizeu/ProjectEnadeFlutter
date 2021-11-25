@@ -1,13 +1,14 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:project_enade/controller/controller_methods.dart';
 import 'package:project_enade/controller/controller_quiz_ads.dart';
 import 'package:project_enade/router/Router.dart';
 
-class ViewQuestionsAds extends StatelessWidget {
+class ViewQuestionAdsDesktop extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -64,65 +65,65 @@ Widget _titleQuestion(
           padding: const EdgeInsets.all(16.0),
           child: Center(
               child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Questão ${controller.showQuestionScreenAds}",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22,
-                        color: Colors.white),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Questão ${controller.showQuestionScreenAds}",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22,
+                            color: Colors.white),
+                      ),
+                      FittedBox(
+                        child: CircularCountDownTimer(
+                          duration: 900,
+                          initialDuration: 0,
+                          controller: CountDownController(),
+                          width: constraints.maxWidth / 12,
+                          height: constraints.maxHeight / 12,
+                          ringColor: Colors.grey[300],
+                          ringGradient: null,
+                          fillColor: Colors.green,
+                          fillGradient: null,
+                          backgroundColor: Colors.blue,
+                          backgroundGradient: null,
+                          strokeWidth: 7.0,
+                          strokeCap: StrokeCap.round,
+                          textStyle: TextStyle(
+                              fontSize: 10.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                          textFormat: CountdownTextFormat.MM_SS,
+                          isReverse: true,
+                          isReverseAnimation: false,
+                          isTimerTextShown: true,
+                          autoStart: true,
+                          onStart: () {
+                            //print('Countdown Started');
+                          },
+                          onComplete: () {
+                            controller.questionSelectedRadiusAds = 1;
+                            controller.showQuestionScreenAds = 10;
+                            controller.buttonConfirmResponseForNewQuestionAds(context);
+                          },
+                        ),
+                      )
+                    ],
                   ),
-                  FittedBox(
-                    child: CircularCountDownTimer(
-                      duration: 900,
-                      initialDuration: 0,
-                      controller: CountDownController(),
-                      width: constraints.maxWidth / 12,
-                      height: constraints.maxHeight / 12,
-                      ringColor: Colors.grey[300],
-                      ringGradient: null,
-                      fillColor: Colors.green,
-                      fillGradient: null,
-                      backgroundColor: Colors.blue,
-                      backgroundGradient: null,
-                      strokeWidth: 7.0,
-                      strokeCap: StrokeCap.round,
-                      textStyle: TextStyle(
-                          fontSize: 12.0,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                      textFormat: CountdownTextFormat.MM_SS,
-                      isReverse: true,
-                      isReverseAnimation: false,
-                      isTimerTextShown: true,
-                      autoStart: true,
-                      onStart: () {
-                        //print('Countdown Started');
-                      },
-                      onComplete: () {
-                        controller.questionSelectedRadiusAds = 1;
-                        controller.showQuestionScreenAds = 10;
-                        controller.buttonConfirmResponseForNewQuestionAds(context);
-                      },
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25, bottom: 25),
+                    child: Text(
+                      "${controller.getTitleAds()}",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
                     ),
-                  )
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 25, bottom: 25),
-                child: Text(
-                  "${controller.getTitleAds()}",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
                   ),
-                ),
-              ),
-            ],
-          )),
+                ],
+              )),
         ),
       ),
     ),
@@ -136,39 +137,36 @@ Widget _buttonConfirmResponse(
 
   return Padding(
     padding: const EdgeInsets.all(32.0),
-    child: FittedBox(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: EdgeInsets.all(15.0),
-            child: new CircularPercentIndicator(
-              radius: 80.0,
-              lineWidth: 5.0,
-              percent: controller.showQuestionScreenAds / 10 - 0.1,
-              center: new Text(
-                  "${controller.showQuestionScreenAds - 1}${controller.showQuestionScreenAds == 1 ? "%" : "0%"}"),
-              progressColor: Colors.green,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: EdgeInsets.all(15.0),
+          child: new CircularPercentIndicator(
+            radius: 80.0,
+            lineWidth: 5.0,
+            percent: controller.showQuestionScreenAds / 10 - 0.1,
+            center: new Text(
+                "${controller.showQuestionScreenAds - 1}${controller.showQuestionScreenAds == 1 ? "%" : "0%"}"),
+            progressColor: Colors.green,
+          ),
+        ),
+        Container(
+          width: constraints.maxWidth * 0.25,
+          height: 35,
+          child: ElevatedButton(
+            onPressed: () {
+              controller.buttonConfirmResponseForNewQuestionAds(context);
+            },
+            child: Text(
+              controller.showQuestionScreenAds == 10
+                  ? _textButtonEncerrarQuestionario
+                  : _textButtonConfirmar,
+              style: TextStyle(color: Colors.white),
             ),
           ),
-          Container(
-            width: constraints.maxWidth * 0.25,
-            height: 35,
-            child: ElevatedButton(
-              onPressed: () {
-                controller.buttonConfirmResponseForNewQuestionAds(context);
-              },
-              child: Text(
-                controller.showQuestionScreenAds == 10
-                    ? _textButtonEncerrarQuestionario
-                    : _textButtonConfirmar,
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     ),
   );
 }
@@ -192,7 +190,7 @@ Widget _radiosButton(constraints) {
               child: Column(
                 children: [
                   Visibility(
-                    visible: controller.getImageAds() != "not found",
+                      visible: controller.getImageAds() != "not found",
                       child: Image.asset("${controller.getImageAds()}.png",height: constraints.maxHeight*0.40,)
                   ),
                   _radio(
@@ -227,8 +225,8 @@ Widget _radiosButton(constraints) {
 
 Widget _radio(
     {@required groupValue,
-    @required ControllerQuizAds controller,
-    @required String itemQuestion}) {
+      @required ControllerQuizAds controller,
+      @required String itemQuestion}) {
   return LayoutBuilder(builder: (_, constraints) {
     return Container(
       child: Center(
@@ -262,3 +260,4 @@ Widget _radio(
     );
   });
 }
+
