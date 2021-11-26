@@ -20,7 +20,6 @@ class ViewLoginMobile extends StatelessWidget {
           false,
       child: Center(
         child: Material(
-            elevation: 20,
             child: LayoutBuilder(
               builder: (_, constraints) {
                 return Container(
@@ -124,17 +123,17 @@ class ViewLoginMobile extends StatelessWidget {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(top: 48.0),
-                                      child: ElevatedButton(
-                                        style: ButtonStyle(
-                                          alignment: Alignment.centerRight,
-                                        ),
-                                        onPressed: () {
-                                          ControllerLogin()
-                                              .accessAccount(context);
-                                        },
-                                        child: Container(
-                                          width: constraints.maxWidth * 0.14,
-                                          height: 35,
+                                      child: Container(
+                                        width: constraints.maxWidth * 0.50,
+                                        height: 35,
+                                        child: ElevatedButton(
+                                          style: ButtonStyle(
+                                            alignment: Alignment.centerRight,
+                                          ),
+                                          onPressed: () {
+                                            ControllerLogin()
+                                                .accessAccount(context);
+                                          },
                                           child: Center(
                                             child: Text(
                                                 _viewLogin.textButtonLogin),

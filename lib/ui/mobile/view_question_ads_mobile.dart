@@ -24,17 +24,14 @@ class ViewQuestionAdsMobile extends StatelessWidget {
                 return SingleChildScrollView(
                   child: Container(
                     width: constraints.maxWidth,
-                    child: Card(
-                      elevation: 20,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _titleQuestion(constraints, controller, context),
-                          _radiosButton(constraints),
-                          _buttonConfirmResponse(constraints, controller, context)
-                        ],
-                      ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _titleQuestion(constraints, controller, context),
+                        _radiosButton(constraints),
+                        _buttonConfirmResponse(constraints, controller, context)
+                      ],
                     ),
                   ),
                 );

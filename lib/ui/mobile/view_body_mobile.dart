@@ -14,9 +14,18 @@ class ViewBodyMobile extends StatelessWidget {
     return LayoutBuilder(
       builder: (_, constraints) {
         return Padding(
-          padding: const EdgeInsets.only(top: 64.0,bottom: 32.0),
+          padding: const EdgeInsets.only(bottom: 32.0),
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: Container(
+                  width: constraints.maxWidth*0.80,
+                  child:
+                      Text("Exame Nacional de Desempenho dos Estudantes (Enade)",
+                      style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700),),
+                ),
+              ),
               Container(
                 child: CarouselImages(
                   scaleFactor: 0.6,
@@ -25,19 +34,18 @@ class ViewBodyMobile extends StatelessWidget {
                   borderRadius: 30.0,
                   cachedNetworkImage: true,
                   verticalAlignment: Alignment.topCenter,
-                  onTap: (index){
-                  },
+                  onTap: (index) {},
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 32.0),
                 child: Container(
                   height: 40,
-                  width: constraints.maxWidth*0.80,
+                  width: constraints.maxWidth * 0.80,
                   child: ElevatedButton(
                     onPressed: () {
                       ControllerInitialPageMobile().initializeQuiz(context);
-                      },
+                    },
                     child: Text("Iniciar simulado"),
                   ),
                 ),

@@ -4,7 +4,7 @@ import 'package:project_enade/components/inkwell.dart';
 import 'package:project_enade/controller/controller_initialpage_desktop.dart';
 import 'package:project_enade/controller/controller_methods.dart';
 import 'package:project_enade/router/Router.dart';
-import '../app_bar.dart';
+import '../app_bar_tablet_or_desktop.dart';
 
 Widget appBarDesktop(BuildContext context) {
   return Material(
@@ -17,15 +17,25 @@ Widget appBarDesktop(BuildContext context) {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset(
-              "images/enade.jfif",
-              height: constraints.maxHeight,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 24,right: 24),
-              child: Image.asset(
-                "images/gov.png",
-                height: constraints.maxHeight*0.60,
+            Expanded(
+              child: Container(
+                child: FittedBox(
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        "images/enade.jfif",
+                        height: constraints.maxHeight,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 24,right: 24),
+                        child: Image.asset(
+                          "images/gov.png",
+                          height: constraints.maxHeight*0.60,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
             Expanded(

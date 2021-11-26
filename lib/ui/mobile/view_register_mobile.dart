@@ -8,6 +8,15 @@ import 'package:project_enade/controller/controller_register.dart';
 import 'package:project_enade/router/Router.dart';
 
 class ViewRegisterMobile extends StatelessWidget {
+  final String _fieldName = "Nome";
+  final String _fieldEmail = "E-mail";
+  final String _fieldConfirmEmail = "Confirmar E-mail";
+  final String _fieldPassword = "Senha";
+  final String _fieldConfirmPassword = "Confirmar Senha";
+  final String _buttonNameRegister = "Cadastrar";
+  final String _textQuestionUserHasAccount = "Já possui uma conta?";
+  final String _linkNameToPageLogin = "Entrar";
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -17,7 +26,6 @@ class ViewRegisterMobile extends StatelessWidget {
           false,
       child: Center(
         child: Material(
-          elevation: 20,
           child: LayoutBuilder(builder: (_, constraints) {
             return Container(
                 width: constraints.maxWidth,
@@ -45,7 +53,7 @@ class ViewRegisterMobile extends StatelessWidget {
                               key: ControllerRegister.formKeyRegisterName,
                               child: formatTextField(
                                   iconData: Icons.person,
-                                  fieldName: "Nome",
+                                  fieldName: _fieldName,
                                   obscureText: false,
                                   function: (text) {
                                     return controller
@@ -61,7 +69,7 @@ class ViewRegisterMobile extends StatelessWidget {
                               key: ControllerRegister.formKeyRegisterEmail,
                               child: formatTextField(
                                   iconData: Icons.email,
-                                  fieldName: "E-mail",
+                                  fieldName: _fieldEmail,
                                   obscureText: false,
                                   function: (String text) {
                                     return controller
@@ -77,7 +85,7 @@ class ViewRegisterMobile extends StatelessWidget {
                               key: ControllerRegister.formKeyRegisterConfirmEmail,
                               child: formatTextField(
                                   iconData: Icons.email,
-                                  fieldName: "Confirmar E-mail",
+                                  fieldName: _fieldConfirmEmail,
                                   obscureText: false,
                                   function: (String text) {
                                     return controller
@@ -94,7 +102,7 @@ class ViewRegisterMobile extends StatelessWidget {
                               key: ControllerRegister.formKeyRegisterPassword,
                               child: formatTextField(
                                   iconData: Icons.lock,
-                                  fieldName: "Senha",
+                                  fieldName: _fieldPassword,
                                   obscureText: true,
                                   function: (String text) {
                                     return controller
@@ -110,7 +118,7 @@ class ViewRegisterMobile extends StatelessWidget {
                               key: ControllerRegister.formKeyRegisterConfirmPassword,
                               child: formatTextField(
                                   iconData: Icons.lock,
-                                  fieldName: "Confirmar Senha",
+                                  fieldName: _fieldConfirmPassword,
                                   obscureText: true,
                                   function: (String text) {
                                     return controller
@@ -123,33 +131,38 @@ class ViewRegisterMobile extends StatelessWidget {
                                   filteringTextInputFormatter: null,
                                   textEditingController: ControllerRegister.registerTextFormFieldConfirmPassword),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 40),
-                              child: Container(
-                                height: 35,
-                                width: constraints.maxWidth * 0.30,
-                                child: ElevatedButton(
-                                  onPressed: () {ControllerRegister().buttonRegister(context);},
-                                  child: Text("Cadastrar"),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 40),
+                                  child: Container(
+                                    height: 35,
+                                    width: constraints.maxWidth * 0.50,
+                                    child: ElevatedButton(
+                                      onPressed: () {ControllerRegister().buttonRegister(context);},
+                                      child: Text(_buttonNameRegister),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 16.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text("Já possui uma conta?"),
-                                  inkwellText(
-                                      textName: "Entrar",
-                                      function: () {
-                                        ControllerAllMethods().transitionScreen(
-                                            nameRoute: Routes.LOGIN,
-                                            context: context);
-                                      }),
-                                ],
-                              ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 16.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(_textQuestionUserHasAccount),
+                                      inkwellText(
+                                          textName: _linkNameToPageLogin,
+                                          function: () {
+                                            ControllerAllMethods().transitionScreen(
+                                                nameRoute: Routes.LOGIN,
+                                                context: context);
+                                          }),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),

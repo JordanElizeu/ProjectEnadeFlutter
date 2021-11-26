@@ -12,7 +12,7 @@ class ViewPageMobile extends StatelessWidget {
     return appBarMobile(context);
   }
 }
-
+//Text(_title,style: TextStyle(fontStyle: FontStyle.italic,),),
 Widget appBarMobile(BuildContext context) {
   final String _title = "Enade 2021";
 
@@ -20,7 +20,9 @@ Widget appBarMobile(BuildContext context) {
     builder: (_, constraints) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(_title,style: TextStyle(fontStyle: FontStyle.italic,),),
+          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: Colors.white,
+          title: Image.asset("assets/images/title_enade.png"),
           centerTitle: true,
           actions: [
             Container(
@@ -63,8 +65,9 @@ Widget appBarMobile(BuildContext context) {
         body: SingleChildScrollView(
           child: Column(
             children: [
+              Image.asset("assets/images/banner_enade.png"),
               Padding(
-                padding: const EdgeInsets.only(top: 32.0,bottom: 32.0),
+                padding: const EdgeInsets.only(top: 32.0),
                 child: ViewBodyMobile(),
               ),
               viewFooterMobile(context)

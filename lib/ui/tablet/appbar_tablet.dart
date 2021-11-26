@@ -4,7 +4,7 @@ import 'package:menu_button/menu_button.dart';
 import 'package:project_enade/components/inkwell.dart';
 import 'package:project_enade/controller/controller_methods.dart';
 import 'package:project_enade/router/Router.dart';
-import 'package:project_enade/ui/app_bar.dart';
+import 'package:project_enade/ui/app_bar_tablet_or_desktop.dart';
 
 Widget appBarTablet(BuildContext context) {
   final List<String> listButtons = [
@@ -24,15 +24,26 @@ Widget appBarTablet(BuildContext context) {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset(
-              "images/enade.jfif",
-              height: constraints.maxHeight,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 24.0,right: 24.0),
-              child: Image.asset(
-                "images/gov.png",
-                height: constraints.maxHeight*0.60,
+            Expanded(
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: FittedBox(
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        "images/enade.jfif",
+                        height: constraints.maxHeight,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 24.0,right: 24.0),
+                        child: Image.asset(
+                          "images/gov.png",
+                          height: constraints.maxHeight*0.60,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
             Expanded(
@@ -41,7 +52,7 @@ Widget appBarTablet(BuildContext context) {
                 child: Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: Container(
-                    width: 100,
+                    width: 120,
                     child: MenuButton<String>(
                       child: Icon(Icons.menu,color: Colors.blue),
                       items: listButtons,

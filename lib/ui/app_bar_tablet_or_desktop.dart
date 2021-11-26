@@ -14,7 +14,7 @@ class ViewAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    if (width * 0.40 < 270){
+    if (width * 0.40 < 320){
       return appBarTablet(context);
     }else{
       return appBarDesktop(context);
