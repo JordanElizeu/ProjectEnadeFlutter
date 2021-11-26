@@ -63,6 +63,7 @@ class ControllerQuizAds extends GetxController {
           information: _informationAlertDialogFailure,
           context: context,
           title: _titleAlertDialogFailure);
+      //se for 10 é porque finalizou as 10 questões
     } else if (showQuestionScreenAds == 10) {
       Map<dynamic, dynamic> map = await getInformationOfUserOn(context);
       final name = map["nome"];

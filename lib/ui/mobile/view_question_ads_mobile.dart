@@ -178,7 +178,7 @@ Widget _radiosButton(constraints) {
               children: [
                 Visibility(
                     visible: controller.getImageAds() != "not found",
-                    child: Image.asset("${controller.getImageAds()}.png",height: constraints.maxHeight*0.40,)
+                    child: Image.asset("${controller.getImageAds()}.png",height: constraints.maxHeight*0.55,)
                 ),
                 _radio(
                     itemQuestion: "A)",

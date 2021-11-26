@@ -1,67 +1,104 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_enade/ui/desktop/view_bodyinitial_desktop.dart';
-import 'package:project_enade/ui/desktop/view_footer_desktop.dart';
+import 'package:project_enade/components/inkwell.dart';
+import 'package:project_enade/controller/controller_initialpage_desktop.dart';
+import 'package:project_enade/controller/controller_methods.dart';
+import 'package:project_enade/router/Router.dart';
 import '../app_bar.dart';
 
-class ViewPageDesktop extends StatelessWidget {
-  final _titleCardQuiz = "Enade - Quiz 2021 ";
-  final _twoTitleCardQuiz = "ADS e REDES";
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: LayoutBuilder(
-      builder: (_, constraints) {
-        return SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-              Container(
-                  child: ViewAppBar(),
-                height: constraints.maxHeight*0.15,
-                width: constraints.maxWidth,
+Widget appBarDesktop(BuildContext context) {
+  return Material(
+    elevation: 20,
+    child: LayoutBuilder(builder: (_,constraints){
+      return Container(
+        color: Colors.white,
+        width: constraints.maxWidth,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              "images/enade.jfif",
+              height: constraints.maxHeight,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 24,right: 24),
+              child: Image.asset(
+                "images/gov.png",
+                height: constraints.maxHeight*0.60,
               ),
-              Image.asset("assets/images/banner_enade.png",height: constraints.maxHeight*0.70,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: constraints.maxWidth * 0.80,
-                  height: constraints.maxHeight * 0.10,
-                  child: Card(
-                      color: Colors.blue,
-                      child: FittedBox(
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _formatText(_titleCardQuiz.toString(), FontWeight.bold),
-                              _formatText(_twoTitleCardQuiz, FontWeight.normal),
-                            ],
-                          ),
-                        ),
-                      )),
+            ),
+            Expanded(
+              child: Container(
+                alignment: Alignment.centerRight,
+                child: FittedBox(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      inkwellText(textName: ViewAppBar().titleAccessibilityLink,function: (){ControllerAllMethods().openUrl(ViewAppBar().linkAccessibility);}),
+                      inkwellText(textName: ViewAppBar().titleResultsLink,function: (){ControllerInitialPageDesktop().methodForShowResults(context);}),
+                      inkwellText(textName: ViewAppBar().titleQuizLink,function: (){ControllerAllMethods().transitionScreen(nameRoute: Routes.INITIAL, context: context);}),
+                      _elevatedButton(
+                          nameButton: ViewAppBar().buttonLogin,
+                          function: () {ControllerAllMethods().transitionScreen(nameRoute: Routes.LOGIN, context: context);},
+                          icon: Icons.person,
+                          colorText: Colors.white,
+                          colorBackGroundButton: Colors.blue),
+                    ],
+                  ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 32.0,bottom: 32.0),
-                child: Container(
-                    child: ViewBodyInitialPage(),
-                ),
-              ),
-              ViewFooterDesktop(),
-            ],
-          ),
-        );
-      },
-    ));
-  }
+            ),
+          ],
+        ),
+      );
+    },
+    )
+  );
 }
 
-Widget _formatText(title, FontWeight fontWeight) {
-  return Text(
-    title,
-    style: TextStyle(color: Colors.white, fontWeight: fontWeight),
+Widget _elevatedButton(
+    {nameButton,
+      Function function,
+      IconData icon,
+      Color colorText,
+      @required Color colorBackGroundButton,
+      Color overlayColor}) {
+  return FittedBox(
+    child: Padding(
+      padding: const EdgeInsets.all(32.0),
+      child: Container(
+        width: 125,
+        height: 35,
+        child: ElevatedButton(
+          onPressed: function,
+          child: Row(
+            children: [
+              Icon(icon),
+              Expanded(
+                child: Center(
+                  child: Text(
+                    nameButton,
+                    style: TextStyle(
+                        color: colorText == null ? Colors.white : colorText),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          style: ButtonStyle(
+            overlayColor: MaterialStateProperty.all(
+                overlayColor == null ? Colors.white38 : overlayColor),
+            backgroundColor: MaterialStateProperty.all(colorBackGroundButton),
+            elevation: MaterialStateProperty.all(10),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
   );
 }

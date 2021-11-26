@@ -69,7 +69,7 @@ class ResponseDialog extends StatelessWidget {
               child: Text(buttonText),
             ),
             onPressed: functionButton == null? (){Navigator.pop(context);}:functionButton
-            )
+        )
       ],
     );
   }

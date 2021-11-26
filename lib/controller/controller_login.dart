@@ -25,14 +25,15 @@ class ControllerLogin extends GetxController {
   accessAccount(BuildContext context) async {
     final FormState formLoginValidatedMatricula =
         formKeyLoginMatricula.currentState;
-    final FormState formLoginValidatedEmail =
+    final FormState formLoginValidatedPassword =
         formKeyLoginPassword.currentState;
-    final FormState formLoginValidatedSenha = formKeyLoginEmail.currentState;
+    final FormState formLoginValidatedEmail = formKeyLoginEmail.currentState;
 
     if (formLoginValidatedMatricula.validate() &&
         formLoginValidatedEmail.validate() &&
-        formLoginValidatedSenha.validate()) {
-      await accessAccountEnade(
+        formLoginValidatedPassword.validate()) {
+      print(loginTextFormFieldPassword.text);
+      await accessAccountUserEnade(
           password: loginTextFormFieldPassword.text,
           matricula: loginTextFormFieldMatricula.text,
           context: context,

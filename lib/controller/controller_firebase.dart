@@ -5,7 +5,10 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 class ControllerFirebase extends GetxController{
 
   bool userIsOn(){
-    return FirebaseAuth.instance.currentUser == null? false:true;
+    if(FirebaseAuth.instance.currentUser != null && FirebaseAuth.instance.currentUser.emailVerified){
+      return true;
+    }
+    return false;
   }
 
   getUuid(){

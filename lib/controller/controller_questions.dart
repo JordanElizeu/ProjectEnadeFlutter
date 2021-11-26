@@ -10,10 +10,10 @@ import 'controller_methods.dart';
 class ControllerQuestions extends GetxController {
 
   Future<void> questionarioFinalizado({@required title,@required BuildContext context,@required information,@required name,@required result,@required questionSelectedRadius,@required showQuestionScreen,@required disciplina}) async {
-    await addNewResultInDatabase(result: result, name: name, context: context, disciplina: disciplina);
-    questionSelectedRadius = 0;
-    showQuestionScreen = 1;
-    alertDialogSuccess(title: title, context: context, information: information,function: (){
+    alertDialogSuccess(title: title, context: context, information: information,function: () async {
+      await addNewResultQuizInFirebase(result: result, name: name, context: context, disciplina: disciplina);
+      questionSelectedRadius = 0;
+      showQuestionScreen = 1;
       ControllerAllMethods().transitionScreen(nameRoute: Routes.INITIAL, context: context);
       Navigator.pop(ControllerLogin.contextControllerLogin);
     });

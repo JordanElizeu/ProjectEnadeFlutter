@@ -10,6 +10,14 @@ class ControllerInitialPageDesktop extends GetxController{
   final informationErrorUserIsNotOn = "Entre na sua conta ou cadastre-se";
   static PageController pageViewController = PageController();//mobile
 
+  methodForShowResults(BuildContext context){
+    if(!ControllerFirebase().userIsOn()){
+      alertDialogFailure(context: context, title: titleErrorUserIsNotOn, information: informationErrorUserIsNotOn);
+    }else{
+      ControllerAllMethods().transitionScreen(nameRoute: Routes.RESULTADOS, context: context);
+    }
+  }
+
   selectedQuizOrResults(value,BuildContext context){
     switch(value){
       case 0:

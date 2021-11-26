@@ -133,39 +133,36 @@ Widget _buttonConfirmResponse(
 
   return Padding(
     padding: const EdgeInsets.all(32.0),
-    child: FittedBox(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: EdgeInsets.all(15.0),
-            child: new CircularPercentIndicator(
-              radius: 80.0,
-              lineWidth: 5.0,
-              percent: controller.showQuestionScreenNetwork / 10 - 0.1,
-              center: new Text(
-                  "${controller.showQuestionScreenNetwork - 1}${controller.showQuestionScreenNetwork == 1 ? "%" : "0%"}"),
-              progressColor: Colors.green,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: EdgeInsets.all(15.0),
+          child: new CircularPercentIndicator(
+            radius: 80.0,
+            lineWidth: 5.0,
+            percent: controller.showQuestionScreenNetwork / 10 - 0.1,
+            center: new Text(
+                "${controller.showQuestionScreenNetwork - 1}${controller.showQuestionScreenNetwork == 1 ? "%" : "0%"}"),
+            progressColor: Colors.green,
+          ),
+        ),
+        Container(
+          width: constraints.maxWidth * 0.25,
+          height: 35,
+          child: ElevatedButton(
+            onPressed: () {
+              controller.buttonConfirmResponseForNewQuestionNetwork(context);
+            },
+            child: Text(
+              controller.showQuestionScreenNetwork == 10
+                  ? _textButtonEncerrarQuestionario
+                  : _textButtonConfirmar,
+              style: TextStyle(color: Colors.white),
             ),
           ),
-          Container(
-            width: constraints.maxWidth * 0.25,
-            height: 35,
-            child: ElevatedButton(
-              onPressed: () {
-                controller.buttonConfirmResponseForNewQuestionNetwork(context);
-              },
-              child: Text(
-                controller.showQuestionScreenNetwork == 10
-                    ? _textButtonEncerrarQuestionario
-                    : _textButtonConfirmar,
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     ),
   );
 }

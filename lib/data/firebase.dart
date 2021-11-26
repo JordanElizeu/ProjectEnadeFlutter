@@ -14,7 +14,7 @@ final DatabaseReference _databaseReference =
 
 final _informationSuccessCreateNewUser =
     "Enviamos um e-mail contendo informações de acesso ao Enade!\n\nCaso não tenha recebido, verifique caixa spam e lixeira";
-final _titleSuccessCreateNewUser = "Usuário criado com Sucesso";
+final _titleSuccessCreateNewUser = "Usuário criado com sucesso";
 final _titleFailureAccessAccount = "Erro desconhecido";
 final _titleFailureAccessAccountEmailNotVerified = "E-mail não verificado!";
 final _informationFailureAccessAccountEmailNotVerified =
@@ -47,11 +47,21 @@ void createNewUser(
         .child(_auth.currentUser.uid)
         .child("matricula")
         .set(ControllerFirebase().getUuid());
+    _databaseReference
+        .child("Database")
+        .child("Users")
+        .child(_auth.currentUser.uid)
+        .child("id")
+        .set(_auth.currentUser.uid);
     try {
       await _auth.sendPasswordResetEmail(email: email);
       alertDialogSuccess(
           title: _titleSuccessCreateNewUser,
           information: _informationSuccessCreateNewUser,
+          function: (){
+            ControllerAllMethods().transitionScreen(nameRoute: Routes.INITIAL, context: context);
+            Navigator.pop(ControllerLogin.contextControllerLogin);
+            },
           context: context);
     } on FirebaseAuthException catch (exception) {
       handleFirebaseSendPasswordResetEmailException(
@@ -63,33 +73,38 @@ void createNewUser(
   }
 }
 
-Future<void> addNewResultInDatabase(
+Future<void> addNewResultQuizInFirebase(
     {@required result, @required name, @required BuildContext context,@required disciplina}) async {
   try {
-    final Map<dynamic,dynamic> _map = await getAllResults(context: context);
-    final int _quantityResultsInFirebase = _map.length;
+    final Map<dynamic,dynamic> _map = await getAllValuesResultsToListResults(context: context);
+    int _quantityResultsInFirebase;
+    _map !=null? _quantityResultsInFirebase = _map.length+1: _quantityResultsInFirebase = 1;
     FirebaseDatabase.instance
         .reference()
         .child("Database")
         .child("Resultados")
+        .child(_auth.currentUser.uid)
         .child("${_auth.currentUser.uid+_quantityResultsInFirebase.toString()}")
         .child("nome")
         .set(name);
     _databaseReference
         .child("Database")
         .child("Resultados")
+        .child(_auth.currentUser.uid)
         .child("${_auth.currentUser.uid+_quantityResultsInFirebase.toString()}")
         .child("resultado")
         .set(result);
     _databaseReference
         .child("Database")
         .child("Resultados")
+        .child(_auth.currentUser.uid)
         .child("${_auth.currentUser.uid+_quantityResultsInFirebase.toString()}")
         .child("disciplina")
         .set(disciplina);
     _databaseReference
         .child("Database")
         .child("Resultados")
+        .child(_auth.currentUser.uid)
         .child("${_auth.currentUser.uid+_quantityResultsInFirebase.toString()}")
         .child("id")
         .set(_quantityResultsInFirebase.toString());
@@ -103,7 +118,7 @@ Future<void> addNewResultInDatabase(
 
 Future<Map<dynamic, dynamic>> getInformationOfUserOn(
     BuildContext context) async {
-  Map<dynamic, dynamic> map;
+  Map<dynamic, dynamic> _map;
   try {
     await FirebaseDatabase.instance
         .reference()
@@ -112,9 +127,9 @@ Future<Map<dynamic, dynamic>> getInformationOfUserOn(
         .child(_auth.currentUser.uid)
         .once()
         .then((DataSnapshot snapshot) => {
-              map = snapshot.value,
+          _map = snapshot.value
             });
-    return map;
+    return _map;
   } on DatabaseError catch (exception) {
     alertDialogFailure(
       context: context,
@@ -125,7 +140,7 @@ Future<Map<dynamic, dynamic>> getInformationOfUserOn(
   }
 }
 
-accessAccountEnade(
+accessAccountUserEnade(
     {@required email,
     @required matricula,
     @required password,
@@ -197,7 +212,7 @@ bool emailIsVerified() {
   return user.emailVerified;
 }
 
-void getResultQuizAndShowDialog(
+void getResultQuizInTheFinaleAndShowDialog(
     {@required email,
     @required password,
     @required result,
@@ -224,7 +239,7 @@ void getResultQuizAndShowDialog(
   }
 }
 
-Future<Map<dynamic, dynamic>> getAllResults(
+Future<Map<dynamic, dynamic>> getAllValuesResultsToListResults(
     {@required BuildContext context}) async {
   Map<dynamic, dynamic> _map;
   try {
@@ -232,11 +247,12 @@ Future<Map<dynamic, dynamic>> getAllResults(
         .reference()
         .child("Database")
         .child("Resultados")
+        .child(_auth.currentUser.uid)
         .once()
         .then((DataSnapshot snapshot) => {
           snapshot.exists?
               _map = snapshot.value:
-              _map = {}
+              _map = null
             });
     return _map;
   } on DatabaseError catch (exception) {

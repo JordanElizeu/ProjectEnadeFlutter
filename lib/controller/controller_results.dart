@@ -7,7 +7,7 @@ class ControllerResults extends GetxController{
     List<dynamic> list;
 
     Future<List<dynamic>> getResultsAndSendToMap(BuildContext context) async {
-      list.add(await getAllResults(context: context));
+      list.add(await getAllValuesResultsToListResults(context: context));
       update();
       return list;
     }
