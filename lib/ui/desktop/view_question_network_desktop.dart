@@ -111,7 +111,7 @@ Widget _titleQuestion(
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 25, bottom: 25),
+            padding: const EdgeInsets.all(25.0),
             child: Text(
               "${controller.getTitleNetwork()}",
               style: TextStyle(
