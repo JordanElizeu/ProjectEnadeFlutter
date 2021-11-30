@@ -11,37 +11,48 @@ Widget appBarDesktop(BuildContext context) {
     elevation: 20,
     child: LayoutBuilder(builder: (_,constraints){
       return Container(
+        alignment: Alignment.centerLeft,
         color: Colors.white,
         width: constraints.maxWidth,
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Expanded(
+              flex: 1,
               child: Container(
+                height: 500,
+                color: Color(0xff0e4180),
                 child: FittedBox(
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        "images/enade.jfif",
-                        height: constraints.maxHeight,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 24,right: 24),
-                        child: Image.asset(
-                          "images/gov.png",
-                          height: constraints.maxHeight*0.60,
-                        ),
-                      ),
-                    ],
+                  child: Image.asset(
+                    "images/enade.jfif",
+                    height: constraints.maxHeight,
                   ),
                 ),
               ),
             ),
             Expanded(
+              flex: 1,
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 24,right: 24),
+                    child: Image.asset(
+                      "images/gov.png",
+                      height: constraints.maxHeight*0.60,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 2,
               child: Container(
                 alignment: Alignment.centerRight,
                 child: FittedBox(
+                  fit: BoxFit.fitWidth,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

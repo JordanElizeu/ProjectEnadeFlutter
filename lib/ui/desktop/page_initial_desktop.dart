@@ -21,7 +21,7 @@ class ViewPageDesktop extends StatelessWidget {
                 height: constraints.maxHeight*0.15,
                 width: constraints.maxWidth,
               ),
-              Image.asset("assets/images/banner_enade.png",height: constraints.maxHeight*0.70,),
+              Image.asset("assets/images/banner_enade.png",height: constraints.maxHeight*0.50,),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(

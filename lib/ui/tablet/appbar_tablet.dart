@@ -19,21 +19,32 @@ Widget appBarTablet(BuildContext context) {
     child: LayoutBuilder(builder: (_, constraints) {
       return Container(
         color: Colors.white,
+        alignment: Alignment.centerLeft,
         width: constraints.maxWidth,
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Expanded(
+              flex: 1,
+              child: Container(
+                height: 500,
+                color: Color(0xff0e4180),
+                child: FittedBox(
+                  child: Image.asset(
+                    "images/enade.jfif",
+                    height: constraints.maxHeight,
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
               child: Container(
                 alignment: Alignment.centerLeft,
                 child: FittedBox(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.asset(
-                        "images/enade.jfif",
-                        height: constraints.maxHeight,
-                      ),
                       Padding(
                         padding: const EdgeInsets.only(left: 24.0,right: 24.0),
                         child: Image.asset(
@@ -47,6 +58,7 @@ Widget appBarTablet(BuildContext context) {
               ),
             ),
             Expanded(
+              flex: 2,
               child: Container(
                 alignment: Alignment.centerRight,
                 child: Padding(
