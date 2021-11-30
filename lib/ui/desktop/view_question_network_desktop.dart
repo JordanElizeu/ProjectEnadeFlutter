@@ -115,8 +115,8 @@ Widget _titleQuestion(
             child: Text(
               "${controller.getTitleNetwork()}",
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
+                color: Colors.black,
+                fontSize: 16,
               ),
             ),
           ),

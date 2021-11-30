@@ -56,60 +56,65 @@ Widget _titleQuestion(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
                   children: [
-                    Text(
-                      "Questão ${controller.showQuestionScreenAds} de 10",
-                      style: TextStyle(
-                          fontSize: 22,
-                          color: Colors.white),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Questão ${controller.showQuestionScreenAds} de 10",
+                          style: TextStyle(
+                              fontSize: 22,
+                              color: Colors.white),
+                        ),
+                        FittedBox(
+                          child: CircularCountDownTimer(
+                            duration: 900,
+                            initialDuration: 0,
+                            controller: CountDownController(),
+                            width: constraints.maxWidth / 12,
+                            height: constraints.maxHeight / 12,
+                            ringColor: Colors.grey[300],
+                            ringGradient: null,
+                            fillColor: Colors.green,
+                            fillGradient: null,
+                            backgroundColor: Colors.blue,
+                            backgroundGradient: null,
+                            strokeWidth: 7.0,
+                            strokeCap: StrokeCap.round,
+                            textStyle: TextStyle(
+                                fontSize: 10.0,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                            textFormat: CountdownTextFormat.MM_SS,
+                            isReverse: true,
+                            isReverseAnimation: false,
+                            isTimerTextShown: true,
+                            autoStart: true,
+                            onStart: () {
+                              //print('Countdown Started');
+                            },
+                            onComplete: () {
+                              controller.questionSelectedRadiusAds = 1;
+                              controller.showQuestionScreenAds = 10;
+                              controller.buttonConfirmResponseForNewQuestionAds(context);
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                    FittedBox(
-                      child: CircularCountDownTimer(
-                        duration: 900,
-                        initialDuration: 0,
-                        controller: CountDownController(),
-                        width: constraints.maxWidth / 12,
-                        height: constraints.maxHeight / 12,
-                        ringColor: Colors.grey[300],
-                        ringGradient: null,
-                        fillColor: Colors.green,
-                        fillGradient: null,
-                        backgroundColor: Colors.blue,
-                        backgroundGradient: null,
-                        strokeWidth: 7.0,
-                        strokeCap: StrokeCap.round,
-                        textStyle: TextStyle(
-                            fontSize: 10.0,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                        textFormat: CountdownTextFormat.MM_SS,
-                        isReverse: true,
-                        isReverseAnimation: false,
-                        isTimerTextShown: true,
-                        autoStart: true,
-                        onStart: () {
-                          //print('Countdown Started');
-                        },
-                        onComplete: () {
-                          controller.questionSelectedRadiusAds = 1;
-                          controller.showQuestionScreenAds = 10;
-                          controller.buttonConfirmResponseForNewQuestionAds(context);
-                        },
+                    Padding(
+                      padding: const EdgeInsets.all(25.0),
+                      child: Text(
+                        "${controller.getTitleAds()}",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
                       ),
-                    )
+                    ),
                   ],
-                )),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(25.0),
-          child: Text(
-            "${controller.getTitleAds()}",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
+                )
             ),
           ),
         ),
@@ -210,36 +215,38 @@ Widget _radio(
     {@required groupValue,
       @required ControllerQuizAds controller,
       @required String itemQuestion}) {
-  return LayoutBuilder(builder: (_, constraints) {
-    return Container(
-      child: Center(
-        child: FittedBox(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0),
-                child: Radio(
-                  onChanged: (value) {
-                    controller.incrementAds(groupValue);
-                  },
-                  value: controller.questionSelectedRadiusAds,
-                  groupValue: groupValue,
+  return Material(
+    child: LayoutBuilder(builder: (_, constraints) {
+      return Container(
+        child: Center(
+          child: FittedBox(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: Radio(
+                    onChanged: (value) {
+                      controller.incrementAds(groupValue);
+                    },
+                    value: controller.questionSelectedRadiusAds,
+                    groupValue: groupValue,
+                  ),
                 ),
-              ),
-              Container(
-                width: constraints.maxWidth * 0.90,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: Text(
-                      "$itemQuestion ${controller.getItemAds(itemQuestion)}"),
-                ),
-              )
-            ],
+                Container(
+                  width: constraints.maxWidth * 0.90,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: Text(
+                        "$itemQuestion ${controller.getItemAds(itemQuestion)}"),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
-      ),
-    );
-  });
+      );
+    }),
+  );
 }
