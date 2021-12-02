@@ -73,6 +73,7 @@ void createNewUser(
   }
 }
 
+/// @r */
 Future<void> addNewResultQuizInFirebase(
     {@required result, @required name, @required BuildContext context,@required disciplina}) async {
   try {

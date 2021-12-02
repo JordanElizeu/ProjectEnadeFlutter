@@ -9,8 +9,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final _title =
-      "Enade - Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira";
+  final _title = "Enade - Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira";
 
   @override
   Widget build(BuildContext context) {
