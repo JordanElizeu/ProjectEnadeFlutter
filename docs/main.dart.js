@@ -70493,8 +70493,8 @@ $2:function(a,b){var s=null,r=b.d,q=b.b,p=t.t
 return E.fA(T.b_(H.b([M.a9(s,new Q.LR(s),C.h,s,s,s,s,r*0.15,s,s,s,s,q),U.du("assets/images/banner_enade.png",s,r*0.5,s),new T.a3(C.bU,M.a9(s,V.il(T.e3(new T.a3(C.cr,T.c7(H.b([L.aD("Enade - Quiz 2021 ",s,s,s,A.be(s,s,C.k,s,s,s,s,s,s,s,s,s,s,C.aw,s,s,!0,s,s,s,s,s,s),s,s),L.aD("ADS e REDES",s,s,s,A.be(s,s,C.k,s,s,s,s,s,s,s,s,s,s,C.U,s,s,!0,s,s,s,s,s,s),s,s)],p),C.o,C.a_,C.m),s),C.aq),C.a0,s),C.h,s,s,s,s,r*0.1,s,s,s,s,q*0.8),s),new T.a3(C.nA,M.a9(s,new K.LS(s),C.h,s,s,s,s,s,s,s,s,s,s),s),new E.A0(s)],p),C.o,C.v,C.m),s,C.l)},
 $S:41}
 B.ak1.prototype={
-$2:function(a,b){var s,r,q,p,o,n,m,l=null,k=b.b,j=b.d,i=T.lh(M.a9(l,T.e3(U.du("images/enade.jfif",l,j,l),C.aq),C.h,new P.F(4279124352),l,l,l,500,l,l,l,l,l),1)
-j=T.lh(M.a9(C.ih,T.e3(new T.a3(C.nD,U.du("images/gov.png",l,j*0.6,l),l),C.ni),C.h,l,l,l,l,l,l,l,l,l,l),1)
+$2:function(a,b){var s,r,q,p,o,n,m,l=null,k=b.b,j=b.d,i=T.lh(M.a9(l,T.e3(U.du("assets/images/enade.jfif",l,j,l),C.aq),C.h,new P.F(4279124352),l,l,l,500,l,l,l,l,l),1)
+j=T.lh(M.a9(C.ih,T.e3(new T.a3(C.nD,U.du("assets/images/gov.png",l,j*0.6,l),l),C.ni),C.h,l,l,l,l,l,l,l,l,l,l),1)
 s=U.kP(new B.ajY(),"Acessibilidade")
 r=this.a
 q=U.kP(new B.ajZ(r),"Resultados")
