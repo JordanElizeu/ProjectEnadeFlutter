@@ -30,7 +30,7 @@ Widget appBarTablet(BuildContext context) {
                 color: Color(0xff0e4180),
                 child: FittedBox(
                   child: Image.asset(
-                    "images/enade.jfif",
+                    "assets/images/enade.jfif",
                     height: constraints.maxHeight,
                   ),
                 ),
@@ -48,7 +48,7 @@ Widget appBarTablet(BuildContext context) {
                       Padding(
                         padding: const EdgeInsets.only(left: 24.0,right: 24.0),
                         child: Image.asset(
-                          "images/gov.png",
+                          "assets/images/gov.png",
                           height: constraints.maxHeight*0.60,
                         ),
                       ),
