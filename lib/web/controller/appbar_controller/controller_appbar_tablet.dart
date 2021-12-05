@@ -22,10 +22,6 @@ class ControllerAppBarTablet{
           ControllerInitialPageDesktop().methodForShowResults(context);
         }
         break;
-      case "Acessar conta":
-        ControllerAllMethods().pageTransition(
-            nameRoute: Routes.LOGIN, context: context);
-        break;
       case "Acessibilidade":
         inkwellText(
             textName: ViewAppBar().titleAccessibilityLink,
