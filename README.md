@@ -22,7 +22,7 @@ Página Quiz - Desktop/Tablet
 
 Página Principal - Tablet/Ipods
 
-![ipad_home](https://user-images.githubusercontent.com/78436676/144413054-4a9eb618-dcd1-4d4c-8a34-046e16cf6d0d.png)
+![tablet](https://user-images.githubusercontent.com/78436676/144761701-c46e1ed5-a353-4292-aa18-c3b2f5eefbb6.png)
 
 Páginas - Mobile
 
