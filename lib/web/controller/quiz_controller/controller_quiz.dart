@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:project_enade/web/data/repository/firebase/repository_authentication.dart';
+import 'package:project_enade/web/data/repository/firebase/repository_database.dart';
+import 'package:project_enade/web/data/repository/quiz/repository_quiz_network.dart';
 import 'package:project_enade/web/ui/widgets/dialog_exceptions.dart';
-import '../controller_questions.dart';
+import 'controller_questions.dart';
 
 class ControllerQuiz extends GetxController{
 
@@ -66,12 +68,10 @@ class ControllerQuiz extends GetxController{
     }else if (showQuestion == 10){
       Map<dynamic, dynamic> map = await RepositoryAuthentication().getInformationUser(context: context);
       final name = map["nome"];
-      ControllerQuestions().questionarioFinalizado(
+      ControllerQuestions().finishQuiz(
           title: _titleAlertDialogSuccess,
           context: context,
           result: correctResponse,
-          questionSelectedRadius: questionSelected,
-          showQuestionScreen: showQuestion,
           name: name,
           information: _informationAlertDialogSuccess,
           disciplina: disciplina);
@@ -83,9 +83,13 @@ class ControllerQuiz extends GetxController{
     }
   }
 
+  getAllResults(BuildContext context){
+    RepositoryDatabase().getAllResults(context: context);
+  }
+
   //valida se acertou a questão
   _validatorResultQuestions({@required Map<int, Map<String, String>> map}){
-    int response = ControllerQuestions().getResponse(map,showQuestion);
+    int response = ControllerQuestions().formatQuizResponse(map,showQuestion);
     if(response == questionSelected){
       setCorrectResponse(incrementQuestionCorrect: 1);
     }else{

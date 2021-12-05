@@ -3,10 +3,9 @@ import 'inkwell.dart';
 
 Widget linkText(
     {@required image,
-      @required Function function,
-      @required link,
-      @required BuildContext context,
-      constraints}) {
+    @required Function function,
+    @required link,
+    @required BuildContext context}) {
   return Container(
     child: Row(
       children: [

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_enade/web/controller/controller_login.dart';
+import 'package:project_enade/web/controller/login_controller/controller_login.dart';
 
 class ResponseDialog extends StatelessWidget {
   final String title;

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_enade/web/ui/desktop/view_login_desktop.dart';
-import 'package:project_enade/web/ui/mobile/view_login_mobile.dart';
+import 'package:project_enade/web/ui/desktop/login_desktop/view_login_desktop.dart';
+import 'package:project_enade/web/ui/mobile/login_mobile/view_login_mobile.dart';
 import 'package:project_enade/web/ui/widgets/responsive.dart';
 
 

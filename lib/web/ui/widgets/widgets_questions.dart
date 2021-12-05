@@ -11,13 +11,12 @@ class DefaultWidgetQuestions {
   ControllerQuiz _controllerQuiz;
   BoxConstraints _boxConstraints;
 
-  DefaultWidgetQuestions({
-    @required String nameDisciplina,
-    @required Map<int, Map<String, String>> map,
-    @required BuildContext context,
-    @required BoxConstraints constraints,
-    @required ControllerQuiz controllerQuiz
-  }) {
+  DefaultWidgetQuestions(
+      {@required String nameDisciplina,
+      @required Map<int, Map<String, String>> map,
+      @required BuildContext context,
+      @required BoxConstraints constraints,
+      @required ControllerQuiz controllerQuiz}) {
     this._nameDisciplina = nameDisciplina;
     this._map = map;
     this._context = context;
@@ -163,12 +162,13 @@ class DefaultWidgetQuestions {
               child: Column(
                 children: [
                   Visibility(
-                      visible:
-                          _controllerQuiz.getImageAds(map: _map) != "not found",
-                      child: Image.asset(
-                        "${_controllerQuiz.getImageAds(map: _map)}.png",
-                        height: _boxConstraints.maxHeight * 0.55,
-                      )),
+                    visible:
+                        _controllerQuiz.getImageAds(map: _map) != "not found",
+                    child: Image.asset(
+                      "${_controllerQuiz.getImageAds(map: _map)}.png",
+                      height: _boxConstraints.maxHeight * 0.55,
+                    ),
+                  ),
                   _radio(
                     itemQuestion: "A)",
                     groupValue: questionOne,

@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_enade/web/data/repository/firebase/repository_database.dart';
+import 'package:get/get.dart';
+import 'package:project_enade/web/controller/quiz_controller/controller_quiz.dart';
 import 'package:project_enade/web/ui/widgets/dialog_exceptions.dart';
 import 'package:project_enade/web/ui/widgets/progress.dart';
-import 'package:project_enade/web/controller/controller_methods.dart';
+import 'package:project_enade/web/controller/generic_controller/controller_methods.dart';
 import 'package:project_enade/web/router/app_routes.dart';
 
 class ViewResults extends StatelessWidget {
@@ -11,11 +12,10 @@ class ViewResults extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RepositoryDatabase().getAllResults(context: context);
     return WillPopScope(
       onWillPop: () =>
           ControllerAllMethods()
-              .transitionScreen(nameRoute: Routes.INITIAL, context: context) ??
+              .pageTransition(nameRoute: Routes.INITIAL, context: context) ??
           false,
       child: Scaffold(body: LayoutBuilder(
         builder: (_, constraints) {
@@ -65,81 +65,87 @@ class ViewResults extends StatelessWidget {
   }
 
   Widget futureBuilder(BuildContext context, constraints) {
-    return FutureBuilder<Map<dynamic, dynamic>>(
-        future: RepositoryDatabase().getAllResults(context: context),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-              return alertDialogFailure(
-                context: context,
-                title: _titleError,
-              );
-              break;
-            case ConnectionState.waiting:
-              return ShowProgress();
-              break;
-            case ConnectionState.active:
-              return emptyList(constraints);
-              break;
-            case ConnectionState.done:
-              if (snapshot.hasData) {
-                final Map<dynamic, dynamic> _map = snapshot.data;
-                // 0 é o comprimento do mapa que vem do firebase, caso for 0 quer dizer que não tem nada
-                if (_map.length > 0 || _map != null) {
-                  return ListView.builder(
-                      itemCount: _map.length,
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemBuilder: (buildContext, index) {
-                        return Card(
-                          child: Column(
-                            children: [
-                              ListTile(
-                                title: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(_map.values
-                                        .toList()[index]["nome"]
-                                        .toString()),
-                                    Text(_map.values
-                                        .toList()[index]["disciplina"]
-                                        .toString()),
-                                    Container(
-                                      width: 80,
-                                      height: 50,
-                                      child: Center(
-                                        child: Text(
-                                          _map.values
-                                                  .toList()[index]["resultado"]
-                                                  .toString() +
-                                              ".0",
+    return GetBuilder(
+        init: ControllerQuiz(),
+        builder: (ControllerQuiz controller) {
+          return FutureBuilder<Map<dynamic, dynamic>>(
+            future: controller.getAllResults(context),
+            builder: (context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
+                  return alertDialogFailure(
+                    context: context,
+                    title: _titleError,
+                  );
+                  break;
+                case ConnectionState.waiting:
+                  return ShowProgress();
+                  break;
+                case ConnectionState.active:
+                  return emptyList(constraints: constraints);
+                  break;
+                case ConnectionState.done:
+                  if (snapshot.hasData) {
+                    final Map<dynamic, dynamic> _map = snapshot.data;
+                    // 0 é o comprimento do mapa que vem do firebase, caso for 0 quer dizer que não tem nada
+                    if (_map.length > 0 || _map != null) {
+                      return ListView.builder(
+                          itemCount: _map.length,
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemBuilder: (buildContext, index) {
+                            return Card(
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    title: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(_map.values
+                                            .toList()[index]["nome"]
+                                            .toString()),
+                                        Text(_map.values
+                                            .toList()[index]["disciplina"]
+                                            .toString()),
+                                        Container(
+                                          width: 80,
+                                          height: 50,
+                                          child: Center(
+                                            child: Text(
+                                              _map.values
+                                                      .toList()[index]
+                                                          ["resultado"]
+                                                      .toString() +
+                                                  ".0",
+                                            ),
+                                          ),
                                         ),
-                                      ),
+                                      ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        );
-                      });
-                }
-                return emptyList(constraints);
+                            );
+                          });
+                    }
+                    return emptyList(constraints: constraints);
+                  }
+                  return emptyList(constraints: constraints);
+                  break;
+                default:
+                  return alertDialogFailure(
+                    context: context,
+                    title: _titleError,
+                  );
               }
-              return emptyList(constraints);
-              break;
-            default:
-              return alertDialogFailure(
-                context: context,
-                title: _titleError,
-              );
-          }
+            },
+          );
         });
   }
 }
 
-Widget emptyList(constraints) {
+Widget emptyList({@required BoxConstraints constraints}) {
   final String _informationEmptyQuantityResults = "0 Resultados";
   return Material(
     elevation: 10,

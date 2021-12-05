@@ -1,6 +1,6 @@
 import 'package:project_enade/web/router/app_routes.dart';
+import 'package:project_enade/web/ui/mobile/quiz_mobile/widgets/view_quiz_mobile.dart';
 import 'package:project_enade/web/ui/widgets/initial_page_web.dart';
-import 'package:project_enade/web/ui/mobile/view_quiz_mobile.dart';
 import 'package:project_enade/web/ui/widgets/view_login.dart';
 import 'package:project_enade/web/ui/widgets/view_question_network.dart';
 import 'package:project_enade/web/ui/widgets/view_questions_ads.dart';

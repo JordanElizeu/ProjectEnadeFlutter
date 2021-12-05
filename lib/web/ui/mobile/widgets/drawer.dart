@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_enade/web/controller/controller_initialpage_mobile.dart';
-import 'package:project_enade/web/controller/controller_methods.dart';
+import 'package:project_enade/web/controller/generic_controller/controller_methods.dart';
+import 'package:project_enade/web/controller/initialpage_controller/controller_initialpage_mobile.dart';
 import 'package:project_enade/web/router/app_routes.dart';
 import 'package:project_enade/web/ui/widgets/app_bar_tablet_or_desktop.dart';
 import '../../widgets/inkwell.dart';
@@ -20,7 +20,10 @@ Widget drawer(BuildContext context) {
         child: Column(
           children: [
             DrawerHeader(
-              child: Image.asset("assets/images/title_enade.png",width: constraints.maxWidth*0.70,),
+              child: Image.asset(
+                "assets/images/title_enade.png",
+                width: constraints.maxWidth * 0.70,
+              ),
               decoration: BoxDecoration(
                 color: Colors.white,
               ),
@@ -28,7 +31,7 @@ Widget drawer(BuildContext context) {
             _listTile(
               title: _titleHome,
               function: () {
-                ControllerAllMethods().transitionScreen(
+                ControllerAllMethods().pageTransition(
                     nameRoute: Routes.INITIAL, context: context);
               },
               iconData: Icons.home,
@@ -60,16 +63,17 @@ Widget drawer(BuildContext context) {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                Image.asset(
-                  "assets/images/gov.png",
-                  width: constraints.maxWidth * 0.3,
-                ),
-                inkwellText(
-                    function: () {
-                      ControllerAllMethods()
-                          .openUrl(ViewAppBar().linkAccessibility);
-                    },
-                    textName: "Acessibilidades"),
+                    Image.asset(
+                      "assets/images/gov.png",
+                      width: constraints.maxWidth * 0.3,
+                    ),
+                    inkwellText(
+                        function: () {
+                          ControllerAllMethods().openExternalUrl(
+                              url: ViewAppBar().linkAccessibility,
+                              context: context);
+                        },
+                        textName: "Acessibilidades"),
                   ],
                 ),
               ),

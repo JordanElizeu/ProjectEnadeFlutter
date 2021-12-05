@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:project_enade/web/controller/controller_firebase.dart';
-import 'package:project_enade/web/controller/controller_login.dart';
-import 'package:project_enade/web/controller/controller_methods.dart';
+import 'package:project_enade/web/controller/generic_controller/controller_firebase.dart';
+import 'package:project_enade/web/controller/login_controller/controller_login.dart';
+import 'package:project_enade/web/controller/generic_controller/controller_methods.dart';
+import 'package:project_enade/web/data/providers/firebase/provider_exceptions.dart';
 import 'package:project_enade/web/router/app_routes.dart';
 import 'package:project_enade/web/ui/widgets/dialog_exceptions.dart';
-import '../../repository/firebase/exceptions.dart';
 
 class ProviderAuthentication {
   final DatabaseReference _databaseReference =
@@ -51,17 +51,17 @@ class ProviderAuthentication {
             title: _titleSuccessCreateNewUser,
             information: _informationSuccessCreateNewUser,
             function: () {
-              ControllerAllMethods().transitionScreen(
+              ControllerAllMethods().pageTransition(
                   nameRoute: Routes.INITIAL, context: context);
               Navigator.pop(ControllerLogin.contextControllerLogin);
             },
             context: context);
       } on FirebaseAuthException catch (exception) {
-        handleFirebaseSendPasswordResetEmailException(
+        ProviderExceptions().handleFirebaseSendPasswordResetEmailException(
             context: context, exceptionMessage: exception);
       }
     } on FirebaseAuthException catch (exception) {
-      handleFirebaseCreateUserWithEmailAndPasswordException(
+      ProviderExceptions().handleFirebaseCreateUserWithEmailAndPasswordException(
           context: context, exceptionMessage: exception);
     }
   }
@@ -120,7 +120,7 @@ class ProviderAuthentication {
               information: _informationLoginIsSuccess,
               nameButton: _textButtonLoginIsSuccess,
               function: () {
-                ControllerAllMethods().transitionScreen(
+                ControllerAllMethods().pageTransition(
                     nameRoute: Routes.INITIAL, context: context);
                 Navigator.pop(ControllerLogin.contextControllerLogin);
               });
@@ -148,13 +148,13 @@ class ProviderAuthentication {
                     information: _informationSendVerificationToEmail,
                     nameButton: _titleButtonSendVerificationToEmail);
               } on FirebaseAuthException catch (exception) {
-                handleFirebaseSendPasswordResetEmailException(
+                ProviderExceptions().handleFirebaseSendPasswordResetEmailException(
                     context: context, exceptionMessage: exception);
               }
             });
       }
     } on FirebaseAuthException catch (exception) {
-      handleFirebaseLoginWithCredentialsException(
+      ProviderExceptions().handleFirebaseLoginWithCredentialsException(
           context: context, exceptionMessage: exception);
     }
   }

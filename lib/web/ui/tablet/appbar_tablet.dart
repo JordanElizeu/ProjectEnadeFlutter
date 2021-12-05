@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:menu_button/menu_button.dart';
 import 'package:project_enade/web/ui/widgets/inkwell.dart';
-import 'package:project_enade/web/controller/controller_methods.dart';
+import 'package:project_enade/web/controller/generic_controller/controller_methods.dart';
 import 'package:project_enade/web/router/app_routes.dart';
 import 'package:project_enade/web/ui/widgets/app_bar_tablet_or_desktop.dart';
 
@@ -46,10 +46,10 @@ Widget appBarTablet(BuildContext context) {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 24.0,right: 24.0),
+                        padding: const EdgeInsets.only(left: 24.0, right: 24.0),
                         child: Image.asset(
                           "assets/images/gov.png",
-                          height: constraints.maxHeight*0.60,
+                          height: constraints.maxHeight * 0.60,
                         ),
                       ),
                     ],
@@ -66,28 +66,37 @@ Widget appBarTablet(BuildContext context) {
                   child: Container(
                     width: 120,
                     child: MenuButton<String>(
-                      child: Icon(Icons.menu,color: Colors.blue),
+                      child: Icon(Icons.menu, color: Colors.blue),
                       items: listButtons,
                       itemBuilder: (String value) => Container(
                         height: 40,
                         alignment: Alignment.centerLeft,
-                        padding:
-                            const EdgeInsets.symmetric(vertical: 0.0, horizontal: 16),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 0.0, horizontal: 16),
                         child: FittedBox(child: Text(value)),
                       ),
                       onItemSelected: (String value) {
-                        switch(value){
+                        switch (value) {
                           case "Quiz":
-                            ControllerAllMethods().transitionScreen(nameRoute: Routes.INITIAL, context: context);
+                            ControllerAllMethods().pageTransition(
+                                nameRoute: Routes.INITIAL, context: context);
                             break;
                           case "Resultados":
-                            ControllerAllMethods().transitionScreen(nameRoute: Routes.RESULTS, context: context);
+                            ControllerAllMethods().pageTransition(
+                                nameRoute: Routes.RESULTS, context: context);
                             break;
                           case "Acessar conta":
-                            ControllerAllMethods().transitionScreen(nameRoute: Routes.LOGIN, context: context);
+                            ControllerAllMethods().pageTransition(
+                                nameRoute: Routes.LOGIN, context: context);
                             break;
                           case "Acessibilidade":
-                            inkwellText(textName: ViewAppBar().titleAccessibilityLink,function: (){ControllerAllMethods().openUrl(ViewAppBar().linkAccessibility);});
+                            inkwellText(
+                                textName: ViewAppBar().titleAccessibilityLink,
+                                function: () {
+                                  ControllerAllMethods().openExternalUrl(
+                                      url: ViewAppBar().linkAccessibility,
+                                      context: context);
+                                });
                             break;
                         }
                       },

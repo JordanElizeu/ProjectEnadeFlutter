@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_enade/web/ui/desktop/view_bodyinitial_desktop.dart';
-import 'package:project_enade/web/ui/desktop/view_footer_desktop.dart';
+import 'package:project_enade/web/ui/desktop/body_desktop/view_bodyinitial_desktop.dart';
+import 'package:project_enade/web/ui/desktop/footer_desktop/view_footer_desktop.dart';
 import '../widgets/app_bar_tablet_or_desktop.dart';
 
 class ViewPageDesktop extends StatelessWidget {
