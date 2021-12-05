@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_enade/web/ui/widgets/strings_footer.dart';
 import 'package:project_enade/web/ui/widgets/widget_links_footer.dart';
 
 class ViewFooterDesktop extends StatelessWidget {
@@ -20,7 +19,7 @@ class ViewFooterDesktop extends StatelessWidget {
                   children: [
                     Container(
                       width: constraints.maxWidth*0.70,
-                      child: SelectableText(StringsFooter.textFootInformation,
+                      child: SelectableText(WidgetLinksFooter().textFootInformation,
                           style: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.white)),
                     ),
@@ -31,7 +30,7 @@ class ViewFooterDesktop extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              widgetLinksFooter(context: context)
+                              WidgetLinksFooter().widgetLinksFooter(context: context)
                             ],
                           ),
                         ),

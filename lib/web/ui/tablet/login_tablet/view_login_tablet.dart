@@ -9,7 +9,7 @@ import 'package:project_enade/web/controller/generic_controller/controller_metho
 import 'package:project_enade/web/router/app_routes.dart';
 import 'package:project_enade/web/ui/view_login.dart';
 
-class ViewLoginDesktop extends StatelessWidget {
+class ViewLoginTablet extends StatelessWidget {
   final ViewLogin _viewLogin = ViewLogin();
   @override
   Widget build(BuildContext context) {
@@ -24,10 +24,7 @@ class ViewLoginDesktop extends StatelessWidget {
             child: LayoutBuilder(
               builder: (_, constraints) {
                 return Container(
-                    //I want to get 40% of screen so...
-                    width: constraints.maxWidth * 0.40 > 350
-                        ? constraints.maxWidth * 0.40
-                        : constraints.maxWidth * 0.70,
+                    width: constraints.maxWidth * 0.75,
                     child: GetBuilder(
                       init: ControllerLogin(),
                       builder: (ControllerLogin controller) {

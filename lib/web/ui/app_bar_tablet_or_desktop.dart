@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_enade/web/ui/tablet/appbar_tablet.dart';
-import '../desktop/appbar_desktop/view_appbar_desktop.dart';
+import 'package:project_enade/web/ui/tablet/appbar_tablet/appbar_tablet.dart';
+import 'desktop/appbar_desktop/view_appbar_desktop.dart';
 
 class ViewAppBar extends StatelessWidget {
   //Strings

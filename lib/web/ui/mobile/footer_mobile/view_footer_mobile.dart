@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_enade/web/ui/widgets/strings_footer.dart';
 import 'package:project_enade/web/ui/widgets/widget_links_footer.dart';
 
 Widget viewFooterMobile(BuildContext context) {
@@ -18,7 +17,7 @@ Widget viewFooterMobile(BuildContext context) {
                 children: [
                   Container(
                     width: constraints.maxWidth * 0.70,
-                    child: Text(StringsFooter.textFootInformation,
+                    child: Text(WidgetLinksFooter().textFootInformation,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.white)),
                   ),
@@ -29,7 +28,7 @@ Widget viewFooterMobile(BuildContext context) {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            widgetLinksFooter(context: context)
+                            WidgetLinksFooter().widgetLinksFooter(context: context)
                           ],
                         ),
                       ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_enade/web/controller/generic_controller/controller_methods.dart';
 import 'package:project_enade/web/controller/initialpage_controller/controller_initialpage_mobile.dart';
 import 'package:project_enade/web/router/app_routes.dart';
-import 'package:project_enade/web/ui/widgets/app_bar_tablet_or_desktop.dart';
+import '../../app_bar_tablet_or_desktop.dart';
 import '../../widgets/inkwell.dart';
 
 Widget drawer(BuildContext context) {

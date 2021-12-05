@@ -4,7 +4,9 @@ import 'package:project_enade/web/ui/widgets/inkwell.dart';
 import 'package:project_enade/web/controller/initialpage_controller/controller_initialpage_desktop.dart';
 import 'package:project_enade/web/controller/generic_controller/controller_methods.dart';
 import 'package:project_enade/web/router/app_routes.dart';
-import '../../widgets/app_bar_tablet_or_desktop.dart';
+import 'package:project_enade/web/ui/widgets/widget_elevatedbutton_appbar.dart';
+
+import '../../app_bar_tablet_or_desktop.dart';
 
 Widget appBarDesktop(BuildContext context) {
   return Material(
@@ -77,7 +79,7 @@ Widget appBarDesktop(BuildContext context) {
                                     nameRoute: Routes.INITIAL,
                                     context: context);
                               }),
-                          _elevatedButton(
+                          elevatedButton(
                               nameButton: ViewAppBar().buttonLogin,
                               function: () {
                                 ControllerAllMethods().pageTransition(
@@ -98,48 +100,4 @@ Widget appBarDesktop(BuildContext context) {
       ));
 }
 
-Widget _elevatedButton(
-    {nameButton,
-    Function function,
-    IconData icon,
-    Color colorText,
-    @required Color colorBackGroundButton,
-    Color overlayColor}) {
-  return FittedBox(
-    child: Padding(
-      padding: const EdgeInsets.all(32.0),
-      child: Container(
-        width: 125,
-        height: 35,
-        child: ElevatedButton(
-          onPressed: function,
-          child: Row(
-            children: [
-              Icon(icon),
-              Expanded(
-                child: Center(
-                  child: Text(
-                    nameButton,
-                    style: TextStyle(
-                        color: colorText == null ? Colors.white : colorText),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          style: ButtonStyle(
-            overlayColor: MaterialStateProperty.all(
-                overlayColor == null ? Colors.white38 : overlayColor),
-            backgroundColor: MaterialStateProperty.all(colorBackGroundButton),
-            elevation: MaterialStateProperty.all(10),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0),
-              ),
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
-}
+

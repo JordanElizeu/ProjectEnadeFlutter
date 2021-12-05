@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:project_enade/web/controller/generic_controller/controller_methods.dart';
+import 'package:project_enade/web/controller/quiz_controller/controller_ads.dart';
 import 'package:project_enade/web/controller/quiz_controller/controller_quiz.dart';
-import 'package:project_enade/web/data/repository/quiz/repository_quiz_ads.dart';
 import 'package:project_enade/web/router/app_routes.dart';
 import 'package:project_enade/web/ui/widgets/widgets_questions.dart';
 
@@ -25,7 +25,7 @@ class ViewQuestionAdsMobile extends StatelessWidget {
                 DefaultWidgetQuestions _defaultWidgetQuestions =
                     DefaultWidgetQuestions(
                         constraints: constraints,
-                        map: RepositoryQuizAds().getMapOfQuestionAds(),
+                        map: ControllerAds().getQuizAdsMap(),
                         nameDisciplina: _titleDisciplina,
                         context: context,
                         controllerQuiz: controller);

@@ -7,7 +7,7 @@ import 'package:project_enade/web/controller/quiz_controller/controller_quiz.dar
 import 'package:project_enade/web/router/app_routes.dart';
 import 'package:project_enade/web/ui/widgets/widgets_questions.dart';
 
-class ViewQuestionNetworkMobile extends StatelessWidget {
+class ViewQuestionNetworkTablet extends StatelessWidget {
   final String _titleDisciplina = "REDES";
   @override
   Widget build(BuildContext context) {

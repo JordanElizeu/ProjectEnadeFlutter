@@ -18,9 +18,9 @@ class ControllerAllMethods extends GetxController {
     }
   }
 
-  pageTransition({@required nameRoute, @required BuildContext context}) async {
+  pageTransition({@required String nameRoute, @required BuildContext context}) async {
     try {
-      await Get.toNamed(nameRoute);
+      await Navigator.of(context).popAndPushNamed(nameRoute);
     } catch (exceptionMessage) {
       alertDialogFailure(
           context: context, title: "unknown Error", information: 404);
@@ -42,7 +42,7 @@ class ControllerAllMethods extends GetxController {
           nameButton: nameButton,
           function: () async {
             Navigator.pop(ControllerLogin.contextControllerLogin);
-            await Get.toNamed(nameRoute);
+            await Navigator.of(context).popAndPushNamed(nameRoute);
           });
     } catch (exceptionMessage) {
       alertDialogFailure(
