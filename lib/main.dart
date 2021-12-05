@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:project_enade/router/Router.dart';
+import 'package:project_enade/web/router/app_routes.dart';
+import 'package:project_enade/web/router/app_pages.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       title: _title,
       home: MaterialApp(
         initialRoute: Routes.INITIAL,
-        routes: AppPages.routes,
+        routes: AppPagesView.routes,
       ),
     );
   }
