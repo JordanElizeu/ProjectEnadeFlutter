@@ -84,7 +84,7 @@ class ControllerQuiz extends GetxController{
   }
 
   getAllResults(BuildContext context){
-    RepositoryDatabase().getAllResults(context: context);
+    return RepositoryDatabase().getAllResults(context: context);
   }
 
   //valida se acertou a questão
