@@ -20,11 +20,10 @@ class ViewLoginTablet extends StatelessWidget {
           false,
       child: Center(
         child: Material(
-            elevation: 20,
             child: LayoutBuilder(
               builder: (_, constraints) {
                 return Container(
-                    width: constraints.maxWidth * 0.75,
+                    width: constraints.maxWidth,
                     child: GetBuilder(
                       init: ControllerLogin(),
                       builder: (ControllerLogin controller) {

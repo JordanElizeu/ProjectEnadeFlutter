@@ -9,16 +9,18 @@ class ViewQuestionsAds extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screen = getFormFactor(context).toString();
+    final width = MediaQuery.of(context).size.width;
 
     switch (screen){
       case 'ScreenType.Phone':
         return ViewQuestionAdsMobile();
         break;
-      case 'ScreenType.Tablet':
-        return ViewQuestionAdsTablet();
-        break;
       default:
-        return ViewQuestionAdsDesktop();
+        if (width * 0.40 < 320){
+          return ViewQuestionAdsTablet();
+        }else{
+          return ViewQuestionAdsDesktop();
+        }
         break;
     }
   }

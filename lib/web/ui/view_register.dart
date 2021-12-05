@@ -9,16 +9,18 @@ class ViewRegister extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screen = getFormFactor(context).toString();
+    final width = MediaQuery.of(context).size.width;
 
     switch (screen){
       case 'ScreenType.Phone':
         return ViewRegisterMobile();
         break;
-      case 'ScreenType.Tablet':
-        return ViewRegisterTablet();
-        break;
       default:
-        return ViewRegisterDesktop();
+        if (width * 0.40 < 320){
+          return ViewRegisterTablet();
+        }else{
+          return ViewRegisterDesktop();
+        }
         break;
     }
   }
