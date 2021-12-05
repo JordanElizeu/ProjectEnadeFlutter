@@ -28,9 +28,9 @@ const RESOURCES = {
 "icon.png": "f42dee375dcafbd4badbfe7b9b50e0dd",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"index.html": "b107d3676cb8ff1bc6ab2c844dcb9de9",
-"/": "b107d3676cb8ff1bc6ab2c844dcb9de9",
-"main.dart.js": "cd225b9bb194bef5f40c79d6c9c55607",
+"index.html": "02976bef51ed578d3f045159f4ed95fc",
+"/": "02976bef51ed578d3f045159f4ed95fc",
+"main.dart.js": "a38b616a887d8a9dfd612a7804c19597",
 "manifest.json": "76e2fc993f8f94f72212f78d61eea96a",
 "version.json": "74abcd2d7c2acfe9da5e2099b568de93"
 };
