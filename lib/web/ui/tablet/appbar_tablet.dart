@@ -4,7 +4,7 @@ import 'package:menu_button/menu_button.dart';
 import 'package:project_enade/web/ui/widgets/inkwell.dart';
 import 'package:project_enade/web/controller/controller_methods.dart';
 import 'package:project_enade/web/router/app_routes.dart';
-import 'package:project_enade/web/ui/app_bar_tablet_or_desktop.dart';
+import 'package:project_enade/web/ui/widgets/app_bar_tablet_or_desktop.dart';
 
 Widget appBarTablet(BuildContext context) {
   final List<String> listButtons = [

@@ -1,79 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:project_enade/web/data/repository/firebase/repository_authentication.dart';
-import 'package:project_enade/web/ui/widgets/dialog_exceptions.dart';
-import 'controller_questions.dart';
 
 class ControllerQuizNetwork extends GetxController{
 
-  var _questionSelectedRadiusNetwork = 0;
-  var showQuestionScreenNetwork = 1;
-  var _numberCorrectQuestionsNetwork = 0;
-  var _numberIncorrectQuestionsNetwork = 10;
-  var listIncorrectQuestionsNetwork = [];
-
-  set questionSelectedRadiusNetwork(value) {
-    _questionSelectedRadiusNetwork = value;
-  }
-  get questionSelectedRadiusNetwork => _questionSelectedRadiusNetwork;
-
-  final String _disciplina = "REDES";
-
-  void incrementNetwork(value) {
-    _questionSelectedRadiusNetwork = value;
-    print(_questionSelectedRadiusNetwork);
-    update();
-  }
-
-  String getTitleNetwork() {
-    return _questionsNetwork[showQuestionScreenNetwork]["title"];
-  }
-
-  String getItemNetwork(String textNumberItem) {
-    int numberItem = ControllerQuestions().getNumberItemOfQuestion(textNumberItem);
-    return _questionsNetwork[showQuestionScreenNetwork]["item$numberItem"];
-  }
-
-  //valida se acertou a questão
-  _validatorQuestionsResultNetwork(){
-    int response = ControllerQuestions().getResponse(_questionsNetwork,showQuestionScreenNetwork);
-    if(response == _questionSelectedRadiusNetwork){
-      _numberCorrectQuestionsNetwork ++;
-    }else{
-      listIncorrectQuestionsNetwork.add("Questão: $showQuestionScreenNetwork");
-      listIncorrectQuestionsNetwork.add("Resposta: ${_questionsNetwork[showQuestionScreenNetwork]["response"]}");
-    }
-  }
-
-  buttonConfirmResponseForNewQuestionNetwork(BuildContext context) async {
-    final _informationAlertDialogSuccess = "Questionário Finalizado!\nPara refazer o teste inicie novamente o questionario.\n\nQuestões incorretas: ${_numberIncorrectQuestionsNetwork - _numberCorrectQuestionsNetwork}";
-    final _titleAlertDialogSuccess = "Nota: $_numberCorrectQuestionsNetwork de 10";
-    final _titleAlertDialogFailure = "Confirme sua resposta";
-    final _informationAlertDialogFailure = "Selecione um item como resposta!";
-
-    if (_questionSelectedRadiusNetwork == 0) {
-      alertDialogFailure(information: _informationAlertDialogFailure, context: context, title: _titleAlertDialogFailure);
-    }else if (showQuestionScreenNetwork == 10){
-      Map<dynamic, dynamic> map = await RepositoryAuthentication().getInformationUser(context: context);
-      final name = map["nome"];
-      ControllerQuestions().questionarioFinalizado(
-          title: _titleAlertDialogSuccess,
-          context: context,
-          result: _numberCorrectQuestionsNetwork,
-          questionSelectedRadius: _questionSelectedRadiusNetwork,
-          showQuestionScreen: showQuestionScreenNetwork,
-          name: name,
-          information: _informationAlertDialogSuccess,
-          disciplina: _disciplina);
-    }else{
-      _validatorQuestionsResultNetwork();
-      _questionSelectedRadiusNetwork = 0;
-      showQuestionScreenNetwork ++;
-      update();
-    }
-  }
-
-  Map<int, Map<String, String>> _questionsNetwork = {
+  static Map<int, Map<String, String>> mapNetworkQuestions = {
     1: {
       "image": "not found",
       "title":

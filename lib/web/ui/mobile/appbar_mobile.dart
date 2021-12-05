@@ -14,8 +14,6 @@ class ViewPageMobile extends StatelessWidget {
 }
 //Text(_title,style: TextStyle(fontStyle: FontStyle.italic,),),
 Widget appBarMobile(BuildContext context) {
-  final String _title = "Enade 2021";
-
   return LayoutBuilder(
     builder: (_, constraints) {
       return Scaffold(
@@ -25,39 +23,7 @@ Widget appBarMobile(BuildContext context) {
           title: Image.asset("assets/images/title_enade.png"),
           centerTitle: true,
           actions: [
-            Container(
-              width: 120,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(32.0),
-                      ),
-                    ),
-                  ),
-                  onPressed: () {
-                    ControllerAllMethods().transitionScreen(
-                        context: context, nameRoute: Routes.LOGIN);
-                  },
-                  child: Row(
-                    children: [
-                      Icon(Icons.person,color: Colors.white,),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          child: Text(
-                            "Entrar",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ),
-              ),
-            )
+            _appBarMobile(context)
           ],
         ),
         drawer:
@@ -76,5 +42,42 @@ Widget appBarMobile(BuildContext context) {
         ),
       );
     },
+  );
+}
+
+Widget _appBarMobile(BuildContext context){
+  final String _textButtonLogin = "Entrar";
+  return Container(
+    width: 120,
+    child: Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: ElevatedButton(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+            ),
+          ),
+          onPressed: () {
+            ControllerAllMethods().transitionScreen(
+                context: context, nameRoute: Routes.LOGIN);
+          },
+          child: Row(
+            children: [
+              Icon(Icons.person,color: Colors.white,),
+              Expanded(
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    _textButtonLogin,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
+          )
+      ),
+    ),
   );
 }

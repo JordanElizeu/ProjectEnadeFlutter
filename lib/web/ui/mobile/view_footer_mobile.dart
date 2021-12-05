@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_enade/web/controller/controller_methods.dart';
 import 'package:project_enade/web/ui/desktop/view_footer_desktop.dart';
+import 'package:project_enade/web/ui/widgets/strings_footer.dart';
+import 'package:project_enade/web/ui/widgets/widget_linktext.dart';
 
 Widget viewFooterMobile(BuildContext context){
-  final ViewFooterDesktop viewFooter = ViewFooterDesktop();
   return LayoutBuilder(
     builder: (_, constraints) {
       return Center(
@@ -19,7 +20,7 @@ Widget viewFooterMobile(BuildContext context){
                 children: [
                   Container(
                     width: constraints.maxWidth*0.70,
-                    child: Text(viewFooter.textFootInformation,
+                    child: Text(StringsFooter.textFootInformation,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.white)),
                   ),
@@ -30,28 +31,28 @@ Widget viewFooterMobile(BuildContext context){
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            viewFooter.linkText(
-                                image: viewFooter.pathImageGitHub,
+                            linkText(
+                                image: StringsFooter.pathImageGitHub,
                                 constraints: constraints,
-                                link: viewFooter.linkGitHubName,
+                                link: StringsFooter.linkGitHubName,
                                 function: () {
-                                  ControllerAllMethods().openUrl(viewFooter.linkGitHub);
+                                  ControllerAllMethods().openUrl(StringsFooter.linkGitHub);
                                 },
                                 context: context),
-                            viewFooter.linkText(
-                                image: viewFooter.pathImageLinkedin,
+                            linkText(
+                                image: StringsFooter.pathImageLinkedin,
                                 constraints: constraints,
-                                link: viewFooter.linkLinkedinName,
+                                link: StringsFooter.linkLinkedinName,
                                 function: () {
-                                  ControllerAllMethods().openUrl(viewFooter.linkLinkedin);
+                                  ControllerAllMethods().openUrl(StringsFooter.linkLinkedin);
                                 },
                                 context: context),
-                            viewFooter.linkText(
-                                image: viewFooter.pathImageInstagram,
-                                link: viewFooter.linkInstagramName,
+                            linkText(
+                                image: StringsFooter.pathImageInstagram,
+                                link: StringsFooter.linkInstagramName,
                                 constraints: constraints,
                                 function: () {
-                                  ControllerAllMethods().openUrl(viewFooter.linkInstagram);
+                                  ControllerAllMethods().openUrl(StringsFooter.linkInstagram);
                                 },
                                 context: context)
                           ],

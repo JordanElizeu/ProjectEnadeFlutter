@@ -6,7 +6,8 @@ import 'package:project_enade/web/controller/controller_initialpage_mobile.dart'
 class ViewBodyMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final List<String> listImages = [
+    final String _textButtonInitQuiz = "Iniciar simulado";
+    final List<String> _listImages = [
       'assets/images/enade2021.png',
       'assets/images/card_enade.webp',
       'assets/images/enade_dicas.png',
@@ -29,7 +30,7 @@ class ViewBodyMobile extends StatelessWidget {
               Container(
                 child: CarouselImages(
                   scaleFactor: 0.6,
-                  listImages: listImages,
+                  listImages: _listImages,
                   height: 250.0,
                   borderRadius: 30.0,
                   cachedNetworkImage: true,
@@ -46,7 +47,7 @@ class ViewBodyMobile extends StatelessWidget {
                     onPressed: () {
                       ControllerInitialPageMobile().initializeQuiz(context);
                     },
-                    child: Text("Iniciar simulado"),
+                    child: Text(_textButtonInitQuiz),
                   ),
                 ),
               )

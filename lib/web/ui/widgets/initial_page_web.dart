@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project_enade/web/ui/widgets/responsive.dart';
 import 'package:project_enade/web/ui/desktop/page_initial_desktop.dart';
-import 'mobile/appbar_mobile.dart';
+import '../mobile/appbar_mobile.dart';
 
 class InitialPage extends StatelessWidget {
   @override

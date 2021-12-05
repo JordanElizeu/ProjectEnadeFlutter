@@ -88,7 +88,7 @@ class ProviderAuthentication {
     }
   }
 
-  loginAccount({email, matricula, password, BuildContext context}) async {
+  void loginAccount({email, matricula, password, BuildContext context}) async {
     final _titleButtonFailureEmailNotVerified = "Solicitar verificação";
     final _informationSendVerificationToEmail =
         "Enviamos um novo e-mail de verificação para você";

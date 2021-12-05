@@ -7,7 +7,7 @@ import 'package:project_enade/web/ui/widgets/inkwell.dart';
 import 'package:project_enade/web/controller/controller_login.dart';
 import 'package:project_enade/web/controller/controller_methods.dart';
 import 'package:project_enade/web/router/app_routes.dart';
-import '../view_login.dart';
+import 'package:project_enade/web/ui/widgets/view_login.dart';
 
 class ViewLoginDesktop extends StatelessWidget {
   final ViewLogin _viewLogin = ViewLogin();

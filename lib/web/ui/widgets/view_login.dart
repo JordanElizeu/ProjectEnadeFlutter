@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_enade/web/ui/desktop/view_login_desktop.dart';
+import 'package:project_enade/web/ui/mobile/view_login_mobile.dart';
 import 'package:project_enade/web/ui/widgets/responsive.dart';
-import 'desktop/view_login_desktop.dart';
-import 'mobile/view_login_mobile.dart';
+
 
 class ViewLogin extends StatelessWidget {
   final titleLogin = "Acesse sua conta";

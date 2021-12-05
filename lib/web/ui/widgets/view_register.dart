@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_enade/web/ui/desktop/view_register_desktop.dart';
+import 'package:project_enade/web/ui/mobile/view_register_mobile.dart';
 import 'package:project_enade/web/ui/widgets/responsive.dart';
-import 'desktop/view_register_desktop.dart';
-import 'mobile/view_register_mobile.dart';
 
 class ViewRegister extends StatelessWidget {
   @override

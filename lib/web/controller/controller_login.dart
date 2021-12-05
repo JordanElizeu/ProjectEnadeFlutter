@@ -32,7 +32,6 @@ class ControllerLogin extends GetxController {
     if (formLoginValidatedMatricula.validate() &&
         formLoginValidatedEmail.validate() &&
         formLoginValidatedPassword.validate()) {
-      print(loginTextFormFieldPassword.text);
       await RepositoryAuthentication().loginUser(
           password: loginTextFormFieldPassword.text,
           matricula: loginTextFormFieldMatricula.text,
