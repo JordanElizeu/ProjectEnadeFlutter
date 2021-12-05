@@ -30,25 +30,13 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
+
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
   </div>
-
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
-
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('flutter-first-frame', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=1567073660');
-      });
-    }
-  </script>
+</div>
 
   <script src="main.dart.js" type="application/javascript"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
@@ -69,5 +57,17 @@
   };
   firebase.initializeApp(firebaseConfig);
 </script>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('flutter-first-frame', function () {
+        navigator.serviceWorker.register('flutter_service_worker.js?v=1143545123');
+      });
+    }
+  </script>
 </body>
 </html>
