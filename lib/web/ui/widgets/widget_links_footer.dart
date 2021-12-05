@@ -16,7 +16,7 @@ class WidgetLinksFooter {
     final _linkGitHubName = "Github";
     final _linkLinkedinName = "Linkedin";
     final _linkInstagramName = "Instagram";
-    return Column(
+    return Row(
       children: [
         linkText(
             image: _pathImageGitHub,
