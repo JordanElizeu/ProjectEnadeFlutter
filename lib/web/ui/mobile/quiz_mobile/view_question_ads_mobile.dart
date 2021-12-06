@@ -5,7 +5,7 @@ import 'package:project_enade/web/controller/generic_controller/controller_metho
 import 'package:project_enade/web/controller/quiz_controller/controller_ads.dart';
 import 'package:project_enade/web/controller/quiz_controller/controller_quiz.dart';
 import 'package:project_enade/web/router/app_routes.dart';
-import 'package:project_enade/web/ui/widgets/widgets_questions.dart';
+import 'package:project_enade/web/ui/mobile/quiz_mobile/widgets/widgets_questions_mobile.dart';
 
 class ViewQuestionAdsMobile extends StatelessWidget {
   final String _titleDisciplina = "ADS";
@@ -22,8 +22,8 @@ class ViewQuestionAdsMobile extends StatelessWidget {
           return Center(
             child: LayoutBuilder(
               builder: (_, constraints) {
-                DefaultWidgetQuestions _defaultWidgetQuestions =
-                    DefaultWidgetQuestions(
+                DefaultWidgetQuestionsMobile _defaultWidgetQuestions =
+                DefaultWidgetQuestionsMobile(
                         constraints: constraints,
                         map: ControllerAds().getQuizAdsMap(),
                         nameDisciplina: _titleDisciplina,
@@ -36,9 +36,13 @@ class ViewQuestionAdsMobile extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _defaultWidgetQuestions.titleQuestion(),
-                        _defaultWidgetQuestions.radiosButton(),
-                        _defaultWidgetQuestions.buttonConfirmResponse()
+                        Column(
+                          children: [
+                            _defaultWidgetQuestions.titleQuestion(),
+                            _defaultWidgetQuestions.radiosButton(),
+                            _defaultWidgetQuestions.buttonConfirmResponse(),
+                          ],
+                        )
                       ],
                     ),
                   ),
